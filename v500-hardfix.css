@@ -1,0 +1,176 @@
+/* KORZHANY v500 — palette glass recovery + stable wallpaper geometry + Telegram Giveaway parity */
+
+/* --------------------------------------------------------------------------
+   1) Wallpaper geometry must never change after first paint.
+   The boot image and the live layer now use the exact same viewport box.
+   -------------------------------------------------------------------------- */
+html.kor-custom-wallpaper,
+html.kor-custom-wallpaper body {
+  background-position:center center !important;
+}
+body.kor-custom-wallpaper #korWallpaperLayerV497 {
+  inset:0 !important;
+  transform:none !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+  transition:filter .14s cubic-bezier(.2,.75,.25,1), opacity .16s ease !important;
+  will-change:filter !important;
+}
+#korWallpaperLayerV497.kor-wallpaper-switching {
+  opacity:1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2) Modern boost bot: rebuilt palettes must never inherit the old wine/carpet
+      surfaces from v145/v148. Sakura intentionally keeps its legacy identity.
+   -------------------------------------------------------------------------- */
+html.product-layout-modern body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) {
+  --v408-glass:color-mix(in srgb,var(--kor-panel) 68%,transparent) !important;
+  --v408-glass-strong:color-mix(in srgb,var(--kor-panel-2) 76%,transparent) !important;
+  --v408-glass-soft:rgba(255,255,255,.035) !important;
+  --v408-line:color-mix(in srgb,var(--kor-accent) 25%,rgba(255,255,255,.12)) !important;
+  --v408-line-soft:color-mix(in srgb,var(--kor-accent) 13%,rgba(255,255,255,.075)) !important;
+  --v408-glow:color-mix(in srgb,var(--kor-accent) 9%,transparent) !important;
+  --v148-wine-layer:transparent !important;
+  --v148-wine-layer-2:transparent !important;
+  --v145-panel-wine:transparent !important;
+  --v145-panel-wine-2:transparent !important;
+  --v145-border:color-mix(in srgb,var(--kor-accent) 22%,rgba(255,255,255,.10)) !important;
+}
+
+html.product-layout-modern body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  #participantsPanel,#chatPanel,.participants-card,.chat-card,#winnersPanel,.blacklist-card
+) {
+  border-color:var(--v408-line) !important;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.045),transparent 34%,rgba(255,255,255,.012)),
+    color-mix(in srgb,var(--kor-panel-2) 62%,transparent) !important;
+  background-image:linear-gradient(145deg,rgba(255,255,255,.045),transparent 34%,rgba(255,255,255,.012)) !important;
+  box-shadow:0 22px 64px rgba(0,0,0,.28),0 0 26px var(--v408-glow),inset 0 1px 0 rgba(255,255,255,.065) !important;
+  backdrop-filter:blur(20px) saturate(1.12) !important;
+  -webkit-backdrop-filter:blur(20px) saturate(1.12) !important;
+}
+
+/* Old carpet lived both on the cards and on their inner lists. Remove every
+   one of those legacy texture layers for rebuilt palettes. */
+html.product-layout-modern body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  #participantsList,#chatList,#winnersList,#blackList
+) {
+  background:linear-gradient(180deg,rgba(3,5,9,.07),rgba(3,5,9,.14)) !important;
+  background-image:linear-gradient(180deg,rgba(3,5,9,.07),rgba(3,5,9,.14)) !important;
+  border-color:transparent !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+/* The v145 pseudo-element was the hidden source of the burgundy carpet veil
+   on the winner/blacklist rail. Modern cards already have their own sheen. */
+html.product-layout-modern body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  #winnersPanel,.blacklist-card
+)::before {
+  content:none !important;
+  display:none !important;
+  background:none !important;
+}
+
+html.product-layout-modern body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  #participantsPanel,#chatPanel
+)::before {
+  content:"" !important;
+  display:block !important;
+  background:
+    radial-gradient(circle at 0 0,color-mix(in srgb,var(--kor-accent) 7%,transparent),transparent 28%),
+    linear-gradient(115deg,rgba(255,255,255,.035),transparent 25% 78%,rgba(255,255,255,.012)) !important;
+  opacity:1 !important;
+}
+
+html.product-layout-modern body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  #winnersPanel,.blacklist-card
+)::after {
+  background:linear-gradient(130deg,rgba(255,255,255,.035),transparent 30% 74%,rgba(255,255,255,.012)) !important;
+  opacity:1 !important;
+}
+
+/* Headers/list chrome must also stop pulling the old wine colors. */
+html.product-layout-modern body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  #participantsPanel>.card-title,#chatPanel>.card-title,.blacklist-card>.card-title,.right-title
+) {
+  background:linear-gradient(180deg,rgba(255,255,255,.034),rgba(255,255,255,.008)) !important;
+  color:color-mix(in srgb,var(--kor-text) 92%,var(--kor-muted)) !important;
+  border-color:color-mix(in srgb,var(--kor-accent) 10%,rgba(255,255,255,.055)) !important;
+  text-shadow:none !important;
+}
+
+/* OBSIDIAN is neutral graphite — no gold, blue or wine bridge variables. */
+html.product-layout-modern body.theme-obsidian {
+  --v408-glass:rgba(17,19,24,.60) !important;
+  --v408-glass-strong:rgba(24,27,33,.68) !important;
+  --v408-line:rgba(217,222,232,.22) !important;
+  --v408-line-soft:rgba(217,222,232,.10) !important;
+  --v408-glow:rgba(217,222,232,.055) !important;
+}
+html.product-layout-modern body.theme-obsidian :is(#participantsPanel,#chatPanel,#winnersPanel,.blacklist-card) {
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.040),transparent 36%,rgba(255,255,255,.010)),
+    rgba(17,19,24,.56) !important;
+  border-color:rgba(217,222,232,.18) !important;
+  box-shadow:0 22px 64px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.055) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3) TELEGRAM GIVEAWAY: left and right rails use the same glass recipe.
+   -------------------------------------------------------------------------- */
+html.product-layout-modern body[data-kor-page="active-giveaway"] :is(.skin-card,.side-card) {
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.045),transparent 36%,rgba(255,255,255,.012)),
+    var(--p410-glass-strong) !important;
+  border-color:var(--p410-line) !important;
+  box-shadow:var(--p410-shadow),inset 0 1px 0 rgba(255,255,255,.065) !important;
+  backdrop-filter:blur(19px) saturate(1.08) !important;
+  -webkit-backdrop-filter:blur(19px) saturate(1.08) !important;
+}
+html.product-layout-modern body[data-kor-page="active-giveaway"] :is(.skin-card,.side-card)::after {
+  background:linear-gradient(120deg,rgba(255,255,255,.025),transparent 35% 74%,rgba(255,255,255,.010)) !important;
+  opacity:1 !important;
+}
+
+/* Custom wallpapers should keep these rails transparent enough to actually
+   show the selected image equally on both sides. */
+html.kor-custom-wallpaper.product-layout-modern body[data-kor-page="active-giveaway"] :is(.skin-card,.side-card) {
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.040),transparent 36%),
+    color-mix(in srgb,var(--p410-glass-strong) 78%,transparent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   v506 — FULL QUALITY WALLPAPER HARD FIX
+   Boot WebP is preview-only; the final layer is always the untouched original
+   Blob from IndexedDB. The geometry is identical so the preview -> original
+   handoff sharpens in place without crop/size teleportation.
+   -------------------------------------------------------------------------- */
+body.kor-custom-wallpaper #korWallpaperLayerV497 {
+  inset:0 !important;
+  transform:none !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+  image-rendering:auto !important;
+  opacity:0 !important;
+  transition:opacity .16s cubic-bezier(.2,.75,.25,1), filter .12s linear !important;
+  will-change:auto !important;
+  backface-visibility:hidden;
+}
+body.kor-custom-wallpaper #korWallpaperLayerV497.kor-wallpaper-full {
+  opacity:1 !important;
+}
+/* At neutral settings do not send the wallpaper through a CSS filter surface. */
+html.kor-wallpaper-filter-free body.kor-custom-wallpaper #korWallpaperLayerV497 {
+  filter:none !important;
+}
+/* Keep first-paint preview and final source on precisely the same crop. */
+html.kor-custom-wallpaper {
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+}

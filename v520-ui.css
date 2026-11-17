@@ -1,0 +1,240 @@
+/* v520: override legacy high-specificity rules *only* for winner and header presentation. */
+
+/* Clean headers: no upper chrome, underlines or old top-edge glow. */
+html.product-layout-modern body #participantsPanel > .card-title,
+html.product-layout-modern body #chatPanel > .connection,
+html body #participantsPanel > .card-title,
+html body #chatPanel > .connection {
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+  outline:0!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html.product-layout-modern body #participantsPanel > .card-title::before,
+html.product-layout-modern body #participantsPanel > .card-title::after,
+html.product-layout-modern body #chatPanel > .connection::before,
+html.product-layout-modern body #chatPanel > .connection::after,
+html.product-layout-modern body #participantsPanel::before,
+html.product-layout-modern body #participantsPanel::after,
+html.product-layout-modern body #chatPanel::before,
+html.product-layout-modern body #chatPanel::after {
+  content:none!important;
+  display:none!important;
+}
+html body #chatPanel > .connection {justify-content:center!important;align-items:center!important;gap:9px!important;}
+html body #chatPanel > .connection #connectionText {text-align:center!important;font-weight:900!important;letter-spacing:.01em!important;}
+
+/* Five winner metrics are one integrated typographic line (no 5 boxes). */
+html body>.center-visual.winner-mode #winnerBox:not(.hidden) #winnerDetails:not(.hidden),
+html body #winnerBox #winnerDetails:not(.hidden) {
+  display:flex!important;
+  flex-flow:row nowrap!important;
+  align-items:center!important;
+  justify-content:space-evenly!important;
+  gap:0!important;
+  width:100%!important;
+  margin:14px 0 0!important;
+  padding:6px 4px 0!important;
+  min-height:44px!important;
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+html body>.center-visual.winner-mode #winnerBox #winnerDetails.hidden,
+html body #winnerBox #winnerDetails.hidden{display:none!important;}
+html body>.center-visual.winner-mode #winnerBox #winnerDetails > .v515-metric,
+html body #winnerBox #winnerDetails > .v515-metric {
+  position:relative!important;
+  display:flex!important;
+  flex-direction:row!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:6px!important;
+  flex:1 1 20%!important;
+  min-height:38px!important;
+  min-width:0!important;
+  padding:3px 9px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:none!important;
+  box-shadow:none!important;
+  transition:none!important;
+  overflow:visible!important;
+}
+html body #winnerBox #winnerDetails > .v515-metric + .v515-metric::before {
+  content:'|'!important;
+  position:absolute!important;
+  display:block!important;
+  left:-2px!important;top:50%!important;
+  transform:translateY(-50%)!important;
+  color:rgba(255,255,255,.28)!important;
+  font-weight:700!important;
+}
+html body #winnerBox #winnerDetails .v515-metric > .v515-metric-icon {
+  display:inline-block!important;
+  font-size:14px!important;
+  line-height:1!important;
+  min-width:15px!important;
+  width:auto!important;
+  margin:0!important;
+  flex:0 0 auto!important;
+  color:var(--text,#f5f5f5)!important;
+  text-shadow:none!important;
+}
+html body #winnerBox #winnerDetails .v515-metric > b,
+html body #winnerBox #winnerDetails #winnerFollowInfo {
+  font-size:clamp(9px,.75vw,12px)!important;
+  line-height:1.2!important;
+  font-weight:850!important;
+  white-space:nowrap!important;
+  text-align:center!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:18px!important;
+  display:block!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+/* Do not flash blank content while followage is checked asynchronously. */
+html body #winnerFollowInfo.followage-loading-v120 {visibility:visible!important;opacity:1!important;}
+
+/* Canonical winner actions: actual clickable controls, but visually a single text row. */
+html body>.center-visual.winner-mode #winnerChatBox #winnerActionsSlotV131,
+html body #winnerChatBox #winnerActionsSlotV131 {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 54px!important;
+  height:54px!important;
+  min-height:54px!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0 10px!important;
+  background:none!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.07)!important;
+  box-shadow:none!important;
+  transform:none!important;
+  z-index:3!important;
+}
+html body #winnerChatBox #winnerActionsSlotV131 #winnerActionsBarV129 {
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  height:100%!important;
+  gap:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:none!important;
+  background:none!important;
+  box-shadow:none!important;
+}
+html body #winnerChatBox #winnerActionsSlotV131 #winnerActionsBarV129 > :is(#winnerReasonBtnV487,#winnerBtnCheckV129,#winnerSitesBtn,#winnerSaveBtn) {
+  position:relative!important;
+  display:inline-flex!important;
+  flex:1 1 0!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:0!important;
+  max-width:none!important;
+  width:auto!important;
+  height:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0 6px!important;
+  border:0!important;
+  border-radius:0!important;
+  outline:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+  transform:none!important;
+  color:var(--text,#f5f6f8)!important;
+  text-shadow:none!important;
+  font:850 clamp(10px,.85vw,13px)/1.1 Inter,system-ui,sans-serif!important;
+  letter-spacing:.05em!important;
+  cursor:pointer!important;
+  opacity:.9!important;
+  transition:opacity .14s ease,color .14s ease!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+}
+html body #winnerChatBox #winnerActionsSlotV131 #winnerActionsBarV129 > :is(#winnerReasonBtnV487,#winnerBtnCheckV129,#winnerSitesBtn,#winnerSaveBtn):hover {
+  opacity:1!important;
+  color:#fff!important;
+  background:rgba(255,255,255,.04)!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+html body #winnerChatBox #winnerActionsSlotV131 #winnerActionsBarV129 > :is(#winnerReasonBtnV487,#winnerBtnCheckV129,#winnerSitesBtn,#winnerSaveBtn):focus-visible {
+  outline:2px solid var(--accent,#9ba3b1)!important;
+  outline-offset:-3px!important;
+}
+html body #winnerChatBox #winnerActionsSlotV131 #winnerActionsBarV129 > :is(#winnerReasonBtnV487,#winnerBtnCheckV129,#winnerSitesBtn,#winnerSaveBtn):not(:first-child)::before {
+  content:'|'!important;
+  position:absolute!important;
+  left:0!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  font-size:17px!important;
+  font-weight:450!important;
+  color:rgba(255,255,255,.28)!important;
+  pointer-events:none!important;
+}
+
+/* Stopwatch: physically centered in the CHAT area (below the 54px action line). */
+html body #winnerChatBox .winner-chat-head {display:none!important;}
+html body #winnerChatBox #winnerReplyStatus {display:none!important;}
+html body #winnerChatBox #winnerReplyStopwatch {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  position:absolute!important;
+  left:50%!important;
+  top:calc(50% + 27px)!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:translate(-50%,-50%)!important;
+  min-width:120px!important;
+  min-height:0!important;
+  height:auto!important;
+  width:auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  font:800 clamp(24px,2.5vw,37px)/1.15 ui-monospace,Consolas,monospace!important;
+  font-variant-numeric:tabular-nums!important;
+  letter-spacing:-.015em!important;
+  color:rgba(244,247,252,.63)!important;
+  text-shadow:none!important;
+  pointer-events:none!important;
+  z-index:5!important;
+}
+html body #winnerChatBox #winnerReplyStopwatch.timer-bad {color:#ff8d94!important;}
+html body #winnerChatBox #winnerReplyStopwatch.timer-ok {color:#a7ffd0!important;}
+html body #winnerChatBox #winnerChatMessages {
+  flex:1 1 auto!important;
+  min-height:0!important;
+  padding-top:12px!important;
+  overflow-y:auto!important;
+}
+/* Keep text legible when centered counter and chat messages overlap. */
+html body #winnerChatBox:has(#winnerChatMessages>*:not(.hidden)) #winnerReplyStopwatch {opacity:.16!important;}
+html body #winnerChatBox #winnerChatMessages:empty ~ #winnerReplyStopwatch {opacity:.78!important;}
+
+/* No theme-independent flashes: preserve green success lower accent and calm border. */
+html body #winnerBox.v518-answer-flash,
+html body #winnerChatBox.v518-answer-flash {animation:none!important;}
+@media(max-width:860px) {
+ html body #winnerBox #winnerDetails > .v515-metric {padding:3px 4px!important;gap:3px!important;}
+ html body #winnerChatBox #winnerActionsSlotV131 #winnerActionsBarV129 > :is(#winnerReasonBtnV487,#winnerBtnCheckV129,#winnerSitesBtn,#winnerSaveBtn){font-size:10px!important;padding:0 3px!important;}
+}

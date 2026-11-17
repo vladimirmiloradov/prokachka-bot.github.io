@@ -1,0 +1,1185 @@
+/* v372 global theme bridge. COLOR ONLY. No grid/flex/size/position rules for product layouts. */
+
+/* Keep the legacy selector in the bot DOM because old TOP-3 code uses it as an anchor.
+   It is visually hidden, not removed. */
+body:not(.hub-page) #controls > .top-settings {
+  display: none !important;
+}
+
+/* HUB theme control only */
+.hub-theme-settings {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:22px auto 5px;
+  padding:8px 12px;
+  width:max-content;
+  max-width:100%;
+  border:1px solid rgba(255,105,165,.28);
+  border-radius:14px;
+  background:rgba(12,5,15,.56);
+  box-shadow:inset 0 0 16px rgba(255,255,255,.025);
+}
+.hub-theme-settings label{font-size:10px;font-weight:1000;letter-spacing:.08em;color:rgba(255,255,255,.72)}
+.hub-theme-settings select{width:132px;height:30px;padding:0 9px;border-radius:9px;border:1px solid rgba(255,105,165,.45);background:rgba(20,7,20,.82);color:#fff;font-size:11px;font-weight:900;outline:none}
+
+/* HUB - colors only */
+body.hub-page.theme-pink { background:radial-gradient(circle at 50% 15%,rgba(255,59,167,.18),transparent 34%),linear-gradient(135deg,#05030a 0%,#26071f 44%,#050309 100%) !important; }
+body.hub-page.theme-wine { background:radial-gradient(circle at 50% 15%,rgba(143,29,63,.18),transparent 34%),linear-gradient(135deg,#050309 0%,#160715 44%,#050309 100%) !important; }
+body.hub-page.theme-pink .hub-card { border-color:rgba(255,122,209,.34) !important; background:linear-gradient(180deg,rgba(78,13,62,.78),rgba(25,5,27,.88)) !important; }
+body.hub-page.theme-wine .hub-card { border-color:rgba(184,58,98,.34) !important; background:linear-gradient(180deg,rgba(70,16,48,.74),rgba(18,7,22,.88)) !important; }
+body.hub-page.theme-pink .hub-card-action { border-color:rgba(255,59,167,.72) !important; background:linear-gradient(180deg,#a72b72,#6f184c) !important; }
+body.hub-page.theme-wine .hub-card-action { border-color:rgba(184,58,98,.78) !important; background:linear-gradient(180deg,#7e203f,#4b1328) !important; }
+body.hub-page.theme-pink .hub-hero h1 { color:#ffd6ef !important; text-shadow:0 0 16px rgba(255,59,167,.42) !important; }
+body.hub-page.theme-wine .hub-hero h1 { color:#f6ccd9 !important; text-shadow:0 0 16px rgba(143,29,63,.50) !important; }
+body.hub-page.theme-pink .hub-theme-settings,body.hub-page.theme-pink .hub-theme-settings select{border-color:rgba(255,59,167,.55)}
+body.hub-page.theme-wine .hub-theme-settings,body.hub-page.theme-wine .hub-theme-settings select{border-color:rgba(184,58,98,.55)}
+
+/* Donation auction - existing layout consumes these variables. */
+body[data-kor-page="donation-auction"].theme-pink { --pink:#ff5aa9; --pink2:#c72f7c; --line:rgba(255,83,164,.30); --panel:#1b0719; --panel2:#32102a; }
+body[data-kor-page="donation-auction"].theme-wine { --pink:#b83a62; --pink2:#7e203f; --line:rgba(184,58,98,.32); --panel:#160715; --panel2:#2c0d22; }
+
+/* Donation wheel - existing layout consumes these variables. */
+body[data-kor-page="donation-wheel"].theme-pink { --hot:#ff4f9f; --line:rgba(255,117,177,.34); --panel:rgba(24,7,24,.86); --panel2:rgba(78,14,58,.78); }
+body[data-kor-page="donation-wheel"].theme-wine { --hot:#a9274f; --line:rgba(184,58,98,.34); --panel:rgba(18,7,22,.88); --panel2:rgba(62,16,43,.78); }
+
+/* Active giveaway - use its existing variable wherever available. */
+body[data-kor-page="active-giveaway"].theme-pink { --pink:#ff6faf; }
+body[data-kor-page="active-giveaway"].theme-wine { --pink:#b83a62; }
+
+/* v373: SAKURA theme. Visual/color overrides only - no product layout geometry. */
+html.theme-sakura,
+body.theme-sakura {
+  --pink:#b51226 !important;
+  --pink2:#e04450 !important;
+  --accent:#b51226 !important;
+  --accent2:#e04450 !important;
+  --accentText:#fff7f2 !important;
+  --border:rgba(255,246,239,.64) !important;
+  --accentGlow:rgba(184,18,38,.42) !important;
+  --accentSoft:rgba(184,18,38,.18) !important;
+  --text:#fff9f5 !important;
+  --muted:rgba(255,238,232,.70) !important;
+  --v148-wine-layer:rgba(95,5,12,.54) !important;
+  --v148-wine-layer-2:rgba(24,2,6,.70) !important;
+  --v150-side-darken:rgba(28,2,6,.48) !important;
+  --v150-side-wine:rgba(126,9,20,.34) !important;
+}
+
+body.theme-sakura {
+  background:
+    linear-gradient(180deg,rgba(255,252,246,.14),rgba(115,5,14,.16)),
+    url('/assets/sakura-theme-bg.webp') center center / cover fixed no-repeat !important;
+}
+
+/* Frosted red panels over the white/red Sakura background. */
+body.theme-sakura .left-panel,
+body.theme-sakura .main-area,
+body.theme-sakura .right-panel,
+body.theme-sakura .card,
+body.theme-sakura .panel {
+  border-color:rgba(255,244,237,.62) !important;
+  background:linear-gradient(180deg,rgba(116,10,20,.84),rgba(32,2,7,.90)) !important;
+  box-shadow:0 20px 54px rgba(58,0,8,.30),inset 0 0 30px rgba(255,255,255,.045) !important;
+}
+
+/* Bot's two carpet work areas stay readable, but get a red Sakura tint. */
+body.theme-sakura #participantsPanel,
+body.theme-sakura .participants-panel,
+body.theme-sakura #chatPanel,
+body.theme-sakura .chat-panel {
+  border-color:rgba(255,245,238,.56) !important;
+  background-image:
+    linear-gradient(180deg,rgba(111,7,17,.60),rgba(25,2,7,.72)),
+    var(--v148-panel-carpet) !important;
+  box-shadow:0 0 28px rgba(111,7,17,.30),inset 0 0 34px rgba(255,255,255,.035) !important;
+}
+
+/* White Sakura buttons/fields. */
+body.theme-sakura button,
+body.theme-sakura input,
+body.theme-sakura select,
+body.theme-sakura textarea,
+body.theme-sakura .btn,
+body.theme-sakura .link,
+body.theme-sakura .navbtn,
+body.theme-sakura .hub-link,
+body.theme-sakura .small-settings,
+body.theme-sakura .hub-card-action {
+  border-color:rgba(158,13,30,.72) !important;
+  background:linear-gradient(180deg,rgba(255,255,252,.98),rgba(246,231,226,.96)) !important;
+  color:#7f0d18 !important;
+  text-shadow:none !important;
+  box-shadow:0 5px 18px rgba(60,0,7,.12),inset 0 1px 0 rgba(255,255,255,.90) !important;
+}
+body.theme-sakura button:hover,
+body.theme-sakura .btn:hover,
+body.theme-sakura .link:hover,
+body.theme-sakura .navbtn:hover,
+body.theme-sakura .hub-link:hover,
+body.theme-sakura .small-settings:hover,
+body.theme-sakura .hub-card-action:hover {
+  border-color:#b51226 !important;
+  background:linear-gradient(180deg,#fff,#ffdede) !important;
+  color:#8e0e1c !important;
+  box-shadow:0 0 22px rgba(181,18,38,.24),inset 0 1px 0 #fff !important;
+}
+body.theme-sakura input::placeholder,
+body.theme-sakura textarea::placeholder { color:rgba(127,13,24,.55) !important; }
+
+/* Bot accents. */
+body.theme-sakura .top-banner {
+  border-color:rgba(181,18,38,.82) !important;
+  background:linear-gradient(180deg,rgba(255,255,252,.98),rgba(248,229,224,.96)) !important;
+  color:#8d0e1d !important;
+  text-shadow:0 1px 0 #fff !important;
+  box-shadow:0 0 28px rgba(181,18,38,.24),inset 0 0 18px rgba(255,255,255,.75) !important;
+}
+body.theme-sakura .timer,
+body.theme-sakura .right-title,
+body.theme-sakura .card-title.big,
+body.theme-sakura .card-title span,
+body.theme-sakura .participant .sms,
+body.theme-sakura .top-settings {
+  color:#fff6f1 !important;
+  text-shadow:0 0 14px rgba(181,18,38,.38) !important;
+}
+body.theme-sakura .winner-row { border-left-color:#f0c7c1 !important; }
+body.theme-sakura .winner-brand {
+  border-color:rgba(255,245,238,.60) !important;
+  background:rgba(255,250,246,.94) !important;
+  color:#8d0e1d !important;
+}
+body.theme-sakura #chatList .chat-msg b,
+body.theme-sakura #chatList .chat-msg-v127 b,
+body.theme-sakura .chat-msg b,
+body.theme-sakura .chat-message b { color:#ffb3b6 !important; }
+body.theme-sakura .copy { color:#7f0d18 !important; border-color:rgba(158,13,30,.72) !important; }
+
+/* HUB Sakura skin. */
+body.hub-page.theme-sakura {
+  background:
+    linear-gradient(180deg,rgba(255,252,246,.07),rgba(103,3,11,.14)),
+    url('/assets/sakura-theme-bg.webp') center center / cover fixed no-repeat !important;
+}
+body.hub-page.theme-sakura .hub-hero h1 {
+  color:#fffaf5 !important;
+  text-shadow:0 2px 0 rgba(112,6,18,.80),0 0 28px rgba(181,18,38,.58) !important;
+}
+body.hub-page.theme-sakura .hub-subtitle {
+  color:rgba(255,250,246,.90) !important;
+  text-shadow:0 1px 8px rgba(60,0,8,.65) !important;
+}
+body.hub-page.theme-sakura .hub-card {
+  border-color:rgba(255,245,238,.62) !important;
+  background:linear-gradient(180deg,rgba(135,14,24,.82),rgba(43,3,8,.90)) !important;
+  box-shadow:0 24px 70px rgba(61,0,7,.28),inset 0 0 26px rgba(255,255,255,.055) !important;
+}
+body.hub-page.theme-sakura .hub-card h2 {
+  color:#fffaf6 !important;
+  text-shadow:0 2px 10px rgba(50,0,6,.55) !important;
+}
+body.hub-page.theme-sakura .hub-card-desc { color:rgba(255,241,236,.80) !important; }
+body.hub-page.theme-sakura .hub-card-icon {
+  background:rgba(255,252,248,.14) !important;
+  border-color:rgba(255,245,238,.36) !important;
+}
+body.hub-page.theme-sakura .hub-theme-settings {
+  border-color:rgba(181,18,38,.52) !important;
+  background:rgba(255,252,248,.88) !important;
+  box-shadow:0 8px 28px rgba(69,0,8,.16) !important;
+}
+body.hub-page.theme-sakura .hub-theme-settings label { color:#7f0d18 !important; }
+body.hub-page.theme-sakura .hub-theme-settings select {
+  background:#fffaf6 !important;
+  color:#7f0d18 !important;
+  border-color:rgba(181,18,38,.56) !important;
+}
+body.hub-page.theme-sakura .hub-footer {
+  color:rgba(255,255,255,.78) !important;
+  text-shadow:0 1px 8px rgba(50,0,7,.70) !important;
+}
+body.hub-page.theme-sakura .hub-footer a { color:#fff !important; }
+
+/* Donation auction Sakura palette. */
+body[data-kor-page="donation-auction"].theme-sakura {
+  --bg:#4b050c !important;
+  --panel:#510710 !important;
+  --panel2:#7d0d19 !important;
+  --line:rgba(255,245,238,.55) !important;
+  --text:#fff9f4 !important;
+  --muted:#efd5d0 !important;
+  --pink:#d82439 !important;
+  --pink2:#ff8b91 !important;
+}
+body[data-kor-page="donation-auction"].theme-sakura .panel,
+body[data-kor-page="donation-auction"].theme-sakura .card,
+body[data-kor-page="donation-auction"].theme-sakura .field,
+body[data-kor-page="donation-auction"].theme-sakura .condition,
+body[data-kor-page="donation-auction"].theme-sakura .donation,
+body[data-kor-page="donation-auction"].theme-sakura .winner-item,
+body[data-kor-page="donation-auction"].theme-sakura .prize,
+body[data-kor-page="donation-auction"].theme-sakura .integration,
+body[data-kor-page="donation-auction"].theme-sakura .modal-card,
+body[data-kor-page="donation-auction"].theme-sakura .wheel-panel {
+  border-color:rgba(255,245,238,.46) !important;
+  background:linear-gradient(180deg,rgba(119,9,20,.84),rgba(39,2,7,.90)) !important;
+}
+body[data-kor-page="donation-auction"].theme-sakura .bluebtn,
+body[data-kor-page="donation-auction"].theme-sakura .wheelbtn,
+body[data-kor-page="donation-auction"].theme-sakura .pickbtn,
+body[data-kor-page="donation-auction"].theme-sakura .danger {
+  background:linear-gradient(180deg,#fff,#f4ded9) !important;
+  color:#7f0d18 !important;
+  border-color:#b51226 !important;
+}
+
+/* Donation wheel Sakura palette. */
+body[data-kor-page="donation-wheel"].theme-sakura {
+  --hot:#d51e34 !important;
+  --line:rgba(255,245,238,.52) !important;
+  --panel:rgba(41,2,7,.90) !important;
+  --panel2:rgba(127,10,21,.84) !important;
+}
+body[data-kor-page="donation-wheel"].theme-sakura .card,
+body[data-kor-page="donation-wheel"].theme-sakura .setup,
+body[data-kor-page="donation-wheel"].theme-sakura .winner-box,
+body[data-kor-page="donation-wheel"].theme-sakura .mode-box {
+  border-color:rgba(255,245,238,.50) !important;
+  background:linear-gradient(180deg,rgba(120,9,20,.86),rgba(34,2,7,.92)) !important;
+}
+body[data-kor-page="donation-wheel"].theme-sakura .card:before {
+  opacity:.08 !important;
+  filter:sepia(1) saturate(1.8) hue-rotate(330deg) !important;
+}
+body[data-kor-page="donation-wheel"].theme-sakura .wheel {
+  border-color:rgba(255,250,246,.88) !important;
+  box-shadow:0 0 72px rgba(181,18,38,.28),inset 0 0 42px rgba(0,0,0,.34) !important;
+}
+body[data-kor-page="donation-wheel"].theme-sakura .pointer {
+  border-top-color:#fff1e8 !important;
+  filter:drop-shadow(0 0 12px rgba(181,18,38,.48)) !important;
+}
+
+/* Active giveaway Sakura palette. */
+body[data-kor-page="active-giveaway"].theme-sakura {
+  --pink:#d51e34 !important;
+  --line:rgba(255,245,238,.52) !important;
+}
+body[data-kor-page="active-giveaway"].theme-sakura .top,
+body[data-kor-page="active-giveaway"].theme-sakura .card,
+body[data-kor-page="active-giveaway"].theme-sakura .modal-card,
+body[data-kor-page="active-giveaway"].theme-sakura .conditions-box {
+  border-color:rgba(255,245,238,.50) !important;
+  background:linear-gradient(180deg,rgba(120,9,20,.86),rgba(34,2,7,.92)) !important;
+}
+body[data-kor-page="active-giveaway"].theme-sakura .top h1,
+body[data-kor-page="active-giveaway"].theme-sakura .card-head,
+body[data-kor-page="active-giveaway"].theme-sakura .section-title { color:#fff8f3 !important; }
+
+/* v375: Sakura must be completely carpet-free in the Boost Bot and Donation Wheel. */
+
+/* BOOST BOT - remove every legacy carpet layer while Sakura is active.
+   Scope to .site so other products keep their own skins/layouts. */
+body.theme-sakura .site #participantsPanel,
+body.theme-sakura .site .participants-panel,
+body.theme-sakura .site #chatPanel,
+body.theme-sakura .site .chat-panel,
+body.theme-sakura .site #winnersPanel,
+body.theme-sakura .site #blacklistPanel,
+body.theme-sakura .site #participantsList,
+body.theme-sakura .site #chatList,
+body.theme-sakura .site #winnersList,
+body.theme-sakura .site #blackList,
+body.theme-sakura .site .sidebar,
+body.theme-sakura .site .left-panel,
+body.theme-sakura .site #leftPanel,
+body.theme-sakura .site .controls,
+body.theme-sakura .site .controls-panel,
+body.theme-sakura .site .admin-panel,
+body.theme-sakura .site .admin-sidebar,
+body.theme-sakura .site .side-panel,
+body.theme-sakura .site .right-panel,
+body.theme-sakura .site .winners-panel,
+body.theme-sakura .site .blacklist-panel,
+body.theme-sakura .site .v145-left-carpet {
+  background-image: linear-gradient(180deg, rgba(112, 8, 18, .72), rgba(25, 2, 7, .88)) !important;
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  border-color: rgba(255, 244, 237, .58) !important;
+}
+
+/* Main participants/chat panels get a clean Sakura red surface - no rug texture at all. */
+body.theme-sakura .site #participantsPanel,
+body.theme-sakura .site .participants-panel,
+body.theme-sakura .site #chatPanel,
+body.theme-sakura .site .chat-panel {
+  background-image:
+    radial-gradient(circle at 50% 12%, rgba(206, 43, 53, .16), transparent 45%),
+    linear-gradient(180deg, rgba(93, 7, 16, .76), rgba(20, 2, 6, .90)) !important;
+  box-shadow: 0 0 28px rgba(74, 0, 8, .28), inset 0 0 34px rgba(255,255,255,.025) !important;
+}
+
+/* Lists are transparent/dark-red, never textured. */
+body.theme-sakura .site #participantsList,
+body.theme-sakura .site #chatList,
+body.theme-sakura .site #winnersList,
+body.theme-sakura .site #blackList {
+  background: linear-gradient(180deg, rgba(31, 2, 7, .18), rgba(12, 1, 4, .28)) !important;
+  background-image: linear-gradient(180deg, rgba(31, 2, 7, .18), rgba(12, 1, 4, .28)) !important;
+}
+
+/* Kill the legacy carpet veils/pseudo layers in Sakura. */
+body.theme-sakura .site #participantsPanel::before,
+body.theme-sakura .site .participants-panel::before,
+body.theme-sakura .site #chatPanel::before,
+body.theme-sakura .site .chat-panel::before,
+body.theme-sakura .site #winnersPanel::before,
+body.theme-sakura .site #blacklistPanel::before,
+body.theme-sakura .site .sidebar::before,
+body.theme-sakura .site .left-panel::before,
+body.theme-sakura .site #leftPanel::before,
+body.theme-sakura .site .v145-left-carpet::before {
+  background: linear-gradient(180deg, rgba(82, 5, 13, .08), rgba(13, 1, 4, .18)) !important;
+  background-image: linear-gradient(180deg, rgba(82, 5, 13, .08), rgba(13, 1, 4, .18)) !important;
+}
+
+/* Header strips inside the two main bot panels: Sakura red, not old wine/pink. */
+body.theme-sakura .site #participantsPanel > :first-child,
+body.theme-sakura .site .participants-panel > :first-child,
+body.theme-sakura .site #chatPanel > :first-child,
+body.theme-sakura .site .chat-panel > :first-child {
+  background: rgba(73, 5, 13, .64) !important;
+}
+
+/* TOP-3 - remove the fixed pink skin in Sakura and keep it white/deep-red. */
+body.theme-sakura #topActiveV168.top-active-v168,
+body.theme-sakura .top-active-v168 {
+  border-color: rgba(255, 244, 237, .62) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.08), transparent 48%),
+    linear-gradient(180deg, rgba(105, 7, 17, .92), rgba(22, 2, 6, .95)) !important;
+  box-shadow:
+    0 0 20px rgba(42,0,5,.34),
+    0 0 18px rgba(181,18,38,.10),
+    inset 0 0 28px rgba(255,255,255,.035) !important;
+}
+body.theme-sakura .top-active-v168-title {
+  color: #fff9f5 !important;
+  text-shadow: 0 0 12px rgba(181,18,38,.28) !important;
+}
+body.theme-sakura .top-active-v168-bonus,
+body.theme-sakura .top-active-v168-count-label {
+  color: #f3d4ce !important;
+}
+body.theme-sakura #top3CountdownTimeV168 {
+  color: #fff9f5 !important;
+}
+body.theme-sakura .top-active-v168-countdown.locked {
+  color: #fff9f5 !important;
+  background: rgba(28, 2, 7, .62) !important;
+  border-color: rgba(255,244,237,.20) !important;
+}
+body.theme-sakura .top-active-v168-row,
+body.theme-sakura .top-active-v168-empty {
+  background: rgba(24, 2, 6, .50) !important;
+  border-color: rgba(255,244,237,.10) !important;
+}
+body.theme-sakura .top-active-v168-stats span {
+  background: rgba(255,255,255,.055) !important;
+  color: #f4d6d0 !important;
+}
+body.theme-sakura .top-active-v169-dot {
+  color: rgba(255,245,239,.48) !important;
+}
+
+/* DONATION WHEEL - no old carpet overlays in Sakura. */
+body[data-kor-page="donation-wheel"].theme-sakura::before {
+  opacity: 0 !important;
+  background: none !important;
+  background-image: none !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+}
+body[data-kor-page="donation-wheel"].theme-sakura .card::before {
+  opacity: 0 !important;
+  background: none !important;
+  background-image: none !important;
+  filter: none !important;
+}
+
+/* v376: Boost Bot Sakura glass panels.
+   Visual-only override: keep the v372/v375 layout untouched, but let the Sakura photo show through. */
+body.theme-sakura .site > .left-panel,
+body.theme-sakura .site > .main-area,
+body.theme-sakura .site > .right-panel {
+  background: rgba(58, 3, 9, .34) !important;
+  background-image: none !important;
+  border-color: rgba(255, 244, 237, .58) !important;
+  box-shadow: 0 12px 34px rgba(45, 0, 6, .18), inset 0 0 24px rgba(255,255,255,.022) !important;
+  backdrop-filter: blur(1.5px) saturate(.98) !important;
+  -webkit-backdrop-filter: blur(1.5px) saturate(.98) !important;
+}
+
+/* Main working cards are even clearer so the Sakura/Porsche background stays visible. */
+body.theme-sakura .site #participantsPanel,
+body.theme-sakura .site .participants-panel,
+body.theme-sakura .site #chatPanel,
+body.theme-sakura .site .chat-panel,
+body.theme-sakura .site #winnersPanel,
+body.theme-sakura .site .blacklist-card,
+body.theme-sakura .site .logs-card {
+  background: rgba(54, 3, 9, .30) !important;
+  background-image: none !important;
+  border-color: rgba(255, 244, 237, .52) !important;
+  box-shadow: 0 10px 28px rgba(44, 0, 6, .14), inset 0 0 20px rgba(255,255,255,.018) !important;
+  backdrop-filter: blur(1px) saturate(.98) !important;
+  -webkit-backdrop-filter: blur(1px) saturate(.98) !important;
+}
+
+/* Lists themselves should not paint another dark rectangle over the photo. */
+body.theme-sakura .site #participantsList,
+body.theme-sakura .site #chatList,
+body.theme-sakura .site #winnersList,
+body.theme-sakura .site #blackList {
+  background: rgba(24, 1, 5, .10) !important;
+  background-image: none !important;
+}
+
+/* Transparent red header strips instead of opaque blocks. */
+body.theme-sakura .site #participantsPanel > :first-child,
+body.theme-sakura .site .participants-panel > :first-child,
+body.theme-sakura .site #chatPanel > :first-child,
+body.theme-sakura .site .chat-panel > :first-child,
+body.theme-sakura .site .card-title {
+  background: rgba(72, 5, 13, .30) !important;
+}
+
+/* TOP-3 follows the same glass treatment and stays Sakura red/white, never pink. */
+body.theme-sakura #topActiveV168.top-active-v168,
+body.theme-sakura .top-active-v168 {
+  background: rgba(61, 3, 10, .38) !important;
+  background-image: none !important;
+  border-color: rgba(255, 244, 237, .56) !important;
+  box-shadow: 0 10px 26px rgba(42,0,5,.16), inset 0 0 20px rgba(255,255,255,.022) !important;
+  backdrop-filter: blur(1px) saturate(.98) !important;
+  -webkit-backdrop-filter: blur(1px) saturate(.98) !important;
+}
+body.theme-sakura .top-active-v168-countdown.locked,
+body.theme-sakura .top-active-v168-row,
+body.theme-sakura .top-active-v168-empty {
+  background: rgba(28, 2, 7, .24) !important;
+}
+
+/* No hidden carpet/pseudo veil may sit above the Sakura photo. */
+body.theme-sakura .site #participantsPanel::before,
+body.theme-sakura .site .participants-panel::before,
+body.theme-sakura .site #chatPanel::before,
+body.theme-sakura .site .chat-panel::before,
+body.theme-sakura .site #winnersPanel::before,
+body.theme-sakura .site .blacklist-card::before,
+body.theme-sakura .site .left-panel::before,
+body.theme-sakura .site .main-area::before,
+body.theme-sakura .site .right-panel::before,
+body.theme-sakura .site .v145-left-carpet::before {
+  opacity: 0 !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+/* v377: Boost Bot Sakura - REAL glass transparency.
+   Previous v376 still looked opaque because old v145/v150 dark overlay layers
+   were stacked under/over the new panels. This patch disables those Sakura-only
+   veils and lowers the panel alpha so the Sakura/Porsche photo is clearly visible. */
+
+/* Outer three columns: keep only a light red glass tint. */
+body.theme-sakura .site > .left-panel,
+body.theme-sakura .site > .main-area,
+body.theme-sakura .site > .right-panel {
+  background: rgba(78, 5, 12, .14) !important;
+  background-color: rgba(78, 5, 12, .14) !important;
+  background-image: none !important;
+  border-color: rgba(255, 246, 239, .58) !important;
+  box-shadow: 0 8px 26px rgba(45, 0, 6, .12), inset 0 0 18px rgba(255,255,255,.018) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Every normal bot card uses the same transparent glass instead of an opaque red fill. */
+body.theme-sakura .site .card,
+body.theme-sakura .site #participantsPanel,
+body.theme-sakura .site #chatPanel,
+body.theme-sakura .site #winnersPanel,
+body.theme-sakura .site .blacklist-card {
+  background: rgba(70, 4, 11, .16) !important;
+  background-color: rgba(70, 4, 11, .16) !important;
+  background-image: none !important;
+  border-color: rgba(255, 246, 239, .52) !important;
+  box-shadow: 0 6px 20px rgba(42,0,5,.10), inset 0 0 14px rgba(255,255,255,.015) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* The large participant/chat surfaces must be especially clear. */
+body.theme-sakura .site #participantsPanel,
+body.theme-sakura .site #chatPanel {
+  background: rgba(64, 3, 10, .11) !important;
+  background-color: rgba(64, 3, 10, .11) !important;
+  background-image: none !important;
+}
+
+/* Lists do not paint a second rectangle over the background photo. */
+body.theme-sakura .site #participantsList,
+body.theme-sakura .site #chatList,
+body.theme-sakura .site #winnersList,
+body.theme-sakura .site #blackList {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Disable the old v145/v148 carpet veils and, critically, the v150 ::after darkeners. */
+body.theme-sakura .site .v145-left-carpet::before,
+body.theme-sakura .site .v145-left-carpet::after,
+body.theme-sakura .site .v150-left-darken::before,
+body.theme-sakura .site .v150-left-darken::after,
+body.theme-sakura .site .v150-right-darken::before,
+body.theme-sakura .site .v150-right-darken::after,
+body.theme-sakura .site .left-panel::before,
+body.theme-sakura .site .left-panel::after,
+body.theme-sakura .site .main-area::before,
+body.theme-sakura .site .main-area::after,
+body.theme-sakura .site .right-panel::before,
+body.theme-sakura .site .right-panel::after,
+body.theme-sakura .site #participantsPanel::before,
+body.theme-sakura .site #participantsPanel::after,
+body.theme-sakura .site #chatPanel::before,
+body.theme-sakura .site #chatPanel::after,
+body.theme-sakura .site #winnersPanel::before,
+body.theme-sakura .site #winnersPanel::after,
+body.theme-sakura .site .blacklist-card::before,
+body.theme-sakura .site .blacklist-card::after {
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Header strips remain readable, but transparent. */
+body.theme-sakura .site .card-title,
+body.theme-sakura .site .connection,
+body.theme-sakura .site .chat-send {
+  background: rgba(58, 2, 9, .14) !important;
+  background-color: rgba(58, 2, 9, .14) !important;
+  background-image: none !important;
+}
+
+/* TOP-3 also gets true glass - no hidden pink/wine layer. */
+body.theme-sakura #topActiveV168.top-active-v168,
+body.theme-sakura .top-active-v168 {
+  background: rgba(68, 3, 10, .18) !important;
+  background-color: rgba(68, 3, 10, .18) !important;
+  background-image: none !important;
+  box-shadow: 0 6px 20px rgba(42,0,5,.10), inset 0 0 14px rgba(255,255,255,.015) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.theme-sakura .top-active-v168-countdown.locked,
+body.theme-sakura .top-active-v168-row,
+body.theme-sakura .top-active-v168-empty {
+  background: rgba(45, 2, 8, .12) !important;
+  background-image: none !important;
+}
+
+/* v378: Sakura hard carpet kill for Boost Bot.
+   Disable the legacy v145/v148 carpet image variables at the source so no old
+   selector/class can reintroduce those textures while Sakura is active. */
+html.theme-sakura,
+body.theme-sakura,
+body.theme-sakura .site,
+body.theme-sakura .site * {
+  --v145-carpet: none !important;
+  --v148-panel-carpet: none !important;
+}
+
+/* Extra hard stop for the exact legacy carpet targets in the Boost Bot. */
+body.theme-sakura .site #participantsPanel,
+body.theme-sakura .site #chatPanel,
+body.theme-sakura .site #participantsList,
+body.theme-sakura .site #chatList,
+body.theme-sakura .site .left-panel,
+body.theme-sakura .site .right-panel,
+body.theme-sakura .site .v145-left-carpet {
+  background-image: none !important;
+}
+
+
+/* v379: Bot timer digits - slightly wider, without changing the timer box geometry. */
+body .site .left-panel #timer {
+  font-family:"Segoe UI Semibold","Arial",sans-serif !important;
+  font-size:35px !important;
+  font-weight:800 !important;
+  letter-spacing:.075em !important;
+  font-variant-numeric:tabular-nums !important;
+  font-feature-settings:"tnum" 1 !important;
+}
+
+/* v379: HUB theme palette dock - replaces the generic select with a branded palette control. */
+.hub-theme-settings.hub-theme-dock {
+  position:relative !important;
+  width:max-content !important;
+  max-width:calc(100vw - 32px) !important;
+  margin:22px auto 0 !important;
+  padding:8px 9px 9px !important;
+  border:1px solid rgba(255,137,187,.30) !important;
+  border-radius:20px !important;
+  background:linear-gradient(180deg,rgba(28,7,25,.78),rgba(9,3,12,.88)) !important;
+  box-shadow:0 16px 44px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.055),0 0 24px rgba(187,47,107,.08) !important;
+  backdrop-filter:blur(14px) saturate(1.15) !important;
+  -webkit-backdrop-filter:blur(14px) saturate(1.15) !important;
+  overflow:visible !important;
+}
+.hub-theme-settings.hub-theme-dock::before,
+.hub-theme-settings.hub-theme-dock::after {
+  content:"";
+  position:absolute;
+  top:50%;
+  width:20px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,137,187,.72));
+  transform:translateY(-50%);
+  opacity:.72;
+}
+.hub-theme-settings.hub-theme-dock::before { right:100%; }
+.hub-theme-settings.hub-theme-dock::after { left:100%; transform:translateY(-50%) rotate(180deg); }
+.hub-theme-dock-title {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  margin:0 0 6px;
+  color:rgba(255,225,239,.66);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  line-height:1;
+  pointer-events:none;
+}
+.hub-theme-spark { font-size:10px; color:#ff78b1; text-shadow:0 0 12px rgba(255,83,157,.72); }
+.hub-theme-options { display:flex; align-items:center; justify-content:center; gap:6px; }
+.hub-theme-choice {
+  position:relative;
+  min-width:96px;
+  height:38px;
+  padding:0 11px 0 8px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  border:1px solid rgba(255,255,255,.08) !important;
+  border-radius:13px !important;
+  background:rgba(255,255,255,.035) !important;
+  color:rgba(255,239,247,.68) !important;
+  box-shadow:none !important;
+  cursor:pointer;
+  transition:transform .16s ease,border-color .16s ease,background .16s ease,box-shadow .16s ease !important;
+}
+.hub-theme-choice:hover {
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.065) !important;
+  border-color:rgba(255,255,255,.18) !important;
+}
+.hub-theme-swatch {
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  border-radius:8px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.36);
+  box-shadow:inset 0 0 10px rgba(255,255,255,.12),0 4px 10px rgba(0,0,0,.22);
+  overflow:hidden;
+}
+.hub-theme-choice-pink .hub-theme-swatch { background:linear-gradient(135deg,#ff8bc1 0%,#ff3b9e 48%,#842050 100%); }
+.hub-theme-choice-wine .hub-theme-swatch { background:linear-gradient(135deg,#d45a7d 0%,#8f1d3f 46%,#351020 100%); }
+.hub-theme-choice-sakura .hub-theme-swatch { background:linear-gradient(135deg,#fffaf4 0 48%,#c7192e 49% 76%,#7f0d18 77% 100%); }
+.hub-theme-petal { color:#9e0e20; font-size:12px; line-height:1; text-shadow:0 1px 0 rgba(255,255,255,.7); }
+.hub-theme-choice-name { font-size:10px; font-weight:1000; letter-spacing:.055em; line-height:1; white-space:nowrap; }
+.hub-theme-choice.is-active {
+  color:#fff !important;
+  border-color:rgba(255,123,179,.54) !important;
+  background:linear-gradient(180deg,rgba(119,25,72,.42),rgba(54,10,39,.46)) !important;
+  box-shadow:inset 0 0 18px rgba(255,255,255,.035),0 0 18px rgba(255,63,145,.12) !important;
+}
+.hub-theme-choice.is-active::after {
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:-4px;
+  height:2px;
+  border-radius:999px;
+  background:#ff6eaa;
+  box-shadow:0 0 10px rgba(255,73,151,.70);
+}
+
+body.hub-page.theme-pink .hub-theme-settings.hub-theme-dock {
+  border-color:rgba(255,105,165,.34) !important;
+  background:linear-gradient(180deg,rgba(52,9,43,.82),rgba(16,4,19,.90)) !important;
+}
+body.hub-page.theme-wine .hub-theme-settings.hub-theme-dock {
+  border-color:rgba(184,58,98,.34) !important;
+  background:linear-gradient(180deg,rgba(47,10,31,.84),rgba(13,4,15,.91)) !important;
+}
+body.hub-page.theme-sakura .hub-theme-settings.hub-theme-dock {
+  border-color:rgba(255,248,242,.68) !important;
+  background:linear-gradient(180deg,rgba(108,9,18,.72),rgba(48,3,8,.78)) !important;
+  box-shadow:0 16px 44px rgba(68,0,8,.24),inset 0 1px 0 rgba(255,255,255,.16),0 0 22px rgba(181,18,38,.12) !important;
+}
+body.hub-page.theme-sakura .hub-theme-dock-title { color:rgba(255,244,238,.76) !important; }
+body.hub-page.theme-sakura .hub-theme-spark { color:#fff3eb !important; text-shadow:0 0 11px rgba(255,255,255,.34) !important; }
+body.hub-page.theme-sakura .hub-theme-choice {
+  border-color:rgba(255,246,239,.16) !important;
+  background:rgba(77,5,12,.32) !important;
+  color:rgba(255,246,240,.74) !important;
+}
+body.hub-page.theme-sakura .hub-theme-choice:hover { background:rgba(105,7,16,.46) !important; border-color:rgba(255,246,239,.34) !important; }
+body.hub-page.theme-sakura .hub-theme-choice.is-active {
+  color:#fff !important;
+  border-color:rgba(255,247,240,.64) !important;
+  background:linear-gradient(180deg,rgba(164,16,30,.72),rgba(87,6,15,.74)) !important;
+  box-shadow:inset 0 0 18px rgba(255,255,255,.055),0 0 18px rgba(181,18,38,.20) !important;
+}
+body.hub-page.theme-sakura .hub-theme-choice.is-active::after { background:#fff7f0; box-shadow:0 0 11px rgba(255,247,240,.65); }
+
+@media (max-width:620px) {
+  .hub-theme-settings.hub-theme-dock { width:calc(100vw - 30px) !important; }
+  .hub-theme-options { gap:5px; }
+  .hub-theme-choice { flex:1 1 0; min-width:0; padding:0 7px; justify-content:center; }
+  .hub-theme-choice-name { display:none; }
+}
+
+/* v406 - three new global cinematic palettes. These are visual skins only; no product layout geometry. */
+html.theme-aurora,
+body.theme-aurora {
+  --pink:#4ae6c7 !important;
+  --pink2:#7f66ff !important;
+  --accent:#4ae6c7 !important;
+  --accent2:#7f66ff !important;
+  --accentText:#f5fffd !important;
+  --border:rgba(139,244,226,.48) !important;
+  --accentGlow:rgba(74,230,199,.34) !important;
+  --accentSoft:rgba(87,104,255,.16) !important;
+  --text:#f4fbff !important;
+  --muted:rgba(219,238,247,.70) !important;
+  --v148-wine-layer:rgba(5,29,42,.58) !important;
+  --v148-wine-layer-2:rgba(4,8,21,.78) !important;
+  --v150-side-darken:rgba(3,7,18,.54) !important;
+  --v150-side-wine:rgba(43,40,118,.28) !important;
+}
+body.theme-aurora {
+  background:
+    radial-gradient(ellipse at 18% 12%,rgba(41,232,190,.22),transparent 30%),
+    radial-gradient(ellipse at 78% 7%,rgba(133,83,255,.28),transparent 36%),
+    radial-gradient(ellipse at 52% 105%,rgba(20,110,150,.20),transparent 36%),
+    linear-gradient(145deg,#020711 0%,#071625 44%,#08101e 68%,#03060d 100%) fixed !important;
+}
+
+html.theme-neon,
+body.theme-neon {
+  --pink:#00ecff !important;
+  --pink2:#ff3ab8 !important;
+  --accent:#00ecff !important;
+  --accent2:#ff3ab8 !important;
+  --accentText:#f7fdff !important;
+  --border:rgba(79,239,255,.48) !important;
+  --accentGlow:rgba(0,236,255,.34) !important;
+  --accentSoft:rgba(255,58,184,.14) !important;
+  --text:#f4fbff !important;
+  --muted:rgba(214,228,242,.68) !important;
+  --v148-wine-layer:rgba(8,10,31,.64) !important;
+  --v148-wine-layer-2:rgba(3,4,15,.82) !important;
+  --v150-side-darken:rgba(1,3,12,.62) !important;
+  --v150-side-wine:rgba(63,18,95,.26) !important;
+}
+body.theme-neon {
+  background-color:#03040b !important;
+  background-image:
+    linear-gradient(rgba(0,236,255,.034) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,236,255,.034) 1px,transparent 1px),
+    radial-gradient(circle at 16% 16%,rgba(0,236,255,.19),transparent 28%),
+    radial-gradient(circle at 84% 12%,rgba(255,44,176,.22),transparent 31%),
+    radial-gradient(circle at 50% 108%,rgba(100,47,255,.20),transparent 38%),
+    linear-gradient(150deg,#03040b,#0a0920 54%,#05030e) !important;
+  background-size:42px 42px,42px 42px,auto,auto,auto,auto !important;
+  background-attachment:fixed !important;
+}
+
+html.theme-obsidian,
+body.theme-obsidian {
+  --pink:#e3b45e !important;
+  --pink2:#8c632b !important;
+  --accent:#e3b45e !important;
+  --accent2:#8c632b !important;
+  --accentText:#fff8e9 !important;
+  --border:rgba(235,196,119,.44) !important;
+  --accentGlow:rgba(227,180,94,.30) !important;
+  --accentSoft:rgba(227,180,94,.12) !important;
+  --text:#fff9ee !important;
+  --muted:rgba(229,217,195,.66) !important;
+  --v148-wine-layer:rgba(20,17,14,.66) !important;
+  --v148-wine-layer-2:rgba(5,6,7,.86) !important;
+  --v150-side-darken:rgba(2,3,4,.66) !important;
+  --v150-side-wine:rgba(99,70,31,.20) !important;
+}
+body.theme-obsidian {
+  background:
+    radial-gradient(ellipse at 50% -10%,rgba(227,180,94,.18),transparent 30%),
+    radial-gradient(ellipse at 10% 90%,rgba(114,79,33,.13),transparent 31%),
+    radial-gradient(ellipse at 90% 82%,rgba(227,180,94,.08),transparent 27%),
+    linear-gradient(145deg,#050607 0%,#11100e 47%,#070809 100%) fixed !important;
+}
+
+/* Shared glass language for the new global palettes. */
+body.theme-aurora .left-panel, body.theme-aurora .main-area, body.theme-aurora .right-panel, body.theme-aurora .card, body.theme-aurora .panel,
+body.theme-neon .left-panel, body.theme-neon .main-area, body.theme-neon .right-panel, body.theme-neon .card, body.theme-neon .panel,
+body.theme-obsidian .left-panel, body.theme-obsidian .main-area, body.theme-obsidian .right-panel, body.theme-obsidian .card, body.theme-obsidian .panel {
+  backdrop-filter:blur(14px) saturate(1.14);
+  -webkit-backdrop-filter:blur(14px) saturate(1.14);
+}
+body.theme-aurora .left-panel, body.theme-aurora .main-area, body.theme-aurora .right-panel, body.theme-aurora .card, body.theme-aurora .panel {
+  border-color:rgba(114,236,221,.28) !important;
+  background:linear-gradient(155deg,rgba(7,35,46,.76),rgba(11,10,33,.84)) !important;
+  box-shadow:0 22px 64px rgba(0,3,13,.34),inset 0 1px 0 rgba(204,255,249,.055),0 0 34px rgba(58,231,207,.055) !important;
+}
+body.theme-neon .left-panel, body.theme-neon .main-area, body.theme-neon .right-panel, body.theme-neon .card, body.theme-neon .panel {
+  border-color:rgba(51,228,255,.26) !important;
+  background:linear-gradient(155deg,rgba(5,15,30,.82),rgba(17,5,29,.86)) !important;
+  box-shadow:0 22px 70px rgba(0,0,8,.42),inset 0 1px 0 rgba(181,246,255,.045),0 0 28px rgba(0,229,255,.055) !important;
+}
+body.theme-obsidian .left-panel, body.theme-obsidian .main-area, body.theme-obsidian .right-panel, body.theme-obsidian .card, body.theme-obsidian .panel {
+  border-color:rgba(228,184,102,.25) !important;
+  background:linear-gradient(160deg,rgba(21,20,18,.88),rgba(5,6,7,.93)) !important;
+  box-shadow:0 22px 70px rgba(0,0,0,.44),inset 0 1px 0 rgba(255,237,196,.045),0 0 30px rgba(228,184,102,.04) !important;
+}
+
+/* Product-page variables for the new palettes. */
+body[data-kor-page="donation-auction"].theme-aurora { --bg:#030b12 !important;--panel:#071a24 !important;--panel2:#152447 !important;--line:rgba(86,226,216,.30) !important;--text:#f3feff !important;--muted:#bad8df !important;--pink:#43ddc1 !important;--pink2:#8069ff !important; }
+body[data-kor-page="donation-auction"].theme-neon { --bg:#03040b !important;--panel:#07101e !important;--panel2:#170a27 !important;--line:rgba(0,225,255,.30) !important;--text:#f5fcff !important;--muted:#c0cde0 !important;--pink:#00e5ff !important;--pink2:#ff38b5 !important; }
+body[data-kor-page="donation-auction"].theme-obsidian { --bg:#050607 !important;--panel:#10100f !important;--panel2:#211a11 !important;--line:rgba(227,181,96,.28) !important;--text:#fff8ec !important;--muted:#d0c5b0 !important;--pink:#dfae56 !important;--pink2:#8f662b !important; }
+body[data-kor-page="donation-wheel"].theme-aurora { --hot:#45ddc4 !important;--line:rgba(89,230,216,.30) !important;--panel:rgba(5,22,31,.90) !important;--panel2:rgba(20,28,67,.82) !important; }
+body[data-kor-page="donation-wheel"].theme-neon { --hot:#00e5ff !important;--line:rgba(0,225,255,.30) !important;--panel:rgba(4,10,21,.92) !important;--panel2:rgba(31,7,42,.84) !important; }
+body[data-kor-page="donation-wheel"].theme-obsidian { --hot:#dfa94e !important;--line:rgba(227,181,96,.28) !important;--panel:rgba(9,9,9,.94) !important;--panel2:rgba(35,27,16,.88) !important; }
+body[data-kor-page="active-giveaway"].theme-aurora { --pink:#45ddc4 !important;--line:rgba(89,230,216,.30) !important; }
+body[data-kor-page="active-giveaway"].theme-neon { --pink:#00e5ff !important;--line:rgba(0,225,255,.30) !important; }
+body[data-kor-page="active-giveaway"].theme-obsidian { --pink:#dfa94e !important;--line:rgba(227,181,96,.28) !important; }
+
+/* HUB wallpaper grades. Each is intentionally different rather than a recolor of Sakura. */
+body.hub-page.theme-aurora {
+  background:
+    radial-gradient(ellipse at 15% 12%,rgba(45,239,202,.25),transparent 30%),
+    radial-gradient(ellipse at 78% 8%,rgba(132,80,255,.30),transparent 35%),
+    radial-gradient(ellipse at 52% 88%,rgba(22,114,163,.16),transparent 36%),
+    linear-gradient(145deg,#020711 0%,#071827 46%,#0a1024 68%,#03060d 100%) fixed !important;
+}
+body.hub-page.theme-neon {
+  background-image:
+    linear-gradient(rgba(0,235,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,235,255,.04) 1px,transparent 1px),
+    radial-gradient(circle at 14% 15%,rgba(0,236,255,.23),transparent 28%),
+    radial-gradient(circle at 85% 13%,rgba(255,42,178,.26),transparent 30%),
+    radial-gradient(circle at 50% 95%,rgba(108,54,255,.19),transparent 36%),
+    linear-gradient(150deg,#02030a,#09081f 54%,#04030d) !important;
+  background-size:48px 48px,48px 48px,auto,auto,auto,auto !important;
+}
+body.hub-page.theme-obsidian {
+  background:
+    radial-gradient(ellipse at 50% -5%,rgba(231,183,92,.20),transparent 30%),
+    radial-gradient(ellipse at 50% 105%,rgba(126,88,36,.13),transparent 38%),
+    linear-gradient(145deg,#040506 0%,#11100d 50%,#050607 100%) fixed !important;
+}
+
+/* ==========================================================================\n   KORZHANY v410 - GLOBAL DAY / NIGHT ATMOSPHERE\n   The HUB Day/Night choice now follows the user to every product page.\n   ========================================================================== */
+html.kor-time-day, body.kor-time-day { color-scheme: light dark; }
+html.kor-time-night, body.kor-time-night { color-scheme: dark; }
+
+/* Sakura gets a real matching photographic scene everywhere. */
+body.theme-sakura.kor-time-day {
+  background-image:
+    linear-gradient(180deg, rgba(255,248,240,.02), rgba(74,0,8,.04)),
+    url('/assets/sakura-theme-bg.webp') !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-attachment:fixed !important;
+}
+body.theme-sakura.kor-time-night {
+  background-image:
+    linear-gradient(180deg, rgba(1,6,18,.22), rgba(2,4,12,.42)),
+    url('/assets/sakura-theme-bg-night.webp') !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-attachment:fixed !important;
+}
+
+/* Non-photo palettes still gain a meaningful day/night atmosphere. */
+body.kor-time-day.theme-pink { --kor-time-glow:rgba(255,112,181,.10); }
+body.kor-time-day.theme-wine { --kor-time-glow:rgba(165,46,96,.08); }
+body.kor-time-day.theme-aurora { --kor-time-glow:rgba(65,224,207,.11); }
+body.kor-time-day.theme-neon { --kor-time-glow:rgba(0,226,255,.10); }
+body.kor-time-day.theme-obsidian { --kor-time-glow:rgba(226,180,86,.09); }
+body.kor-time-night.theme-pink { --kor-time-glow:rgba(255,77,161,.16); }
+body.kor-time-night.theme-wine { --kor-time-glow:rgba(130,20,69,.18); }
+body.kor-time-night.theme-aurora { --kor-time-glow:rgba(29,216,199,.18); }
+body.kor-time-night.theme-neon { --kor-time-glow:rgba(0,221,255,.19); }
+body.kor-time-night.theme-obsidian { --kor-time-glow:rgba(203,154,61,.14); }
+
+body.kor-time-night:not(.theme-sakura)::before {
+  filter:brightness(.72) saturate(1.08);
+}
+
+/* ==========================================================================
+   KORZHANY v411 - DAY/NIGHT ROOT ALIAS SAFETY
+   Deferred JS mirrors these classes to BODY, but these root aliases make the
+   first paint and cache transitions deterministic.
+   ========================================================================== */
+html.theme-sakura.kor-time-day body {
+  background-image:linear-gradient(180deg,rgba(255,250,245,.01),rgba(75,3,9,.025)),url('/assets/sakura-theme-bg.webp') !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-attachment:fixed !important;
+}
+html.theme-sakura.kor-time-night body {
+  background-image:linear-gradient(180deg,rgba(0,5,15,.12),rgba(0,3,10,.30)),url('/assets/sakura-theme-bg-night.webp') !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-attachment:fixed !important;
+}
+
+/* v434: white / green global palette */
+html.theme-mint,body.theme-mint{
+  --accent:#55e889 !important;--accent2:#b9ffd0 !important;--accentText:#06110a !important;
+  --accentGlow:rgba(85,232,137,.30) !important;--accentSoft:rgba(85,232,137,.12) !important;
+  --text:#f7fff9 !important;--muted:rgba(226,242,231,.72) !important;
+}
+body.hub-page.theme-mint{
+  background:radial-gradient(circle at 50% 2%,rgba(106,255,157,.13),transparent 30%),linear-gradient(145deg,#f7faf8 0%,#e9f3ec 8%,#07100a 34%,#030604 100%) !important;
+}
+body.hub-page.theme-mint .hub-card{border-color:rgba(154,255,189,.30)!important;background:linear-gradient(180deg,rgba(15,29,20,.88),rgba(5,10,7,.94))!important;box-shadow:0 22px 60px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06)!important}
+body.hub-page.theme-mint .hub-card-action{border-color:rgba(85,232,137,.72)!important;background:linear-gradient(180deg,#f8fff9,#dff7e6)!important;color:#0b5d29!important;text-shadow:none!important}
+body.hub-page.theme-mint .hub-hero h1{color:#f8fff9!important;text-shadow:0 0 28px rgba(85,232,137,.22)!important}
+
+
+/* v484: Sakura operational modals use dark glass, not a white sheet. */
+body.theme-sakura .winner-payout-card-v482,
+body.theme-sakura .v484-modal-card { background:radial-gradient(circle at 50% -12%,rgba(177,24,58,.18),transparent 42%),linear-gradient(180deg,rgba(43,9,18,.96),rgba(20,6,12,.985)) !important; color:#fff !important; }
+body.theme-sakura .v484-modal-card input,
+body.theme-sakura .winner-payout-input-v482 { background:rgba(5,2,5,.30) !important; color:#fff !important; }
+
+/* ==========================================================================\n   KORZHANY v497 — GLOBAL PALETTE ENGINE\n   Sakura is intentionally left intact. Every other palette is rebuilt around\n   one semantic variable set so modals, buttons and product pages stay in sync.\n   ========================================================================== */
+
+html.theme-neon, body.theme-neon {
+  --kor-bg:#050a12; --kor-bg-2:#07111e; --kor-panel:#081525; --kor-panel-2:#0c1c30;
+  --kor-panel-soft:rgba(8,21,37,.72); --kor-panel-strong:rgba(6,16,29,.94);
+  --kor-accent:#16d9ff; --kor-accent-2:#3178ff; --kor-accent-rgb:22,217,255;
+  --kor-text:#f4fbff; --kor-muted:#7795a8; --kor-border:#164568;
+  --kor-control:#0a1b2d; --kor-control-hover:#10304a; --kor-control-active:#164e72; --kor-input:#07111e;
+  --kor-success:#4de6a8; --kor-danger:#ff667c; --kor-glow:rgba(22,217,255,.22);
+  --kor-wallpaper-tint-rgb:5,10,18;
+  --pink:var(--kor-accent)!important; --pink2:var(--kor-accent-2)!important; --accent:var(--kor-accent)!important; --accent2:var(--kor-accent-2)!important;
+  --accentText:var(--kor-text)!important; --border:color-mix(in srgb,var(--kor-accent) 34%,#22445f)!important; --accentGlow:var(--kor-glow)!important;
+  --accentSoft:rgba(22,217,255,.12)!important; --text:var(--kor-text)!important; --muted:rgba(177,207,224,.67)!important;
+  --v148-wine-layer:rgba(5,19,34,.62)!important; --v148-wine-layer-2:rgba(3,10,20,.82)!important; --v150-side-darken:rgba(2,7,14,.64)!important; --v150-side-wine:rgba(20,72,108,.24)!important;
+}
+body.theme-neon { background:radial-gradient(circle at 14% 12%,rgba(22,217,255,.14),transparent 31%),radial-gradient(circle at 86% 8%,rgba(49,120,255,.15),transparent 34%),linear-gradient(150deg,#03070d,#07111d 52%,#04080e) fixed!important; }
+
+html.theme-emerald, body.theme-emerald {
+  --kor-bg:#06100d; --kor-bg-2:#081711; --kor-panel:#0a1813; --kor-panel-2:#10231b;
+  --kor-panel-soft:rgba(10,24,19,.72); --kor-panel-strong:rgba(7,20,15,.94);
+  --kor-accent:#39e6a0; --kor-accent-2:#11a86c; --kor-accent-rgb:57,230,160;
+  --kor-text:#f2fff9; --kor-muted:#7ca995; --kor-border:#1b5941;
+  --kor-control:#0d2119; --kor-control-hover:#123828; --kor-control-active:#175a3d; --kor-input:#081710;
+  --kor-success:#5cf0ae; --kor-danger:#ff6f78; --kor-glow:rgba(57,230,160,.20);
+  --kor-wallpaper-tint-rgb:6,16,13;
+  --pink:var(--kor-accent)!important; --pink2:var(--kor-accent-2)!important; --accent:var(--kor-accent)!important; --accent2:var(--kor-accent-2)!important;
+  --accentText:var(--kor-text)!important; --border:color-mix(in srgb,var(--kor-accent) 32%,#224c3b)!important; --accentGlow:var(--kor-glow)!important;
+  --accentSoft:rgba(57,230,160,.11)!important; --text:var(--kor-text)!important; --muted:rgba(190,223,208,.67)!important;
+  --v148-wine-layer:rgba(7,31,23,.62)!important; --v148-wine-layer-2:rgba(4,17,12,.84)!important; --v150-side-darken:rgba(2,10,7,.65)!important; --v150-side-wine:rgba(20,95,65,.23)!important;
+}
+body.theme-emerald { background:radial-gradient(circle at 18% 10%,rgba(57,230,160,.14),transparent 31%),radial-gradient(circle at 80% 4%,rgba(17,168,108,.12),transparent 34%),linear-gradient(150deg,#040b08,#091a13 52%,#040b08) fixed!important; }
+
+html.theme-obsidian, body.theme-obsidian {
+  --kor-bg:#08090c; --kor-bg-2:#0c0e12; --kor-panel:#111318; --kor-panel-2:#181b21;
+  --kor-panel-soft:rgba(17,19,24,.74); --kor-panel-strong:rgba(12,14,18,.95);
+  --kor-accent:#d9dee8; --kor-accent-2:#7d8798; --kor-accent-rgb:217,222,232;
+  --kor-text:#ffffff; --kor-muted:#8e96a4; --kor-border:#3b424e;
+  --kor-control:#171a20; --kor-control-hover:#222731; --kor-control-active:#303744; --kor-input:#101218;
+  --kor-success:#62dca8; --kor-danger:#ff6878; --kor-glow:rgba(217,222,232,.14);
+  --kor-wallpaper-tint-rgb:8,9,12;
+  --pink:var(--kor-accent)!important; --pink2:var(--kor-accent-2)!important; --accent:var(--kor-accent)!important; --accent2:var(--kor-accent-2)!important;
+  --accentText:var(--kor-text)!important; --border:rgba(217,222,232,.24)!important; --accentGlow:var(--kor-glow)!important;
+  --accentSoft:rgba(217,222,232,.08)!important; --text:var(--kor-text)!important; --muted:rgba(205,211,222,.64)!important;
+  --v148-wine-layer:rgba(17,19,24,.66)!important; --v148-wine-layer-2:rgba(7,8,11,.86)!important; --v150-side-darken:rgba(3,4,6,.68)!important; --v150-side-wine:rgba(112,121,139,.14)!important;
+}
+body.theme-obsidian { background:radial-gradient(ellipse at 50% -8%,rgba(217,222,232,.10),transparent 30%),radial-gradient(ellipse at 10% 90%,rgba(98,109,128,.07),transparent 31%),linear-gradient(145deg,#050609,#0d0f13 50%,#050609) fixed!important; }
+
+html.theme-royal, body.theme-royal {
+  --kor-bg:#10071d; --kor-bg-2:#190b2b; --kor-panel:#1b0c30; --kor-panel-2:#2b1248;
+  --kor-panel-soft:rgba(35,15,59,.86); --kor-panel-strong:rgba(19,8,34,.96);
+  --kor-accent:#a73cff; --kor-accent-2:#7827e6; --kor-accent-rgb:167,60,255;
+  --kor-text:#cfaaf5; --kor-muted:#a78bc6; --kor-border:#633098;
+  --kor-control:#3a205c; --kor-control-hover:#56218c; --kor-control-active:#7827e6; --kor-input:#1b0c30;
+  --kor-success:#b8e9bb; --kor-danger:#f49aa7; --kor-glow:rgba(167,60,255,.19);
+  --kor-wallpaper-tint-rgb:16,7,29;
+  --pink:var(--kor-accent)!important; --pink2:var(--kor-accent-2)!important; --accent:var(--kor-accent)!important; --accent2:var(--kor-accent-2)!important;
+  --accentText:var(--kor-text)!important; --border:rgba(167,60,255,.34)!important; --accentGlow:var(--kor-glow)!important;
+  --accentSoft:rgba(167,60,255,.13)!important; --text:var(--kor-text)!important; --muted:#a78bc6!important;
+  --v148-wine-layer:rgba(33,12,57,.48)!important; --v148-wine-layer-2:rgba(14,6,27,.66)!important; --v150-side-darken:rgba(13,5,25,.42)!important; --v150-side-wine:rgba(97,33,150,.21)!important;
+}
+body.theme-royal { background:radial-gradient(circle at 18% 10%,rgba(132,39,230,.16),transparent 33%),radial-gradient(circle at 84% 18%,rgba(104,32,185,.17),transparent 38%),linear-gradient(145deg,#10071d,#1c0b31 52%,#10071d) fixed!important; }
+
+html.theme-amber, body.theme-amber {
+  --kor-bg:#110c07; --kor-bg-2:#181008; --kor-panel:#1b140d; --kor-panel-2:#261b10;
+  --kor-panel-soft:rgba(27,20,13,.74); --kor-panel-strong:rgba(20,14,9,.95);
+  --kor-accent:#ffb84d; --kor-accent-2:#d77a20; --kor-accent-rgb:255,184,77;
+  --kor-text:#fff8ee; --kor-muted:#b39a79; --kor-border:#68491f;
+  --kor-control:#24180d; --kor-control-hover:#382411; --kor-control-active:#573718; --kor-input:#160f08;
+  --kor-success:#76df9e; --kor-danger:#ff6d6d; --kor-glow:rgba(255,184,77,.20);
+  --kor-wallpaper-tint-rgb:17,12,7;
+  --pink:var(--kor-accent)!important; --pink2:var(--kor-accent-2)!important; --accent:var(--kor-accent)!important; --accent2:var(--kor-accent-2)!important;
+  --accentText:var(--kor-text)!important; --border:rgba(255,184,77,.32)!important; --accentGlow:var(--kor-glow)!important;
+  --accentSoft:rgba(255,184,77,.10)!important; --text:var(--kor-text)!important; --muted:rgba(228,211,188,.66)!important;
+  --v148-wine-layer:rgba(35,23,12,.64)!important; --v148-wine-layer-2:rgba(16,10,5,.86)!important; --v150-side-darken:rgba(9,6,3,.67)!important; --v150-side-wine:rgba(127,76,22,.22)!important;
+}
+body.theme-amber { background:radial-gradient(ellipse at 50% -8%,rgba(255,184,77,.16),transparent 31%),radial-gradient(ellipse at 13% 86%,rgba(160,89,24,.10),transparent 31%),linear-gradient(150deg,#0b0704,#1a1008 52%,#0b0704) fixed!important; }
+
+/* All rebuilt palettes use the same glass/control language. Sakura rules above remain authoritative. */
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .left-panel,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .main-area,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .right-panel,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .card,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .panel {
+  border-color:color-mix(in srgb,var(--kor-accent) 28%,rgba(255,255,255,.12))!important;
+  background:linear-gradient(155deg,color-mix(in srgb,var(--kor-panel-2) 82%,transparent),color-mix(in srgb,var(--kor-panel) 92%,transparent))!important;
+  box-shadow:0 22px 68px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.045),0 0 28px var(--kor-glow)!important;
+}
+
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) button,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .btn,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .link,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .navbtn,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .hub-link,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .small-settings {
+  border-color:color-mix(in srgb,var(--kor-accent) 27%,rgba(255,255,255,.10))!important;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--kor-control) 92%,rgba(255,255,255,.035)),var(--kor-control))!important;
+  color:var(--kor-text)!important;
+  text-shadow:none!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.16)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) button:hover,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .btn:hover,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .link:hover,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .navbtn:hover,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .hub-link:hover,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .small-settings:hover {
+  border-color:color-mix(in srgb,var(--kor-accent) 62%,white 8%)!important;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--kor-control-hover) 92%,rgba(255,255,255,.04)),var(--kor-control-hover))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 26px rgba(0,0,0,.20),0 0 18px var(--kor-glow)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) button:active,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .btn:active {
+  background:var(--kor-control-active)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) input,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) select,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) textarea {
+  border-color:color-mix(in srgb,var(--kor-accent) 26%,rgba(255,255,255,.09))!important;
+  background:color-mix(in srgb,var(--kor-input) 94%,transparent)!important;
+  color:var(--kor-text)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) input:focus,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) select:focus,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) textarea:focus {
+  outline:none!important;border-color:color-mix(in srgb,var(--kor-accent) 72%,white 6%)!important;box-shadow:0 0 18px var(--kor-glow)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) input::placeholder,
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) textarea::placeholder { color:color-mix(in srgb,var(--kor-muted) 72%,transparent)!important; }
+
+/* TOP windows, search/history/reroll/payout/settings and every shared styled modal. */
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v213-modal-card,.v484-modal-card,.winner-payout-card-v482,.roulette-popup-card,.boost-settings-card-v428) {
+  border-color:color-mix(in srgb,var(--kor-accent) 38%,rgba(255,255,255,.10))!important;
+  background:radial-gradient(circle at 50% -15%,color-mix(in srgb,var(--kor-accent) 12%,transparent),transparent 42%),linear-gradient(180deg,var(--kor-panel-2),var(--kor-panel-strong))!important;
+  color:var(--kor-text)!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.52),0 0 34px var(--kor-glow),inset 0 1px 0 rgba(255,255,255,.055)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v213-modal-backdrop,.v484-modal-backdrop) { background:color-mix(in srgb,var(--kor-bg) 74%,transparent)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.roulette-popup,.boost-settings-modal-v428) { background:color-mix(in srgb,var(--kor-bg) 72%,transparent)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v213-modal-title,.v484-title,.winner-payout-title-v482,.boost-settings-title-v428,.popup-title) { color:var(--kor-text)!important;text-shadow:0 0 16px var(--kor-glow)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v213-modal-body,.v484-sub,.v484-kicker,.winner-payout-hint-v482,.boost-settings-hint-v428,.popup-hint) { color:color-mix(in srgb,var(--kor-muted) 88%,white 8%)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v484-search-input,.winner-payout-input-v482,.winner-payout-input-v482 input,.v213-modal-input) { background:var(--kor-input)!important;border-color:color-mix(in srgb,var(--kor-accent) 30%,transparent)!important;color:var(--kor-text)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v484-player-stats>div,.v484-history-row,.boost-settings-section-v428) { background:color-mix(in srgb,var(--kor-panel) 84%,black 9%)!important;border-color:color-mix(in srgb,var(--kor-accent) 16%,rgba(255,255,255,.06))!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v484-player-stats span,.v484-history-row span) { color:var(--kor-muted)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v484-player-stats b,.v484-history-row b) { color:var(--kor-text)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v484-main-btn,.winner-payout-save-v482,.v213-ok,.boost-settings-save-v428,#startRouletteBtn) {
+  background:linear-gradient(180deg,color-mix(in srgb,var(--kor-accent) 46%,var(--kor-control)),color-mix(in srgb,var(--kor-accent-2) 42%,var(--kor-control)))!important;
+  border-color:color-mix(in srgb,var(--kor-accent) 58%,transparent)!important;color:var(--kor-text)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v484-secondary-btn,.v484-reasons button,.v213-cancel,.popup-actions button) { background:var(--kor-control)!important;border-color:color-mix(in srgb,var(--kor-accent) 24%,rgba(255,255,255,.07))!important;color:var(--kor-text)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .v484-reasons button:hover { background:color-mix(in srgb,var(--kor-accent) 14%,var(--kor-control-hover))!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.v484-x,.v213-modal-close,.winner-payout-close-v482,.boost-settings-close-v428,.winner-close) { background:color-mix(in srgb,var(--kor-control) 88%,transparent)!important;border-color:color-mix(in srgb,var(--kor-accent) 28%,transparent)!important;color:var(--kor-text)!important; }
+
+/* Winner/chat/right column and operational lists inherit the active palette too. */
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.winner-visual,.winner-chat-box,#winnerBox,#winnerChatBox,#winnersPanel,.blacklist-card,.logs-card) {
+  border-color:color-mix(in srgb,var(--kor-accent) 28%,rgba(255,255,255,.10))!important;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--kor-panel-2) 86%,transparent),color-mix(in srgb,var(--kor-panel-strong) 94%,transparent))!important;
+  box-shadow:0 20px 60px rgba(0,0,0,.38),0 0 26px var(--kor-glow),inset 0 1px 0 rgba(255,255,255,.045)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.winner-details>div,.winner-row,.black-item,.chat-msg,.chat-message) { border-color:color-mix(in srgb,var(--kor-accent) 13%,rgba(255,255,255,.05))!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.winner-name,.right-title,.timer,.participant .sms,.card-title.big,.card-title span) { color:var(--kor-accent)!important;text-shadow:0 0 14px var(--kor-glow)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .top-banner { border-color:color-mix(in srgb,var(--kor-accent) 58%,transparent)!important;background:linear-gradient(180deg,color-mix(in srgb,var(--kor-accent) 18%,var(--kor-panel-2)),color-mix(in srgb,var(--kor-panel) 92%,transparent))!important;color:var(--kor-text)!important;box-shadow:0 0 24px var(--kor-glow),inset 0 1px 0 rgba(255,255,255,.05)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) .card-title { background:color-mix(in srgb,var(--kor-panel-2) 78%,transparent)!important;color:color-mix(in srgb,var(--kor-text) 90%,var(--kor-muted))!important; }
+
+/* Semantic success/danger remain recognizable, but are tuned to each palette. */
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.btn.green,.winner-save,#winnerSaveBtn,.is-success,.success) { border-color:color-mix(in srgb,var(--kor-success) 58%,transparent)!important;background:color-mix(in srgb,var(--kor-success) 24%,var(--kor-control))!important;color:color-mix(in srgb,var(--kor-success) 28%,white)!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(.btn.danger,.danger,.is-danger) { border-color:color-mix(in srgb,var(--kor-danger) 55%,transparent)!important;background:color-mix(in srgb,var(--kor-danger) 20%,var(--kor-control))!important;color:color-mix(in srgb,var(--kor-danger) 26%,white)!important; }
+
+/* Product variable bridges: donation auction / wheel / active giveaway now follow all v497 palettes. */
+body[data-kor-page="donation-auction"]:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) { --bg:var(--kor-bg)!important;--panel:var(--kor-panel)!important;--panel2:var(--kor-panel-2)!important;--line:color-mix(in srgb,var(--kor-accent) 28%,transparent)!important;--text:var(--kor-text)!important;--muted:var(--kor-muted)!important;--pink:var(--kor-accent)!important;--pink2:var(--kor-accent-2)!important; }
+body[data-kor-page="donation-wheel"]:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) { --hot:var(--kor-accent)!important;--line:color-mix(in srgb,var(--kor-accent) 28%,transparent)!important;--panel:color-mix(in srgb,var(--kor-panel) 92%,transparent)!important;--panel2:color-mix(in srgb,var(--kor-panel-2) 88%,transparent)!important; }
+body[data-kor-page="active-giveaway"]:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) { --pink:var(--kor-accent)!important;--line:color-mix(in srgb,var(--kor-accent) 28%,transparent)!important; }
+
+/* Scrollbars are part of the palette instead of retaining the old pink thumb. */
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) * { scrollbar-color:color-mix(in srgb,var(--kor-accent) 58%,#20242c) color-mix(in srgb,var(--kor-bg) 88%,black); }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) *::-webkit-scrollbar-thumb { background:color-mix(in srgb,var(--kor-accent) 42%,#252b35)!important;border-radius:999px!important; }
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) *::-webkit-scrollbar-track { background:color-mix(in srgb,var(--kor-bg) 88%,transparent)!important; }
+
+/* Day/night tint stays subtle and theme-correct. */
+body.kor-time-day.theme-neon{--kor-time-glow:rgba(22,217,255,.08)} body.kor-time-night.theme-neon{--kor-time-glow:rgba(22,217,255,.15)}
+body.kor-time-day.theme-emerald{--kor-time-glow:rgba(57,230,160,.08)} body.kor-time-night.theme-emerald{--kor-time-glow:rgba(57,230,160,.15)}
+body.kor-time-day.theme-obsidian{--kor-time-glow:rgba(217,222,232,.06)} body.kor-time-night.theme-obsidian{--kor-time-glow:rgba(217,222,232,.10)}
+body.kor-time-day.theme-royal{--kor-time-glow:rgba(182,108,255,.09)} body.kor-time-night.theme-royal{--kor-time-glow:rgba(182,108,255,.16)}
+body.kor-time-day.theme-amber{--kor-time-glow:rgba(255,184,77,.08)} body.kor-time-night.theme-amber{--kor-time-glow:rgba(255,184,77,.14)}
+
+/* Custom wallpaper sits underneath every page. Palette tint is always above the image. */
+#korWallpaperLayerV497 { display:none; }
+body.kor-custom-wallpaper { isolation:isolate!important;background:transparent!important;background-image:none!important; }
+html.kor-custom-wallpaper { background:var(--kor-bg,#08090c)!important; }
+body.kor-custom-wallpaper #korWallpaperLayerV497 {
+  display:block;position:fixed;inset:-28px;z-index:-1;pointer-events:none;
+  background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important;
+  filter:blur(var(--kor-wallpaper-blur,0px)) saturate(var(--kor-wallpaper-saturation,1));transform:scale(1.035);
+}
+body.kor-custom-wallpaper #korWallpaperLayerV497::after {
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:rgba(var(--kor-wallpaper-tint-rgb,8,9,12),var(--kor-wallpaper-dim-alpha,.48));
+}
+/* Sakura keeps all of its colors; only the photo layer is replaced when the user explicitly uploads wallpaper. */
+body.theme-sakura.kor-custom-wallpaper { --kor-bg:#250309;--kor-wallpaper-tint-rgb:58,3,10; }
+

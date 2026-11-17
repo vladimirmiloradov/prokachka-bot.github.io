@@ -1,0 +1,324 @@
+/* KORZHANY HUB v519 — winner flat rows, centered connection label, larger left rail. */
+
+/* Layout width + larger left actions */
+html.product-layout-modern body .site{
+  grid-template-columns: clamp(270px,18vw,330px) minmax(0,1fr) clamp(252px,17vw,315px) !important;
+}
+html.product-layout-modern body .left-panel{
+  gap:12px !important;
+}
+html.product-layout-modern body #controls > button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){
+  min-height:72px !important;
+  height:72px !important;
+  flex-basis:72px !important;
+  border-radius:16px !important;
+  padding-left:78px !important;
+  font-size:clamp(13px,.95vw,15px) !important;
+  letter-spacing:.035em !important;
+}
+html.product-layout-modern body #controls > button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428)::before,
+html body #controls #searchBtn > .v515-search-icon{
+  left:10px !important;
+  width:48px !important;
+  height:48px !important;
+  min-width:48px !important;
+  min-height:48px !important;
+  border-radius:13px !important;
+}
+html body #controls > button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428)::after,
+html body #controls #searchBtn::after{
+  left:78px !important;
+  right:18px !important;
+  bottom:10px !important;
+  height:1px !important;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--accent,var(--pink,#cbd5e1)) 58%,rgba(255,255,255,.15)),transparent) !important;
+  opacity:.52 !important;
+  transform:scaleX(.92) !important;
+}
+html body #controls #searchBtn > .v515-search-icon{
+  background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.15),transparent 38%), color-mix(in srgb,var(--accent,var(--pink,#cbd5e1)) 15%,rgba(255,255,255,.03)) !important;
+  border:1px solid color-mix(in srgb,var(--accent,var(--pink,#cbd5e1)) 34%,rgba(255,255,255,.12)) !important;
+  color:color-mix(in srgb,var(--accentText,#fff) 82%,#fff 18%) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.10),0 0 16px color-mix(in srgb,var(--accent,var(--pink,#cbd5e1)) 12%,transparent) !important;
+}
+@media(max-width:1600px), (max-height:760px){
+  html.product-layout-modern body .site{
+    grid-template-columns: clamp(250px,17vw,306px) minmax(0,1fr) clamp(236px,16vw,300px) !important;
+  }
+  html.product-layout-modern body #controls > button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){
+    min-height:64px !important;height:64px !important;flex-basis:64px !important;padding-left:72px !important;
+  }
+  html.product-layout-modern body #controls > button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428)::before,
+  html body #controls #searchBtn > .v515-search-icon{width:44px !important;height:44px !important;min-width:44px !important;min-height:44px !important;}
+  html body #controls > button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428)::after,
+  html body #controls #searchBtn::after{left:72px !important;}
+}
+
+/* No top decorative brows */
+html.product-layout-modern body .top-banner::before,
+html.product-layout-modern body .top-banner::after,
+html.product-layout-modern body #participantsPanel::before,
+html.product-layout-modern body #participantsPanel::after,
+html.product-layout-modern body #chatPanel::before,
+html.product-layout-modern body #chatPanel::after,
+html.product-layout-modern body #participantsPanel > .card-title::before,
+html.product-layout-modern body #participantsPanel > .card-title::after,
+html.product-layout-modern body #chatPanel > .connection::before,
+html.product-layout-modern body #chatPanel > .connection::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* Flat headers for list/chat */
+html body #participantsPanel > .card-title,
+html body #chatPanel > .connection{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  min-height:44px !important;
+  padding:0 16px !important;
+}
+html body #participantsPanel #participantsCount,
+html body .v515-count-inline{
+  display:none !important;
+}
+html body .participants-title-left-v297,
+html body #connectionText{
+  font-weight:1000 !important;
+  font-size:clamp(14px,1vw,18px) !important;
+  letter-spacing:.02em !important;
+  color:rgba(255,255,255,.96) !important;
+  text-shadow:none !important;
+}
+html body #chatPanel > .connection{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+}
+html body #chatPanel > .connection #dot{flex:0 0 auto !important;}
+html body #connectionText{ text-align:center !important; }
+
+/* Clean participant/chat body separators */
+html body #participantsPanel .list,
+html body #chatPanel .chat-list,
+html body #participantsList,
+html body #chatList,
+html body #copyBtn{
+  border-top-color:rgba(255,255,255,.06) !important;
+}
+html body #participantsList > div,
+html body #chatList > div,
+html body #participantsList .participant-row,
+html body #chatList .chat-msg-v219{
+  border-color:rgba(255,255,255,.08) !important;
+}
+html body #copyBtn{
+  box-shadow:none !important;
+  background:transparent !important;
+}
+
+/* Hour leader centered, no placeholder text when empty */
+html body #v516HourLeader{
+  justify-content:center !important;
+  text-align:center !important;
+  gap:8px !important;
+  padding:10px 14px !important;
+  border-top-color:rgba(255,255,255,.08) !important;
+}
+html body #v516HourLeader.v517-empty .v516-leader-spark,
+html body #v516HourLeader.v517-empty > span:not(#v516HourLeaderName):not(#v516HourLeaderCount),
+html body #v516HourLeader.v517-empty #v516HourLeaderCount{
+  opacity:0 !important;
+}
+html body #v516HourLeader.v517-empty #v516HourLeaderName{
+  opacity:0 !important;
+}
+
+/* Wheel caption higher and always above wheel even after reroll */
+html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox:not(.hidden){
+  top:clamp(4px,3.5vh,34px) !important;
+}
+html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox .roll-label{margin-bottom:4px !important;}
+html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox #rollingName{
+  font-size:clamp(40px,4.9vw,72px) !important;
+  line-height:1 !important;
+  text-shadow:0 4px 22px rgba(0,0,0,.72) !important;
+}
+
+/* Remove any fish quote artifacts system-wide */
+html body [id^="winnerFishQuote"],
+html body .winner-fish-quote{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+
+/* Winner top block: flat inline metrics with separators */
+html body #winnerBox{
+  overflow:hidden !important;
+}
+html body #winnerBox #winnerDetails{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:0 !important;
+  flex-wrap:nowrap !important;
+  padding:14px 18px 10px !important;
+  margin-top:6px !important;
+}
+html body #winnerBox #winnerDetails > .v515-metric{
+  position:relative !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  min-width:0 !important;
+  padding:0 16px !important;
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  flex:0 1 auto !important;
+}
+html body #winnerBox #winnerDetails > .v515-metric + .v515-metric::before{
+  content:"|" !important;
+  position:absolute !important;
+  left:-1px !important;
+  top:50% !important;
+  transform:translateY(-54%) !important;
+  color:rgba(255,255,255,.28) !important;
+  font-size:18px !important;
+  font-weight:900 !important;
+}
+html body #winnerBox #winnerDetails > .v515-metric .v515-metric-icon{
+  font-size:15px !important;
+  opacity:.88 !important;
+  text-shadow:none !important;
+}
+html body #winnerBox #winnerDetails > .v515-metric b{
+  font-size:13px !important;
+  font-weight:1000 !important;
+  letter-spacing:.03em !important;
+  white-space:nowrap !important;
+}
+html body #winnerBox #winnerFollowInfo.followage-loading-v120,
+html body #winnerFollowInfo.followage-loading-v120{
+  opacity:1 !important;
+}
+
+/* Winner chat lower block: flat action row + centered stopwatch in chat */
+html body #winnerChatBox{
+  position:relative !important;
+  overflow:hidden !important;
+}
+html body #winnerChatBox .winner-chat-head{
+  display:none !important;
+}
+html body #winnerActionsSlotV131{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:52px !important;
+  padding:12px 18px 10px !important;
+  border-bottom:1px solid rgba(255,255,255,.08) !important;
+  background:transparent !important;
+}
+html body #winnerActionsBarV129{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:0 !important;
+  width:100% !important;
+}
+html body #winnerActionsBarV129 > button,
+html body #winnerActionsBarV129 > a{
+  position:relative !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-width:0 !important;
+  width:auto !important;
+  height:auto !important;
+  padding:0 16px !important;
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  color:rgba(255,255,255,.92) !important;
+  font-size:13px !important;
+  font-weight:1000 !important;
+  letter-spacing:.05em !important;
+  text-transform:uppercase !important;
+}
+html body #winnerActionsBarV129 > button + button::before,
+html body #winnerActionsBarV129 > a + button::before,
+html body #winnerActionsBarV129 > button + a::before,
+html body #winnerActionsBarV129 > a + a::before{
+  content:"|" !important;
+  position:absolute !important;
+  left:-2px !important;
+  top:50% !important;
+  transform:translateY(-54%) !important;
+  color:rgba(255,255,255,.30) !important;
+  font-size:18px !important;
+  font-weight:900 !important;
+}
+html body #winnerActionsBarV129 > button:hover,
+html body #winnerActionsBarV129 > a:hover{
+  transform:none !important;
+  filter:brightness(1.08) !important;
+  color:#fff !important;
+}
+html body #winnerReplyStatus,
+html body .winner-chat-title,
+html body #winnerChatNick{
+  display:none !important;
+}
+html body #winnerChatMessages{
+  position:relative !important;
+  min-height:230px !important;
+  padding-top:48px !important;
+}
+html body #winnerReplyStopwatch{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  transform:translate(-50%,-50%) !important;
+  z-index:3 !important;
+  min-width:132px !important;
+  padding:0 !important;
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  color:rgba(255,255,255,.84) !important;
+  font-size:clamp(24px,2.2vw,34px) !important;
+  font-weight:1000 !important;
+  letter-spacing:.02em !important;
+  text-shadow:none !important;
+  pointer-events:none !important;
+}
+html body #winnerReplyStopwatch.timer-ok{color:#cffff1 !important;}
+html body #winnerReplyStopwatch.timer-bad{color:#ffd8d8 !important;}
+
+/* Remove success flash sparkle, keep clean green/red static accents */
+html body #winnerBox.v518-answer-flash,
+html body #winnerChatBox.v518-answer-flash{
+  animation:none !important;
+}
+
+/* Reroll reason modal should never show overlay artifacts */
+html body #v487ReasonModal .v484-reasons button{
+  overflow:hidden !important;
+}
+
+/* Ensure the old original action buttons never leak into view */
+html body #winnerRerollBtn,
+html body #winnerCheckBtn,
+html body #winnerSaveBtn.original-leak,
+html body #winnerSitesBtn.original-leak{
+  display:none !important;
+}

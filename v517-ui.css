@@ -1,0 +1,154 @@
+/* KORZHANY HUB v517 — last-in-order visual cleanup. No gameplay state here. */
+
+/* The discontinued streamer countdown, launch button, and legacy timers must not
+   reappear when an older global CSS layer sets display!important. */
+html body #hubTimerOpenV515,html body #v516LiveTimer,
+html body #timer,html body #timerToggle,html body #v515TimerModal,
+html body .v515-stream-clock {display:none!important;}
+
+/* Uniform full-sized navigation buttons (including Search).  Auto margins split
+   the available sidebar space evenly above and below the compact control stack. */
+html body #controls.left-panel{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  justify-content:flex-start!important;gap:8px!important;
+  overflow-y:auto!important;overflow-x:hidden!important;padding:12px 10px!important;
+  scroll-behavior:smooth!important;box-sizing:border-box!important;
+}
+html body #controls > #codeBtn{margin-top:auto!important;}
+html body #controls > #boostSettingsBtnV428{margin-bottom:auto!important;}
+html body #controls > button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){
+  height:52px!important;min-height:52px!important;max-height:52px!important;
+  flex:0 0 52px!important;width:100%!important;margin-left:0!important;margin-right:0!important;
+  padding:0 12px 0 63px!important;text-align:left!important;
+  display:flex!important;align-items:center!important;justify-content:flex-start!important;
+  font-size:clamp(11px,.84vw,13px)!important;line-height:1.15!important;
+  border-radius:13px!important;box-sizing:border-box!important;
+}
+/* Preserve the exact same icon holder dimensions as the other toolbar buttons. */
+html body #controls #searchBtn{position:relative!important;}
+html body #controls #searchBtn>.v515-search-icon{
+  position:absolute!important;inset:auto!important;left:8px!important;top:50%!important;
+  transform:translateY(-50%)!important;width:39px!important;height:39px!important;
+  min-width:39px!important;min-height:39px!important;border-radius:11px!important;
+  display:grid!important;place-items:center!important;border:1px solid rgba(255,255,255,.18)!important;
+  background:rgba(255,255,255,.085)!important;color:var(--text,#fff)!important;
+  box-sizing:border-box!important;box-shadow:inset 0 1px rgba(255,255,255,.06)!important;
+}
+html body #controls #searchBtn>.v515-search-icon svg{width:19px!important;height:19px!important;display:block!important;}
+html body #controls #searchBtn::after{content:""!important;display:block!important;position:absolute!important;
+  left:63px!important;right:11px!important;bottom:5px!important;height:1px!important;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--accent,#b6beca) 38%,transparent),transparent)!important;
+  pointer-events:none!important;}
+@media(max-height:660px){html body #controls.left-panel{gap:6px!important;}
+  html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){
+    height:43px!important;min-height:43px!important;max-height:43px!important;flex-basis:43px!important;}
+  html body #controls #searchBtn>.v515-search-icon{width:33px!important;height:33px!important;min-width:33px!important;min-height:33px!important;}
+}
+
+/* TOP-3 heading: middle of the compact heading row, not pressed into bottom edge. */
+html body #topActiveV168 .top-active-v168-title,
+html body #topActiveV168.top3-disabled-v422 .top-active-v168-title{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  text-align:center!important;line-height:1.18!important;min-height:40px!important;
+  padding:4px 37px!important;box-sizing:border-box!important;
+  width:100%!important;margin:0!important;position:relative!important;top:auto!important;transform:none!important;
+}
+html body #topActiveV168.top3-disabled-v422 .top-active-v168-title{height:48px!important;min-height:48px!important;}
+html body #topActiveV168 #top3PowerV422{top:10px!important;right:10px!important;}
+
+/* Sidebar footer: show winner chatter only if there is an actual real name. */
+html body #chatPanel>.v516-hour-leader:not(.v517-empty){
+  display:flex!important;justify-content:center!important;align-items:center!important;
+  text-align:center!important;flex-wrap:wrap!important;gap:8px!important;
+  background:transparent!important;border-top:0!important;box-shadow:none!important;
+}
+html body #chatPanel>.v516-hour-leader.v517-empty{display:none!important;}
+
+/* Take the old colored caps and the visually heavy segmented header trays out
+   of the main participants/chat panes, while retaining their structural height. */
+html body #participantsPanel .card-title,
+html body #participantsPanel .participants-title-v297,
+html body #chatPanel>.connection{
+  background:transparent!important;background-image:none!important;
+  box-shadow:none!important;border:0!important;border-bottom:0!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body #participantsPanel .card-title::before,html body #participantsPanel .card-title::after,
+html body #chatPanel>.connection::before,html body #chatPanel>.connection::after{content:none!important;display:none!important;}
+html body #participantsPanel .v515-count-inline{display:none!important;}
+html body #participantsPanel .participants-title-v297{justify-content:center!important;}
+html body #participantsPanel .participants-title-left-v297{justify-content:center!important;}
+html body #participantsPanel .copy,
+html body #participantsPanel #copyBtn,
+html body #participantsPanel #resetParticipantsBtn{background:rgba(255,255,255,.025)!important;box-shadow:none!important;}
+html body #participantsPanel #participantActionsV409,
+html body #participantsPanel .participants-actions-v409,
+html body #participantsPanel .participants-actions,
+html body #participantsPanel .participants-bottom,
+html body #participantsPanel .participants-footer,
+html body #participantsPanel .v296-participants-actions,
+html body #participantsPanel .v297-participants-actions{
+  background:transparent!important;background-image:none!important;
+  box-shadow:none!important;border:0!important;border-top:0!important;
+}
+/* Status should visually match the participants heading exactly. */
+html body #chatPanel>.connection #connectionText{
+  font-family:inherit!important;font-size:12px!important;font-weight:900!important;
+  letter-spacing:.035em!important;line-height:1.2!important;
+}
+html body #chatPanel>.connection{height:43px!important;min-height:43px!important;flex:0 0 43px!important;}
+
+/* Named fish banners from v87/v94/v95/v96 never return. */
+html body [id^="winnerFishQuote"],html body .winner-fish-quote,
+html body [class*="winner-fish-quote"]{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;}
+
+/* Ensure modal layers win over in-flight wheel and never inherit ancient red Sakura. */
+html body .v484-reason-modal{z-index:2147483600!important;}
+html body .v484-reason-modal .v484-modal-card{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent,#e0e4ec) 7%,#151821),#101319)!important;
+  color:var(--text,#fff)!important;border-color:color-mix(in srgb,var(--accent,#dce0e8) 35%,transparent)!important;
+  box-shadow:0 24px 75px rgba(0,0,0,.55)!important;
+}
+html body .v484-reason-modal .v484-reasons button{background:rgba(255,255,255,.045)!important;
+  border:1px solid color-mix(in srgb,var(--accent,#adb5be) 24%,transparent)!important;
+  color:var(--text,#fff)!important;transition:background .14s ease,border-color .14s ease!important;}
+html body .v484-reason-modal .v484-reasons button:hover{
+  background:color-mix(in srgb,var(--accent,#b5c0cc) 13%,#1b1c24)!important;
+  border-color:color-mix(in srgb,var(--accent,#b5c0cc) 55%,transparent)!important;
+}
+html body:not(.theme-sakura) .sites-card-v280{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent,#c4cad2) 8%,#11141a),#0b0e14)!important;
+  border-color:color-mix(in srgb,var(--accent,#b9c0c8) 45%,transparent)!important;
+  box-shadow:0 18px 60px rgba(0,0,0,.5)!important;
+}
+html body:not(.theme-sakura) .sites-link-v280{
+  background:color-mix(in srgb,var(--accent,#a3afc3) 10%,#14171d)!important;
+  border-color:color-mix(in srgb,var(--accent,#c4d0d9) 40%,transparent)!important;
+  box-shadow:none!important;color:var(--text,#fff)!important;
+}
+html body:not(.theme-sakura) #winnerActionsBarV129>button,
+html body:not(.theme-sakura) #winnerReasonBtnV487,
+html body:not(.theme-sakura) #winnerBtnCheckV129,
+html body:not(.theme-sakura) #winnerSitesBtn{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent,#bfc5d1) 20%,#242732),#0e1218)!important;
+  border-color:color-mix(in srgb,var(--accent,#bfc5d1) 47%,transparent)!important;
+  color:var(--text,#fff)!important;box-shadow:none!important;
+}
+/* Neutral username: eliminate long-standing pink glow regardless of current theme. */
+html body>.center-visual #winnerName,html body>.center-visual .winner-name,
+html body>.center-visual #rollingName{
+  color:var(--text,#f8fafc)!important;text-shadow:none!important;
+  filter:none!important;-webkit-text-stroke:0!important;
+}
+html body>.center-visual #winnerName::before,html body>.center-visual #winnerName::after{content:none!important;}
+/* Five metrics never resize while Twitch followage is checked in the background. */
+html body #winnerBox #winnerDetails>.v515-metric{min-width:0!important;overflow:hidden!important;min-height:69px!important;}
+html body #winnerFollowInfo{display:block!important;max-width:100%!important;min-height:16px!important;
+  font-size:clamp(10px,.8vw,13px)!important;line-height:1.2!important;
+  text-overflow:ellipsis!important;overflow:hidden!important;white-space:nowrap!important;}
+html body #winnerFollowInfo.followage-loading-v120{visibility:hidden!important;}
+/* A finished wheel must be absent, not transparently placed over a winner. */
+html body>.center-visual:has(#winnerBox:not(.hidden)) #rouletteWheelWrap,
+html body>.center-visual:has(#winnerBox:not(.hidden)) #rollingBox{display:none!important;visibility:hidden!important;}
+/* Single-player roulette: sector identity remains in JS, avoid a drifting extra label. */
+html body #rouletteWheel.v517-single-sector .wheel-name{display:none!important;}

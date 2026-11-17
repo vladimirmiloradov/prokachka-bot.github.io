@@ -1,0 +1,67 @@
+/* KORZHANY v515: consolidated stream controls; never animate box geometry on live data. */
+.left-panel {display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;}
+.left-panel>.left-spacer {display:none!important;}
+.left-panel>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428,#hubTimerOpenV515) {flex:0 0 auto!important;min-height:42px!important;height:42px!important;margin:0!important;box-sizing:border-box!important;}
+.left-panel>#hubTimerOpenV515 {padding-left:62px!important;text-align:left!important;}
+.left-panel :is(#timer,#timerToggle) {display:none!important;}
+.left-panel #boostSettingsBtnV428 {margin-top:0!important;}
+.left-panel #searchBtn{position:relative!important;text-align:left!important;padding-left:62px!important;}
+.v515-search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;font-size:22px;font-weight:800;color:#e6e7ea;border:1px solid rgba(255,255,255,.21);border-radius:10px;background:rgba(255,255,255,.06);}
+/* Hide other legacy search magnifiers; retain the single explicit icon. */
+#searchBtn::before,#searchBtn::after{display:none!important;}
+#chatPanel>.v515-legacy-twitch-title{display:none!important;}
+#chatPanel>.connection {flex:0 0 auto!important;min-height:45px!important;display:flex!important;align-items:center!important;gap:8px!important;padding:9px 15px!important;margin:0!important;border-radius:15px 15px 0 0!important;background:rgba(255,255,255,.045)!important;border-bottom:1px solid rgba(255,255,255,.09)!important;box-sizing:border-box!important;}
+#chatPanel{overflow:hidden!important;}
+#chatPanel>.connection #connectionText{font-weight:850!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+/* Participant title, built-in count and local Ctrl+wheel zoom. */
+#participantsPanel{position:relative!important;isolation:isolate;overflow:hidden;}
+#participantsPanel .participants-title-v297{justify-content:center!important;padding:11px!important;text-align:center!important;}
+#participantsPanel .participants-title-left-v297{display:flex;justify-content:center;align-items:center;gap:10px;font-size:12px;text-align:center;}
+#participantsPanel .participants-sms-title-v297{display:none!important;}
+#participantsPanel .v515-count-inline{color:var(--accentText,#ff83ad)!important;font-variant-numeric:tabular-nums;font-weight:1000;}
+#participantsAmbientCountV515{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;color:rgba(255,255,255,.14);z-index:0;}
+#participantsAmbientCountV515 strong{font:1000 clamp(60px,8vw,156px)/.9 system-ui,sans-serif;letter-spacing:-.06em;font-variant-numeric:tabular-nums;}
+#participantsAmbientCountV515 small{font-size:11px;font-weight:900;letter-spacing:.22em;}
+#participantsPanel #participantsList{position:relative;z-index:1;transform-origin:top left;}
+/* TOP-3 on power off becomes a collapsed heading; settings may hide entire bonus. */
+#topActiveV168.top3-disabled-v422{min-height:48px!important;height:48px!important;max-height:48px!important;padding:0 9px!important;overflow:hidden!important;}
+#topActiveV168.top3-disabled-v422 .top-active-v168-title{height:48px!important;min-height:48px!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;text-align:left!important;padding:0 32px 0 10px!important;margin:0!important;font-size:13px!important;}
+#topActiveV168.top3-disabled-v422> :not(.top-active-v168-title):not(#top3PowerV422){display:none!important;}
+#topActiveV168 #top3PowerV422{top:12px!important;right:12px!important;}
+html body.v515-hide-top3 #topActiveV168{display:none!important;}
+.v515-mini-toggle{width:76px!important;min-width:76px!important;max-width:76px!important;height:36px!important;border-radius:11px!important;padding:0 8px!important;color:#fff!important;background:rgba(255,255,255,.07)!important;flex-shrink:0;}
+.v515-mini-toggle[aria-pressed="true"]{background:color-mix(in srgb,var(--accent,#ed5a89) 35%,#12231a)!important;border-color:var(--accent,#ed5a89)!important;}
+/* Winner header becomes an uncropped row of five metrics, never covered by buttons/chat. */
+html body>.center-visual.roulette-active.winner-mode:has(#winnerBox:not(.hidden)):not(:has(#rouletteWheelWrap:not(.hidden))){display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:9px!important;overflow-y:auto!important;overflow-x:hidden!important;padding:18px 12px!important;}
+html body>.center-visual.winner-mode #winnerBox:not(.hidden){flex:0 0 auto!important;position:relative!important;overflow:visible!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0 auto!important;padding:16px 22px 18px!important;width:min(760px,calc(100vw - 30px))!important;max-width:min(760px,calc(100vw - 30px))!important;min-width:0!important;box-sizing:border-box!important;z-index:6!important;}
+html body>.center-visual.winner-mode #winnerBox:not(.hidden) #winnerDetails{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:7px!important;margin:12px auto 0!important;width:100%!important;max-width:100%!important;min-width:0!important;}
+html body>.center-visual.winner-mode #winnerBox #winnerDetails.hidden{display:none!important;}
+html body>.center-visual.winner-mode #winnerBox #winnerDetails>.v515-metric{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:5px!important;min-width:0!important;min-height:68px!important;padding:8px 4px!important;text-align:center!important;border-radius:12px!important;grid-template-columns:none!important;}
+#winnerDetails .v515-metric-icon{color:var(--accentText,#f4a9cb)!important;font-size:23px!important;line-height:1!important;opacity:1!important;justify-self:center!important;text-align:center!important;}
+#winnerDetails .v515-metric b{justify-self:center!important;max-width:100%!important;min-width:0!important;overflow-wrap:anywhere!important;line-height:1.25!important;font-size:clamp(10px,.85vw,13px)!important;font-variant-numeric:tabular-nums;white-space:normal;text-align:center!important;}
+html body>.center-visual.winner-mode #winnerChatBox:not(.hidden){flex:0 1 auto!important;margin:0 auto!important;width:min(760px,calc(100vw - 30px))!important;min-width:0!important;max-width:min(760px,calc(100vw - 30px))!important;height:clamp(230px,35vh,345px)!important;min-height:215px!important;max-height:345px!important;box-sizing:border-box!important;z-index:5!important;}
+@media(max-height:700px){html body>.center-visual.winner-mode #winnerChatBox:not(.hidden){height:210px!important;min-height:180px!important;}html body>.center-visual.winner-mode #winnerBox:not(.hidden){padding:10px 12px 12px!important;}html body>.center-visual.winner-mode #winnerBox #winnerDetails>.v515-metric{min-height:52px!important;padding:4px 3px!important;}}
+@media(max-width:620px){html body>.center-visual.winner-mode #winnerBox #winnerDetails{gap:3px!important;}#winnerDetails .v515-metric-icon{font-size:17px!important;}#winnerDetails .v515-metric b{font-size:9px!important;}}
+/* The prior action row uses a top overlay. Keep it from covering the five metrics. */
+html body>.center-visual.winner-mode #winnerActionsSlotV131{position:relative!important;top:auto!important;margin:0 auto!important;transform:none!important;z-index:7!important;}
+/* Scheduled timer as an unobtrusive part of both central panels. */
+.v515-stream-clock{position:absolute;z-index:1;top:51%;left:50%;transform:translate(-50%,-50%);width:min(90%,440px);text-align:center;pointer-events:none;opacity:0;transition:opacity .20s ease;}
+.v515-stream-clock.is-active{opacity:.26;}
+.v515-stream-clock strong{display:block;font:850 clamp(40px,5.3vw,92px)/1.05 ui-monospace,Consolas,monospace;letter-spacing:-.045em;color:#f7f9ff;font-variant-numeric:tabular-nums;text-shadow:0 0 12px rgba(255,255,255,.16);}
+.v515-stream-clock span{display:block;font:900 11px/1.4 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#ebf1fa;}
+#chatPanel{position:relative!important;isolation:isolate;}
+#chatPanel .chat-list,#participantsPanel .list{z-index:2;}
+/* Stream timer dialog. */
+#v515TimerModal{position:fixed;inset:0;z-index:20000;background:rgba(5,7,12,.64);backdrop-filter:blur(12px);display:grid;place-items:center;padding:20px;}
+#v515TimerModal[hidden]{display:none!important;}
+.v515-timer-card{width:min(470px,calc(100vw - 30px));padding:23px;border-radius:21px;border:1px solid color-mix(in srgb,var(--accent,#de5a8d) 35%,rgba(255,255,255,.14));background:var(--panel, #13151d);color:var(--text,#fff);box-shadow:0 26px 75px rgba(0,0,0,.45);}
+.v515-timer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;}
+.v515-timer-head b{font-size:19px;letter-spacing:.07em;}
+.v515-timer-head button{width:34px;height:34px;border-radius:10px;padding:0;font-size:18px;}
+.v515-timer-face{text-align:center;font:850 44px/1.2 ui-monospace,monospace;font-variant-numeric:tabular-nums;margin:8px auto 19px;}
+.v515-timer-card label{display:grid;gap:7px;font-size:11px;font-weight:900;margin-bottom:16px;color:var(--text,#fff);}
+.v515-timer-card input,.v515-timer-card select{width:100%;height:43px;box-sizing:border-box;border:1px solid rgba(255,255,255,.16);border-radius:12px;color:var(--text,#fff);background:#1b1d27;padding:0 12px;font:650 14px system-ui;}
+.v515-timer-card select option{background:#151921;color:#fff;}
+.v515-timer-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.v515-timer-actions button{min-height:41px;border-radius:11px;font-size:12px;font-weight:850;}
+.v515-timer-note{font-size:11px;line-height:1.5;opacity:.6;margin:12px 0 0;}

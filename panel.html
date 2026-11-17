@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=487" />
+  <link rel="icon" type="image/x-icon" href="./favicon.ico?v=487" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png?v=487" />
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wokomilka Bot</title>
+  <script src="./theme-bootstrap-v498.js?v=506"></script>
+  <script>
+    // v408: apply the HUB layout preference before CSS paints the product page.
+    // Classic stays pixel-compatible; Modern gets its own floating shell.
+    (function(){
+      try {
+        var layout = localStorage.getItem('korzhany_hub_layout');
+        if (layout !== 'modern') layout = 'classic';
+        var time = localStorage.getItem('korzhany_hub_time');
+        if (time !== 'night') time = 'day';
+        var theme = localStorage.getItem('rostyasha_theme');
+        var legacy={pink:'sakura',wine:'sakura',aurora:'emerald',mint:'emerald'}; theme=legacy[theme]||theme; if (!/^(sakura|neon|emerald|obsidian|royal|amber)$/.test(theme || '')) theme = 'royal';
+        document.documentElement.classList.add('product-layout-' + layout, 'kor-time-' + time, 'theme-' + theme);
+      } catch (_) {
+        document.documentElement.classList.add('product-layout-classic','kor-time-day');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="./style.css?v=514" />
+  <link rel="stylesheet" href="./global-theme.css?v=498" />
+  <link rel="stylesheet" href="./panel-modern.css?v=498" />
+  <script src="./global-theme.js?v=506" defer></script>
+  <script src="./panel-modern.js?v=498" defer></script>
+
+<style>
+.guide-context-link-v407{position:fixed;right:13px;bottom:58px;z-index:9999;width:35px;height:35px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(15,7,14,.70);backdrop-filter:blur(12px);display:grid;place-items:center;color:#fff;text-decoration:none;font:1000 13px/1 ui-monospace,Consolas;box-shadow:0 12px 30px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.06);opacity:.62;transition:.18s}.guide-context-link-v407:hover{opacity:1;transform:translateY(-2px);border-color:rgba(255,104,145,.56);box-shadow:0 13px 34px rgba(0,0,0,.34),0 0 22px rgba(255,83,164,.12)}
+</style>
+  <link rel="stylesheet" href="./performance.css?v=498" />
+  <link rel="stylesheet" href="./palette-v497.css?v=498" />
+  <script src="./performance-runtime.js?v=498"></script>
+  <link rel="stylesheet" href="./v498-ui.css?v=498" />
+  <link rel="stylesheet" href="./v500-hardfix.css?v=506" />
+<script>
+      window.__SERVER_AUTH_OK__ = true;
+      window.__ADMIN_KEY_FROM_SERVER__ = "12345";
+      try {
+        localStorage.setItem('rostyasha_admin_key', window.__ADMIN_KEY_FROM_SERVER__);
+        localStorage.setItem('adminKey', window.__ADMIN_KEY_FROM_SERVER__);
+        localStorage.setItem('ADMIN_KEY', window.__ADMIN_KEY_FROM_SERVER__);
+        sessionStorage.setItem('rostyasha_server_auth_ok', '1');
+      } catch (e) {}
+    </script><link rel="stylesheet" href="./custom-timer.css?v=2" />
+    <link rel="stylesheet" href="./custom-timer.css?v=10">
+
+<style id="wokomilka-center-button-labels">
+/* Center labels without changing button dimensions */
+#controls > :is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428) {
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px;
+}
+</style>
+
+<style id="wokomilka-icon-actions-style">
+/* Two clickable icon-only buttons; original IDs and event handlers remain intact. */
+html body #controls.left-panel > .wokomilka-icon-actions {
+  display:flex !important; flex-direction:row !important; gap:10px !important;
+  width:250px !important; max-width:100% !important;
+  margin:0 auto !important; padding:0 !important;
+  flex:0 0 auto !important; align-items:stretch !important;
+}
+html body #controls.left-panel > .wokomilka-icon-actions > button:is(#wokomilkaTopToggle,#searchBtn,#boostSettingsBtnV428) {
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  position:relative !important; flex:1 1 0 !important;
+  width:0 !important; min-width:0 !important; max-width:none !important;
+  height:54px !important; min-height:54px !important; max-height:54px !important;
+  padding:0 !important; margin:0 !important; text-align:center !important;
+  border-radius:14px !important; box-sizing:border-box !important;
+}
+html body #controls.left-panel > .wokomilka-icon-actions > button:is(#wokomilkaTopToggle,#searchBtn,#boostSettingsBtnV428)::before,
+html body #controls.left-panel > .wokomilka-icon-actions > button:is(#wokomilkaTopToggle,#searchBtn,#boostSettingsBtnV428)::after {
+  content:none !important; display:none !important;
+}
+html body #controls.left-panel > .wokomilka-icon-actions > button:is(#wokomilkaTopToggle,#searchBtn,#boostSettingsBtnV428) > svg {
+  display:block !important; width:25px !important; height:25px !important;
+  flex:0 0 25px !important; position:static !important;
+  transform:none !important; pointer-events:none !important;
+}
+</style>
+
+<style id="wokomilka-top-dropdown-style">
+html body #controls.left-panel > .wokomilka-top-menu {
+  width:250px !important; max-width:100% !important; margin:0 auto !important;
+  padding:0 !important; flex:0 0 auto !important;
+  display:flex !important; flex-direction:column !important; gap:6px !important;
+}
+html body #controls.left-panel > .wokomilka-top-menu[hidden] { display:none !important; }
+html body #controls.left-panel > .wokomilka-top-menu > button {
+  width:100% !important; max-width:none !important; min-width:0 !important;
+  margin:0 !important; box-sizing:border-box !important;
+  display:flex !important; justify-content:center !important; align-items:center !important;
+  text-align:center !important;
+}
+</style>
+
+<style id="wokomilka-sidebar-animation-larger-v3">
+/* Keep the MILKA animation centered, independently of sidebar button styles. */
+html body #controls.left-panel > .wokomilka-sidebar-video {
+  width: 100% !important;
+  height: 180px !important;
+  min-height: 180px !important;
+  max-height: 180px !important;
+  flex: 0 0 180px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 14px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+html body #controls.left-panel > .wokomilka-sidebar-video > video {
+  display: block !important;
+  position: static !important;
+  width: 190px !important;
+  height: 180px !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  max-height: 180px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  transform: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  flex: 0 1 auto !important;
+}
+/* Explicitly lower the visible button stack; no dependence on auto spacers. */
+html body #controls.left-panel > :is(#codeBtn,#rollBtn,#quickRollBtn,.wokomilka-icon-actions,.wokomilka-top-menu) {
+  position: relative !important;
+  top: 14px !important;
+}
+</style>
+<style id="woko-giveaway-css">
+#controls #wokoGiveawayToggle{width:250px!important;max-width:100%;align-self:center;margin:0 auto;position:relative;top:14px;text-align:center;cursor:pointer}
+#controls #wokoGiveawayMenu{position:relative;top:14px;width:250px;max-width:100%;margin:0 auto;display:flex;flex-direction:column;gap:7px;padding:10px;background:rgba(22,9,40,.65);border:1px solid rgba(168,85,247,.3);border-radius:14px}
+#controls #wokoGiveawayMenu[hidden]{display:none!important}
+#controls .woko-give-row{display:flex;gap:7px;width:100%}
+#controls #wokoGiveawayMenu button{flex:1;min-width:0;width:auto!important;max-width:none!important;position:static!important;margin:0!important;padding:10px 5px!important;font-size:11px!important;line-height:1.3!important;text-align:center!important;display:flex;align-items:center;justify-content:center}
+#controls .woko-give-label{text-align:center;color:#d9b6ff;font-size:10px;font-weight:800;letter-spacing:1.5px;padding-top:5px}
+.woko-modal{position:fixed;inset:0;z-index:100000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,0,12,.83);backdrop-filter:blur(7px)}
+.woko-modal.open{display:flex}
+.woko-modal .tablebox{position:relative;width:680px;max-width:95vw;max-height:92vh;overflow:auto;background:linear-gradient(145deg,#241339,#110a20);border:1px solid #9250dc;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px;color:#f4eaff;box-shadow:0 20px 90px #000b}
+.woko-modal .tablebox h3{text-align:center;color:#d6a5ff;font-size:19px;margin:0}
+.woko-modal .close-x{position:absolute;right:15px;top:8px;font-size:29px;cursor:pointer;color:#fff}
+.woko-modal button{cursor:pointer;border:1px solid #9c59e8;background:rgba(126,34,206,.2);color:white;border-radius:10px;padding:10px;font-weight:800}
+.woko-modal button:hover{background:rgba(168,85,247,.45)}
+.woko-modal .nr-count{text-align:center;color:#d0b9ed;font-size:12px}
+.woko-modal .nr-stage{position:relative;padding-top:40px;width:100%}
+.woko-modal .nr-arrow{position:absolute;left:50%;top:0;transform:translateX(-50%);border-left:17px solid transparent;border-right:17px solid transparent;border-top:35px solid white;z-index:2;filter:drop-shadow(0 0 10px #a855f7)}
+.woko-modal .nr-window{width:600px;max-width:100%;height:120px;margin:auto;overflow:hidden;border:2px solid #a855f7;border-radius:14px;background:#0d0716}
+.woko-modal .nr-strip{height:100%;display:flex;will-change:transform}
+.woko-modal .nr-cell{flex:0 0 110px;height:100%;margin-right:10px;border:1px solid #7434b0;border-radius:9px;background:linear-gradient(145deg,#34204f,#180e2a);display:flex;align-items:center;justify-content:center;text-align:center;padding:7px;box-sizing:border-box;overflow-wrap:anywhere;font-size:12px}
+.woko-modal .nr-cell.is-winner{background:#842fca;border:2px solid white;box-shadow:0 0 24px #a855f7}
+.woko-modal #new-roulette-result{text-align:center;font-size:20px;font-weight:900;color:#d6a5ff;min-height:28px}
+.woko-modal .nr-dur{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;font-size:12px}
+.woko-modal .nr-dur input{width:55px;background:#160c27;color:#fff;border:1px solid #a855f7;border-radius:7px;padding:7px;text-align:center}
+.woko-modal .nr-confirm{display:none}
+.woko-modal .lotto-wrap{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;justify-content:center}
+.woko-modal #lotto-canvas{width:380px;max-width:100%;height:auto;border:2px solid #a855f7;border-radius:50%;background:#150a27}
+.woko-modal #lotto-result{text-align:center;padding:10px;font-weight:900;color:#e2bdff}
+.woko-modal .lotto-list{width:300px;max-height:420px;overflow:auto;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.woko-modal .lotto-nick-row{display:flex;align-items:center;justify-content:space-between;gap:5px;background:#2d1946;border-radius:6px;padding:5px;font-size:11px;min-width:0}
+.woko-modal .lotto-nick-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.woko-modal .lotto-ball-num{background:var(--bc);border-radius:50%;padding:5px;min-width:25px;text-align:center}
+.woko-modal .lotto-win-row{outline:2px solid #e2b6ff;background:#6d28d9}
+@media(max-width:650px){.woko-modal .tablebox{padding:16px}.woko-modal .lotto-list{width:100%}}
+
+/* Both quick-roll options use the same purple button palette. */
+#controls #wokoGiveawayMenu .woko-give-row > :is(#quickRollBtn,#wokoTwoBtn){
+  background:rgba(126,34,206,.2)!important;
+  background-image:none!important;
+  border:1px solid rgba(168,85,247,.45)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  opacity:1!important;
+}
+#controls #wokoGiveawayMenu .woko-give-row > :is(#quickRollBtn,#wokoTwoBtn):hover{
+  background:rgba(168,85,247,.45)!important;
+}
+</style>
+
+<style id="woko-compact-buttons-v3">
+/* Match CODE to the giveaway trigger; keep original IDs and handlers. */
+html body #controls.left-panel > #codeBtn,
+html body #controls.left-panel > #wokoGiveawayToggle {
+  width:250px!important; max-width:100%!important;
+  height:44px!important; min-height:44px!important; max-height:44px!important;
+  box-sizing:border-box!important; margin-left:auto!important; margin-right:auto!important;
+  padding:0 12px!important; display:flex!important; align-items:center!important;
+  justify-content:center!important; gap:5px!important;
+  flex:0 0 44px!important; line-height:1.2!important;
+}
+html body #controls.left-panel > .wokomilka-icon-actions {
+  width:250px!important; max-width:100%!important;
+  gap:16px!important; justify-content:space-between!important;
+}
+html body #controls.left-panel > .wokomilka-icon-actions > button:is(#wokomilkaTopToggle,#searchBtn,#boostSettingsBtnV428) {
+  height:44px!important; min-height:44px!important; max-height:44px!important;
+  border-radius:12px!important;
+}
+html body #controls.left-panel > .wokomilka-icon-actions > button:is(#wokomilkaTopToggle,#searchBtn,#boostSettingsBtnV428) > svg {
+  width:21px!important; height:21px!important; flex:0 0 21px!important;
+}
+</style>
+
+<style id="woko-settings-compact-20261024">
+/* Compact, side-by-side secondary settings. Preserve existing IDs and click handlers. */
+#boostSettingsModalV428 .boost-settings-card-v428 {
+  display:grid !important;grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);column-gap:12px;row-gap:12px;
+}
+#boostSettingsModalV428 .boost-settings-title-v428,
+#boostSettingsModalV428 .boost-settings-card-v428 > .boost-settings-section-v428:not(.woko-mini-settings),
+#boostSettingsModalV428 #boostSettingsSaveV428 {grid-column:1/-1;}
+#boostSettingsModalV428 .woko-mini-settings {
+  grid-column:auto;min-width:0;margin:0 !important;padding:14px 13px !important;
+  min-height:65px;display:flex;align-items:center;box-sizing:border-box;
+}
+#boostSettingsModalV428 .woko-mini-settings .boost-settings-row-v428 {
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+#boostSettingsModalV428 .woko-mini-settings .boost-settings-label-v428 {
+  font-size:13px;line-height:1.3;
+}
+#boostSettingsModalV428 .woko-mini-settings button {flex-shrink:0;}
+@media(max-width:530px){
+ #boostSettingsModalV428 .boost-settings-card-v428 {grid-template-columns:minmax(0,1fr);}
+ #boostSettingsModalV428 .woko-mini-settings {grid-column:1/-1;}
+}
+</style>
+
+<style id="woko-equal-toggle-typography">
+/* Identical typography and dimensions; keep distinct on/off colors and existing handlers. */
+#boostSettingsModalV428 #onlyNeverWonBtn,
+#boostSettingsModalV428 #top3VisibleToggleV515 {
+  width:76px !important; min-width:76px !important; max-width:76px !important;
+  height:44px !important; min-height:44px !important;
+  flex:0 0 76px !important; box-sizing:border-box !important;
+  padding:0 !important; margin:0 !important;
+  font-family:inherit !important; font-size:12px !important;
+  font-weight:800 !important; font-style:normal !important;
+  letter-spacing:.3px !important; line-height:1 !important;
+  text-transform:uppercase !important; text-align:center !important;
+  display:inline-flex !important; align-items:center !important; justify-content:center !important;
+  white-space:nowrap !important;
+}
+</style>
+<style id="woko-telegram-card-style">
+/* Keep Telegram pinned to the bottom of the right sidebar. */
+.right-panel { grid-template-rows: minmax(0, 1fr) auto !important; padding-bottom:18px !important; align-content:stretch !important; }
+/* Remove floating guide and HUB shortcuts, without changing their scripts. */
+.guide-context-link-v407, #logoutBtnV216 { display:none !important; }
+.woko-telegram-card { height:max-content !important; min-height:0 !important; flex:0 0 auto !important; align-self:start !important; background:rgba(18,8,33,.12) !important; backdrop-filter:none !important; display:flex !important; flex-direction:column; align-items:center; justify-content:flex-start !important; gap:10px !important; padding:12px 8px !important; margin-top:0 !important; margin-bottom:0 !important; }
+.woko-telegram-title { margin:0 !important; padding:0 !important; line-height:1.1 !important; color:#d6b5f6; font-size:13px; font-weight:900; letter-spacing:.06em; text-align:center; }
+.woko-telegram-qr { display:block; width:min(100%,300px); height:auto; aspect-ratio:1560/1641; object-fit:contain; border-radius:14px; box-shadow:0 0 20px rgba(160,95,245,.14); }
+.woko-telegram-handle { margin:0 !important; padding:0 !important; line-height:1.1 !important; font-size:13px; font-weight:900; color:#d9c1fa; letter-spacing:.04em; }
+</style>
+<style id="woko-left-panel-harmonious-compact">
+/* Let the left rail follow its content rather than stretching to the viewport. */
+html body #controls.left-panel {
+  height: max-content !important;
+  min-height: 0 !important;
+  max-height: calc(100vh - 12px) !important;
+  align-self: center !important;
+  gap: 7px !important;
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+  overflow-y: auto !important;
+}
+/* Keep a deliberate, modest breathing space below the banner. */
+html body #controls.left-panel > .wokomilka-sidebar-video {
+  margin-bottom: 13px !important;
+}
+/* The old expanding spacer was responsible for most of the empty area. */
+html body #controls.left-panel > .left-spacer {
+  flex: 0 0 12px !important;
+  min-height: 12px !important;
+  height: 12px !important;
+  max-height: 12px !important;
+}
+/* Preserve a clear visual break before the timer, without a giant gap. */
+html body #controls.left-panel > .wokomilka-bottom-timer,
+html body #controls.left-panel > #topActiveV168.custom-timer-host {
+  margin-top: 17px !important;
+  margin-bottom: 0 !important;
+  flex-shrink: 0 !important;
+}
+/* Responsive: scroll instead of hiding controls on short screens. */
+@media (max-height: 730px) {
+  html body #controls.left-panel { max-height: calc(100vh - 8px) !important; }
+}
+</style>
+
+<style id="woko-timer-disabled-spacing-fix">
+/* Bottom breathing room belongs to the panel, not to the optional timer.
+   It therefore survives when the timer is removed or display:none. */
+html body #controls.left-panel {
+  box-sizing: border-box !important;
+  padding-bottom: 20px !important;
+  max-height: calc(100dvh - 20px) !important;
+  overflow-y: auto !important;
+  scrollbar-width: thin;
+}
+/* Old relative offsets pushed the last icon row beyond the panel's edge. */
+html body #controls.left-panel > :is(#codeBtn,#rollBtn,#quickRollBtn,.wokomilka-icon-actions,.wokomilka-top-menu,#wokoGiveawayToggle,#wokoGiveawayMenu) {
+  top: 0 !important;
+}
+html body #controls.left-panel > .wokomilka-icon-actions {
+  margin-bottom: 0 !important;
+  flex-shrink: 0 !important;
+}
+/* Keep the same 20px inner bottom gap with or without the timer. */
+html body #controls.left-panel > .wokomilka-bottom-timer {
+  flex-shrink: 0 !important;
+}
+</style>
+
+<style id="woko-participant-counter-layout">
+/* Compact live count at the top of the left rail. */
+html body #controls.left-panel > .woko-participant-counter {
+  width: 100%; box-sizing: border-box; flex: 0 0 auto;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px; padding: 13px 10px 12px;
+  border: 1px solid rgba(176, 110, 255, .36); border-radius: 14px;
+  background: linear-gradient(145deg, rgba(124, 53, 180, .16), rgba(15, 6, 30, .38));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+html body #controls.left-panel .woko-participant-counter-label {
+  color: #dfc4ff; font-size: 10px; font-weight: 800;
+  letter-spacing: .045em; text-align: center; line-height: 1.35;
+}
+html body #controls.left-panel .woko-participant-counter-value {
+  display:flex; align-items:center; justify-content:center; width:100%; min-height:92px; overflow:visible;
+}
+html body #controls.left-panel #participantsCount {
+  display: block; visibility: visible;
+  opacity: 1; font-family: "Trebuchet MS", "Arial Rounded MT Bold", system-ui, sans-serif;
+  font-size: 72px; font-weight: 900; letter-spacing: -.055em; line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  height: auto; max-height: none;
+  transform: none;
+  /* Opaque glyphs prevent the number from disappearing when gradient clipping fails. */
+  color: #ead2ff;
+  -webkit-text-fill-color: #ead2ff;
+  background: none;
+  text-shadow: 0 0 7px rgba(240, 199, 255, .9), 0 0 20px rgba(176, 83, 255, .8), 0 0 34px rgba(130, 46, 255, .55);
+}
+/* Retain legacy DOM for scripts, but remove its card from the workspace. */
+html body #participantsPanel { display: none !important; }
+html body .main-grid { grid-template-columns: minmax(0, 1fr) !important; }
+html body #chatPanel { grid-column: 1 / -1 !important; width: 100% !important; }
+</style>
+
+<style id="woko-magicdrop-right-top-layout">
+/* Three distinct areas: banner, compact winners, Telegram QR. */
+html body .right-panel {
+  display:grid !important;
+  grid-template-rows: 145px minmax(0, 1fr) auto !important;
+  align-content:stretch !important;
+  gap:10px !important;
+}
+html body .right-panel > .wokomilka-sidebar-video {
+  display:flex !important;
+  width:100% !important;
+  height:145px !important;
+  min-height:0 !important;
+  max-height:145px !important;
+  margin:0 !important;
+  padding:0 !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+html body .right-panel > .wokomilka-sidebar-video > video {
+  display:block !important;
+  position:static !important;
+  width:min(100%,220px) !important;
+  height:145px !important;
+  max-height:145px !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  margin:0 auto !important;
+}
+html body .right-panel > #winnersPanel {
+  min-height:0 !important;
+  height:auto !important;
+  overflow:hidden !important;
+}
+html body .right-panel #winnersList {
+  min-height:0 !important;
+  overflow-y:auto !important;
+}
+/* Keep Telegram at the bottom and preserve its current QR dimensions. */
+html body .right-panel > .woko-telegram-card {
+  grid-row:3;
+}
+@media (max-height:700px) {
+  html body .right-panel {grid-template-rows:115px minmax(0,1fr) auto !important;gap:8px !important;}
+  html body .right-panel > .wokomilka-sidebar-video,
+  html body .right-panel > .wokomilka-sidebar-video > video {height:115px !important;max-height:115px !important;}
+}
+</style>
+<style id="woko-left-bottom-winners-glass-v1">
+/* Anchor the compact left rail to the bottom of its grid cell. */
+html body #controls.left-panel {
+  align-self: end !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+}
+/* Match the translucent appearance of the left-side cards. */
+html body .right-panel > #winnersPanel {
+  background: rgba(18, 8, 33, .58) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+</style>
+<style id="woko-winners-real-transparency-fix">
+/* Override the opaque winner-card background set by global-theme.css and style.css. */
+html body .site .right-panel > #winnersPanel,
+html body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber,.theme-sakura) .site .right-panel > #winnersPanel,
+html.product-layout-modern body .site .right-panel > #winnersPanel {
+  background: rgba(18, 8, 33, .58) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05) !important;
+}
+/* Remove decorative overlays that can obscure the animated page background. */
+html body .right-panel > #winnersPanel::before,
+html body .right-panel > #winnersPanel::after {
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+</style>
+<style id="woko-webcam-and-center-gutters-v1">
+/* Wider breathing room on both sides of the central workspace. */
+html body .site {
+  /* Keep both sidebars inside the viewport; the center alone flexes. */
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  grid-template-columns: 235px minmax(0, 1fr) 235px !important;
+  column-gap: 64px !important;
+  row-gap: 10px;
+}
+html body .site > .main-area {
+  margin-inline: 0;
+  min-width: 0;
+}
+/* Webcam frame occupies the top of the left column; controls stay bottom-aligned. */
+html body .site > .woko-webcam-frame {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: stretch;
+  position: relative;
+  z-index: 1;
+  width: calc(100% + 125px);
+  height: calc(235px * 9 / 16 + 100px);
+  aspect-ratio: auto;
+  min-height: 0;
+  box-sizing: border-box;
+  border: 1px solid rgba(177, 111, 249, .46);
+  border-radius: 14px;
+  background: rgba(18, 8, 33, .58);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+  overflow: hidden;
+}
+html body .site > #controls.left-panel {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 2;
+  align-self: end;
+}
+html body .site > .main-area { grid-column: 2; grid-row: 1; }
+html body .site > .right-panel { grid-column: 3; grid-row: 1; min-width: 0; max-width: 100%; box-sizing: border-box; }
+@media (max-width: 1100px) {
+  html body .site > .woko-webcam-frame,
+  html body .site > #controls.left-panel,
+  html body .site > .main-area,
+  html body .site > .right-panel { grid-column: 1; grid-row: auto; }
+  html body .site { grid-template-columns: minmax(0, 1fr) !important; column-gap: 12px !important; }
+  html body .site > .main-area { margin-inline: 0; }
+}
+</style>
+<style id="woko-right-edge-layout-fix">
+/* Keep the page grid inside the viewport, including its padding. */
+html body .site {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-width: 0;
+  box-sizing: border-box !important;
+  grid-template-columns: 235px minmax(0, 1fr) 235px !important;
+  column-gap: 94px !important;
+}
+/* Older theme rules set min-width:320px on the right sidebar. */
+html body .site > .right-panel {
+  width: 235px !important;
+  min-width: 0 !important;
+  max-width: 235px !important;
+  justify-self: end;
+  box-sizing: border-box;
+}
+@media (max-width: 1100px) {
+  html body .site {grid-template-columns: minmax(0, 1fr) !important; column-gap: 12px !important;}
+  html body .site > .right-panel {width:100% !important;max-width:100% !important;}
+}
+</style>
+<style id="woko-asymmetric-center-gaps-final">
+/* Left sidebar stays exactly where it is; restore the right sidebar width.
+   Only the gap between the central workspace and the right sidebar is reduced. */
+@media (min-width: 1101px) {
+  html body .site {
+    grid-template-columns: 235px minmax(0, 1fr) 235px !important;
+    column-gap: 0 !important;
+  }
+  html body .site > .main-area {
+    /* Keep the left edge fixed; reduce central workspace width by 200px on the right. */
+    margin-left: 144px;
+    margin-right: 280px;
+    min-width: 0;
+  }
+  html body .site > .right-panel {
+    width: 235px !important;
+    max-width: 235px !important;
+    min-width: 235px !important;
+    justify-self: end;
+  }
+}
+</style>
+<style id="woko-center-actual-width-fix-v1">
+/* The old theme gives .main-area its own width, so margins alone do not shrink it.
+   Explicitly size the center while keeping both sidebars in their grid tracks. */
+@media (min-width: 1101px) {
+  html body .site > main.main-area {
+    box-sizing: border-box;
+    width: calc(100% - 194px) !important;
+    max-width: calc(100% - 194px) !important;
+    min-width: 0 !important;
+    margin-left: 144px !important;
+    margin-right: 0 !important;
+    justify-self: start;
+  }
+}
+</style>
+<style id="woko-right-panel-width-restored-v2">
+/* Restore a comfortable right sidebar width without shifting its right edge.
+   The left sidebar and the existing narrowed central workspace remain unchanged. */
+@media (min-width: 1101px) {
+  html body .site {
+    grid-template-columns: 235px minmax(0, 1fr) 300px !important;
+  }
+  html body .site > aside.right-panel {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    justify-self: end;
+  }
+}
+</style>
+
+<style id="woko-left-panel-horizontal-center-v1">
+/* Center the left sidebar in the space between the viewport edge and the central area.
+   Do not move or resize the center or right sidebar. */
+@media (min-width: 1101px) {
+  html body .site > #controls.left-panel {
+    position: relative;
+    left: 40px;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- Seamlessly looping, muted decorative background -->
+  <video id="wokomilka-video-background" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+    <source src="./assets/wokomilka-background.mp4" type="video/mp4" />
+  </video>
+  <div id="auth" class="auth hidden">
+    <div class="auth-box">
+      <h1>KORZHANY HUB</h1>
+      <p>Введи ADMIN_KEY. После входа откроется панель.</p>
+      
+        
+        <div id="loginErrorBox" class="login-error-box" style="display:none;"></div>
+<input id="channelInput" name="channel" class="login-input" type="text" placeholder="Twitch канал" autocomplete="username" />
+<input id="authKey" type="password" placeholder="ADMIN_KEY" />
+      <button id="authBtn">ВОЙТИ</button>
+      <div id="authError"></div>
+    </div>
+  </div>
+
+  <div class="site">
+    <div class="woko-webcam-frame" aria-label="Место для веб-камеры"></div>
+    <aside id="controls" class="left-panel">
+      <div class="woko-participant-counter" role="status" aria-label="Количество участников розыгрыша">
+        <div class="woko-participant-counter-label">УЧАСТНИКОВ:</div>
+        <div class="woko-participant-counter-value" aria-live="polite"><span id="participantsCount" >0</span></div>
+      </div>
+
+      <div class="top-settings">
+        <label>ЦВЕТ</label>
+        <select id="themeSelect">
+          <option value="sakura">SAKURA</option>
+          <option value="neon">NEON</option>
+          <option value="emerald">EMERALD</option>
+          <option value="obsidian">OBSIDIAN</option>
+          <option value="royal">ELECTRIC VIOLET</option>
+          <option value="amber">AMBER</option>
+        </select>
+        
+
+        
+      </div>
+
+      <div class="left-spacer"></div>
+
+      <button id="resetParticipantsBtn">СБРОС УЧАСТНИКОВ</button>
+      <button id="codeBtn">КОД: <span id="codeBtnText">+</span></button>
+<button id="rollBtn" type="button" hidden aria-hidden="true" style="display:none!important"></button>
+<button id="wokoGiveawayToggle" type="button" aria-expanded="true" aria-controls="wokoGiveawayMenu">🎁 РОЗЫГРЫШИ ▾</button>
+      <div id="wokoGiveawayMenu">
+        <div class="woko-give-row"><button id="wokoStandardBtn" type="button">СТАНДАРТ</button><button id="wokoNewBtn" type="button">НОВАЯ</button></div>
+        <div class="woko-give-label">БЫСТРЫЙ РОЛЛ</div>
+        <div class="woko-give-row"><button id="quickRollBtn" type="button">1 ПОБЕДИТЕЛЬ</button><button id="wokoTwoBtn" type="button">2 ПОБЕДИТЕЛЯ</button></div>
+        <div class="woko-give-label">ДРУГОЕ</div>
+        <button id="wokoLottoBtn" type="button">ЛОТТО</button>
+      </div>
+
+      <div class="wokomilka-icon-actions" role="group" aria-label="Топ, поиск и настройки">
+        <button id="wokomilkaTopToggle" type="button" aria-label="Топ" title="Топ" aria-controls="wokomilkaTopMenu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 3h10v6a5 5 0 0 1-10 0V3Z"/><path d="M7 5H4v3a4 4 0 0 0 4 4M17 5h3v3a4 4 0 0 1-4 4"/></svg></button>
+        <button id="searchBtn" type="button" aria-label="Поиск ника" title="Поиск ника"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"/><path d="m16 16 5 5"/></svg></button>
+        <button id="boostSettingsBtnV428" type="button" class="boost-settings-btn-v428" aria-label="Настройки" title="Настройки"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8.3a3.7 3.7 0 1 0 0 7.4 3.7 3.7 0 0 0 0-7.4Z"/><path d="M19.4 13.5a7.9 7.9 0 0 0 0-3l2-1.5-2-3.5-2.4 1a8 8 0 0 0-2.6-1.5L14 2.4h-4l-.4 2.6A8 8 0 0 0 7 6.5l-2.4-1-2 3.5 2 1.5a7.9 7.9 0 0 0 0 3l-2 1.5 2 3.5 2.4-1a8 8 0 0 0 2.6 1.5l.4 2.6h4l.4-2.6a8 8 0 0 0 2.6-1.5l2.4 1 2-3.5-2-1.5Z"/></svg></button>
+      </div>
+      <div id="wokomilkaTopMenu" class="wokomilka-top-menu" hidden>
+        <button id="watchtimeBtn" type="button">WATCHTIME ТОП</button>
+        <button id="smsTopBtn" type="button">SMS ТОП</button>
+      </div>
+
+      <div class="toggle-box">
+        <input id="giveawayActive" type="checkbox" class="hidden-control" checked />
+        <input id="onlyNeverWon" type="checkbox" class="hidden-control" />
+        <input id="showWinners" type="checkbox" class="hidden-control" checked />
+      </div>
+
+      
+      <div class="timer" id="timer" hidden aria-hidden="true">00:10:00</div>
+      <button id="timerToggle" hidden type="button">СТАРТ / ПАУЗА</button>
+</aside>
+
+    <main class="main-area">
+      <header class="top-banner">
+        ДЛЯ УЧАСТИЯ В ПРОКАЧКЕ "<span id="codeBanner">+</span>" В ЧАТ!
+      </header>
+
+      <section class="main-grid">
+        <div id="participantsPanel" class="card participants-card">
+          <div class="card-title participants-title-v297">
+            <span class="participants-title-left-v297">СПИСОК УЧАСТНИКОВ </span>
+          </div>
+          <div id="participantsAmbientCountV515" aria-hidden="true"><strong>0</strong><small>УЧАСТНИКОВ</small></div>
+          <div id="participantsList" class="list empty">Нет участников</div>
+          <button id="copyBtn" class="copy">СКОПИРОВАТЬ УЧАСТНИКОВ</button>
+        </div>
+
+        <div id="chatPanel" class="card chat-card">
+          <span id="channelName" hidden aria-hidden="true"></span>
+          <div class="connection">
+            <span id="dot" class="dot"></span>
+            <span id="connectionText">Подключение...</span>
+          </div>
+          <div id="chatList" class="chat-list"></div>
+          <div class="chat-send v516-hidden-chat-compose" aria-hidden="true">
+            <input id="chatMessage" placeholder="Написать в чат от имени бота" tabindex="-1" />
+            <button id="chatSendBtn" type="button" tabindex="-1">SEND</button>
+          </div>
+          <div class="v516-hour-leader" id="v516HourLeader" aria-live="polite">
+            <span class="v516-leader-spark" aria-hidden="true">✦</span>
+            <span>Самый активный чатер за час:</span>
+            <strong id="v516HourLeaderName">—</strong>
+            <small id="v516HourLeaderCount"></small>
+          </div>
+        </div>
+
+        <div class="center-visual hidden-center">
+          <div id="idleBox" class="visual-box">
+            <div class="visual-title">ROSTYASHA GIVEAWAY</div>
+            <div class="visual-sub">Код участия: <b id="codeCenter">+</b></div>
+            <div class="visual-sub small">Участников сейчас: <b id="centerCount">0</b></div>
+          </div>
+
+          <div id="rollingBox" class="visual-box hidden">
+            <div class="roll-label">РОЛЛИМ...</div>
+            <div id="rollingName" class="rolling-name">---</div>
+          </div>
+
+          <div id="eliminatedBox" class="visual-box hidden eliminated-visual">
+            <div class="eliminated-label">ВЫЛЕТАЕТ</div>
+            <div id="eliminatedName" class="eliminated-name">---</div>
+            <div id="remainingText" class="remaining-text">Осталось: —</div>
+          </div>
+
+          <div id="winnerBox" class="visual-box hidden winner-visual">
+            <button id="winnerCloseBtn" class="winner-close" type="button" title="Закрыть">×</button>
+            <div class="winner-label">ПОБЕДИТЕЛЬ</div>
+            <div id="winnerName" class="winner-name">---</div>
+            <div id="winnerDetails" class="winner-details hidden">
+              <div class="v515-metric" title="Подписка на Twitch"><span class="v515-metric-icon" aria-label="Подписка на канал">♥</span><b id="winnerFollowInfo">—</b></div>
+              <div class="v515-metric" title="Активность за текущий сеанс"><span class="v515-metric-icon" aria-label="Время активности">◷</span><b id="winnerWatchInfo">—</b></div>
+              <div class="v515-metric" title="Сообщения на стриме"><span class="v515-metric-icon" aria-label="Сообщения">✉</span><b id="winnerMsgInfo">—</b></div>
+              <div class="v515-metric" title="Коэффициент активности"><span class="v515-metric-icon" aria-label="КД">⚡</span><b id="winnerKdInfo">—</b></div>
+              <div class="v515-metric" title="Watchtime за всё время (с начала учёта)"><span class="v515-metric-icon" aria-label="Общий watchtime">⌛</span><b id="winnerLifetimeV515">—</b></div>
+            </div>
+          </div>
+
+          <div id="winnerChatBox" class="winner-chat-box hidden">
+            <div class="winner-chat-head" style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div>
+                  <div class="winner-chat-title">ЧАТ ПОБЕДИТЕЛЯ</div>
+                  <div id="winnerChatNick" class="winner-chat-nick">@---</div>
+                </div>
+                <button id="winnerRerollBtn" class="winner-reroll" type="button" style="margin-left: 10px;">РЕРОЛЛ</button>
+                <button id="winnerCheckBtn" class="winner-check" type="button" style="margin-left: 5px;">ПРОВЕРКА</button>
+                <button id="winnerSaveBtn" class="winner-save" type="button" style="margin-left: 5px;">СОХРАНИТЬ</button>
+              </div>
+              <div id="winnerReplyStopwatch" class="winner-reply-stopwatch">0 сек</div>
+            </div>
+            <div id="winnerReplyStatus" class="winner-reply-status">Секундомер запущен. Ждём ответ победителя в чат...</div>
+            <div id="winnerChatMessages" class="winner-chat-messages"></div>
+          </div>
+
+          <div id="rouletteWheelWrap" class="roulette-wheel-wrap hidden">
+            <div class="wheel-pointer"></div>
+            <div id="rouletteWheel" class="roulette-wheel">
+              <div class="wheel-center">R</div>
+            </div>
+            <div class="wheel-glow"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="right-panel">
+      <!-- MagicDrop banner moved from the left sidebar -->
+      <div class="wokomilka-sidebar-video">
+        <video autoplay muted loop playsinline preload="metadata" aria-label="Видео Wokomilka">
+          <source src="./assets/MILKA_transparent.webm" type="video/webm">
+        </video>
+      </div>
+
+      <div class="card compact" id="winnersPanel">
+        <div class="winner-brand">WOKOMILKA</div>
+        <div class="right-title">ПОСЛЕДНИЕ<br>ВЫИГРАВШИЕ</div>
+        <div id="winnersList"></div>
+      </div>
+
+      <div class="card compact woko-telegram-card" aria-label="Телеграм Wokomilka">
+        <div class="woko-telegram-title">НАШ TELEGRAM</div>
+        <img src="./wokomilka_telegram_qr.png" alt="QR-код Telegram @WOKOMILKAA" class="woko-telegram-qr" />
+        <!-- Keep legacy nodes for existing app.js handlers; not visible. -->
+        <div hidden aria-hidden="true"><input id="blackNick" /><button id="blackAddBtn" type="button">СОХРАНИТЬ</button><div id="blackList"></div></div>
+      </div>
+
+      <div class="card compact logs-card hidden">
+        <div class="card-title">ЛОГИ</div>
+        <div id="logsList" class="logs"></div>
+      </div>
+    </aside>
+  </div>
+<div id="boostSettingsModalV428" class="boost-settings-modal-v428 hidden" aria-hidden="true">
+  <div class="boost-settings-card-v428" role="dialog" aria-modal="true" aria-labelledby="boostSettingsTitleV428">
+    <button id="boostSettingsCloseV428" class="boost-settings-close-v428" type="button" aria-label="Закрыть">×</button>
+    <div id="boostSettingsTitleV428" class="boost-settings-title-v428">НАСТРОЙКА БОТА</div>
+    <div class="boost-settings-section-v428 boost-settings-section-v514">
+      <div class="boost-settings-row-v428 boost-settings-timer-row-v514">
+        <div class="boost-settings-timer-copy-v514">
+          <div class="boost-settings-label-v428">Таймер ответа</div>
+          <div class="boost-settings-hint-v428">Секундомер запускается с нуля при выпадении победителя.</div>
+        </div>
+        <div class="boost-settings-time-v428 boost-settings-time-inline-v514">
+          <label class="boost-settings-input-wrap-v428" for="winnerTimerSecV428"><input id="winnerTimerSecV428" type="number" min="5" max="300" step="1" value="20" aria-label="Лимит ответа в секундах"><b>сек</b></label>
+        </div>
+        <button id="winnerTimerEnabledV428" class="winner-timer-toggle-v428 v514-switch" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Включить таймер ответа"><span class="v514-switch-track"><span class="v514-switch-knob"></span></span></button>
+      </div>
+      <div class="boost-settings-presets-v428">
+        <button type="button" data-winner-timer-preset="15">15 сек</button>
+        <button type="button" data-winner-timer-preset="30">30 сек</button>
+        <button type="button" data-winner-timer-preset="45">45 сек</button>
+        <button type="button" data-winner-timer-preset="60">60 сек</button>
+      </div>
+    </div>
+    <div class="boost-settings-section-v428 boost-settings-section-v514 boost-settings-filter-v514 woko-mini-settings">
+      <div class="boost-settings-row-v428">
+        <div>
+          <div class="boost-settings-label-v428">Ни разу не выигрывали</div>
+          
+        </div>
+        <button id="onlyNeverWonBtn" class="v514-filter-toggle" type="button" aria-pressed="false">ВЫКЛ</button>
+      </div>
+    </div>
+    <div class="boost-settings-section-v428 boost-settings-section-v514 v515-top3-setting woko-mini-settings">
+      <div class="boost-settings-row-v428">
+        <div><div class="boost-settings-label-v428">Таймер</div>
+        </div>
+        <button id="top3VisibleToggleV515" class="v515-mini-toggle" type="button" aria-pressed="true">ВКЛ</button>
+      </div>
+    </div>
+    <button id="boostSettingsSaveV428" class="boost-settings-save-v428" type="button">СОХРАНИТЬ</button>
+  </div>
+</div>
+<div id="toast" class="toast hidden"></div>
+
+  <a href="/guide#boost" class="guide-context-link-v407" title="Инструкция: Бот для прокачек" aria-label="Открыть инструкцию Бота для прокачек">?</a>
+  <script>
+    // v514: move the EXISTING roulette/winner surface outside transformed or
+    // layout-contained grid ancestors. No DOM cloning, no listener replacement.
+    (() => {
+      const overlay = document.querySelector('.center-visual');
+      if (overlay && overlay.parentElement !== document.body) document.body.appendChild(overlay);
+    })();
+  </script>
+  <link rel="stylesheet" href="./v514-ui.css?v=514" />
+  <link rel="stylesheet" href="./v515-ui.css?v=515" />
+  <link rel="stylesheet" href="./v516-ui.css?v=516" />
+  <link rel="stylesheet" href="./v517-ui.css?v=517" />
+  <link rel="stylesheet" href="./v518-ui.css?v=518" />
+  <link rel="stylesheet" href="./v519-ui.css?v=519" />
+  <link rel="stylesheet" href="./v520-ui.css?v=520" />
+  <link rel="stylesheet" href="./electric-violet.css?v=1" />
+  <link rel="stylesheet" href="./video-background.css?v=28" />
+  <script src="./app.js?v=518"></script>
+  <script src="./v515-ui.js?v=516" defer></script>
+  <script src="./v516-ui.js?v=516" defer></script>
+  <script src="./v517-ui.js?v=517" defer></script>
+  <script src="./v518-ui.js?v=518" defer></script>
+  <script src="./v519-ui.js?v=520" defer></script>
+
+  <div id="roulettePopup" class="roulette-popup hidden">
+    <div class="roulette-popup-card">
+      <div class="popup-title">НАСТРОЙКА РУЛЕТКИ</div>
+
+      <label class="popup-label">ВАРИАНТ РУЛЕТКИ</label>
+      <select id="rouletteModeSelect">
+        <option value="normal">Обычная</option>
+        <option value="elimination">На выбывание</option>
+      </select>
+
+      <label class="popup-label">СКОЛЬКО СЕКУНД КРУТИТЬ</label>
+      <input id="rollDurationInput" type="number" min="1" max="120" step="1" value="5" />
+
+      <div class="popup-hint">
+        В режиме «На выбывание» это время между вылетами участников.
+      </div>
+
+      <div class="popup-actions">
+        <button id="startRouletteBtn" type="button">ЗАПУСТИТЬ</button>
+        <button id="cancelRouletteBtn" type="button">ОТМЕНА</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    (function v245LoginError() {
+      const params = new URLSearchParams(location.search);
+      const error = params.get('error');
+      const box = document.getElementById('loginErrorBox');
+      if (!box || !error) return;
+
+      const messages = {
+        channel_required: 'Введите название Twitch канала',
+        wrong_channel: 'Этот бот не активирован для этого канала',
+        wrong_password: 'Неверный пароль',
+        auth_required: 'Сначала войдите в панель'
+      };
+
+      box.textContent = messages[error] || 'Ошибка входа';
+      box.style.display = 'flex';
+    })();
+  </script>
+
+<script src="./custom-timer.js?v=2" defer></script>
+<script src="./custom-timer.js?v=10" defer></script>
+<script>
+/* Wokomilka glass panels: inline !important overrides legacy theme gradients. */
+window.addEventListener('DOMContentLoaded', () => {
+  const apply = (selector, background) => {
+    document.querySelectorAll(selector).forEach(el => {
+      el.style.setProperty('background', background, 'important');
+      el.style.setProperty('background-image', 'none', 'important');
+      el.style.setProperty('backdrop-filter', 'none', 'important');
+      el.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+      el.style.setProperty('opacity', '1', 'important');
+    });
+  };
+  apply('.site, .main-area, .main-grid', 'transparent');
+  apply('.left-panel, .right-panel', 'rgba(12, 5, 24, 0.54)');
+  apply('#participantsPanel, #chatPanel', 'rgba(9, 3, 20, 0.76)');
+  apply('#participantsList, #chatList', 'transparent');
+});
+</script>
+<script>
+/* Place the visible custom timer after all action buttons. */
+(() => {
+  function moveTimerToBottom() {
+    const panel = document.getElementById('controls');
+    if (!panel) return;
+    const label = [...panel.querySelectorAll('*')].find(el =>
+      el.children.length === 0 && el.textContent.trim().toUpperCase() === 'ТАЙМЕР'
+    );
+    if (!label) return;
+    let timerCard = label;
+    while (timerCard.parentElement && timerCard.parentElement !== panel) {
+      timerCard = timerCard.parentElement;
+    }
+    if (timerCard.parentElement !== panel) return;
+    timerCard.classList.add('wokomilka-bottom-timer');
+    if (timerCard !== panel.lastElementChild) panel.appendChild(timerCard);
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    moveTimerToBottom();
+    const panel = document.getElementById('controls');
+    if (!panel) return;
+    let scheduled = false;
+    const observer = new MutationObserver(() => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => { scheduled = false; moveTimerToBottom(); });
+    });
+    observer.observe(panel, {childList:true,subtree:true});
+  });
+})();
+</script>
+<script>
+/* WOKOMILKA BUTTON WIDTH: change this number (pixels). */
+(() => {
+  const BUTTON_WIDTH_PX = 250;
+  const selector = '#controls > :is(#codeBtn,#rollBtn,#quickRollBtn)';
+  function applyWidth() {
+    document.querySelectorAll(selector).forEach(btn => {
+      btn.style.setProperty('width', BUTTON_WIDTH_PX + 'px', 'important');
+      btn.style.setProperty('max-width', BUTTON_WIDTH_PX + 'px', 'important');
+      btn.style.setProperty('min-width', '0', 'important');
+      btn.style.setProperty('align-self', 'center', 'important');
+      btn.style.setProperty('margin-left', 'auto', 'important');
+      btn.style.setProperty('margin-right', 'auto', 'important');
+      btn.style.setProperty('box-sizing', 'border-box', 'important');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyWidth);
+  else applyWidth();
+  window.addEventListener('load', applyWidth);
+})();
+</script>
+
+<script id="wokomilka-top-dropdown-script">
+(() => {
+  function initTopMenu() {
+    const toggle = document.getElementById('wokomilkaTopToggle');
+    const menu = document.getElementById('wokomilkaTopMenu');
+    if (!toggle || !menu) return;
+    toggle.addEventListener('click', () => {
+      menu.hidden = !menu.hidden;
+      toggle.setAttribute('aria-expanded', String(!menu.hidden));
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTopMenu);
+  else initTopMenu();
+})();
+</script>
+<div id="wokoLocalResult" hidden role="status" style="position:fixed;z-index:99999;bottom:20px;left:50%;transform:translateX(-50%);background:#2b1447;color:white;border:1px solid #a855f7;border-radius:12px;padding:14px;max-width:90vw;text-align:center"></div>
+<!-- NEW HORIZONTAL ROULETTE -->
+<div class="woko-modal" id="newRouletteModal">
+  <div class="tablebox" style="width:680px;max-width:95vw">
+    <div class="close-x" onclick="closeNewRoulette()">&times;</div>
+    <h3 class="nr-title">🎰 НОВАЯ РУЛЕТКА</h3>
+    <div class="nr-count" id="new-roulette-pool-count">Участников: 0</div>
+    <div class="nr-stage">
+      <div class="nr-arrow"></div>
+      <div class="nr-window" id="new-roulette-window"><div class="nr-strip" id="new-roulette-strip"></div></div>
+    </div>
+    <div id="new-roulette-result">---</div>
+    <div class="nr-dur">
+      <span>Время (сек):</span>
+      <button class="btn" style="padding:4px 10px;min-width:30px" onclick="adjustNewDur(-1)">-</button>
+      <input type="number" id="new-dur-input" value="5" min="1" max="60">
+      <button class="btn" style="padding:4px 10px;min-width:30px" onclick="adjustNewDur(1)">+</button>
+      <button class="btn" style="padding:4px 8px" onclick="setNewDur(2)">2с</button>
+      <button class="btn" style="padding:4px 8px" onclick="setNewDur(4)">4с</button>
+      <button class="btn" style="padding:4px 8px" onclick="setNewDur(10)">10с</button>
+    </div>
+    <button class="pbtn" onclick="spinNewRoulette()">🎡 КРУТИТЬ</button>
+    <button class="pbtn nr-confirm" id="new-roulette-confirm-btn" onclick="confirmNewRoulette()">✅ ПОДТВЕРДИТЬ</button>
+  </div>
+</div>
+
+<!-- LOTTO -->
+<div class="woko-modal" id="lottoModal">
+  <div class="tablebox" style="width:1020px;max-width:96vw">
+    <div class="close-x" onclick="wokoCloseLotto()">&times;</div>
+    <h3>🎰 ЛОТТО</h3>
+    <div class="lotto-wrap">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+        <div style="position:relative;line-height:0">
+          <canvas id="lotto-canvas" width="380" height="380"></canvas>
+          <div id="lotto-tooltip"></div>
+        </div>
+        <div id="lotto-result">---</div>
+        <div class="nr-dur">
+          <span>Перемешивание (сек):</span>
+          <button class="btn" style="padding:4px 10px;min-width:30px" onclick="adjustLottoDur(-1)">-</button>
+          <input type="number" id="lotto-dur-input" value="5" min="1" max="20" onchange="setLottoDur(this.value)">
+          <button class="btn" style="padding:4px 10px;min-width:30px" onclick="adjustLottoDur(1)">+</button>
+        </div>
+        <button class="pbtn" id="lotto-spin-btn" onclick="startLottoSpin()" style="width:240px">КРУТИТЬ! 🎱</button>
+        <button class="pbtn" id="lotto-confirm-btn" onclick="confirmLotto()" style="width:240px;display:none">✅ ПОДТВЕРДИТЬ</button>
+      </div>
+      <div class="lotto-list" id="lotto-nick-list"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<style id="woko-wheel-style">
+#wokoWheelModal{position:fixed;inset:0;z-index:100050;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;gap:22px;padding:24px;backdrop-filter:blur(8px);color:#f1eaff;font-family:Inter,Arial,sans-serif}
+#wokoWheelModal.open{display:flex}#wokoWheelModal button{cursor:pointer}#wokoWheelModal .ww-stage{position:relative;width:min(500px,65vw)}#wokoWheelCanvas{width:100%;height:auto;display:block;filter:drop-shadow(0 0 25px rgba(168,85,247,.4))}#wokoWheelModal .ww-arrow{position:absolute;top:-16px;left:50%;transform:translateX(-50%);z-index:3;width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:36px solid #fff;filter:drop-shadow(0 0 9px #a855f7)}#wokoWheelModal .ww-nick{text-align:center;font-weight:900;color:#fff;font-size:20px;margin-bottom:12px;min-height:27px;text-shadow:0 0 12px #a855f7}#wokoWheelModal .ww-controls{width:280px;max-width:95vw;padding:20px;border:1px solid rgba(168,85,247,.45);border-radius:18px;background:rgba(32,22,51,.92);display:flex;flex-direction:column;gap:10px}#wokoWheelModal .ww-controls h3{text-align:center;color:#c084fc;margin:0 0 6px}#wokoWheelModal .ww-row{display:flex;gap:7px;align-items:center}#wokoWheelModal .ww-row button{flex:1}#wokoWheelModal button{border:1px solid rgba(168,85,247,.55);background:rgba(168,85,247,.12);color:#e9d5ff;border-radius:9px;padding:10px;font-weight:800}#wokoWheelModal button.active,#wokoWheelModal .ww-spin{background:#9333ea;color:white}#wokoWheelModal button:disabled{opacity:.45;cursor:default}#wokoWheelModal input[type=number]{width:62px;text-align:center;background:#180d2b;color:white;border:1px solid #a855f7;border-radius:8px;padding:9px}#wokoWheelModal .ww-result{text-align:center;min-height:44px;font-weight:800;color:#e9d5ff;overflow-wrap:anywhere}#wokoWheelModal .ww-close{position:absolute;right:20px;top:15px;font-size:26px;border:none;background:none}#wokoWheelModal .ww-note{font-size:11px;color:#b9a8d9;text-align:center}@media(max-width:820px){#wokoWheelModal{flex-direction:column;overflow:auto;justify-content:flex-start}#wokoWheelModal .ww-stage{width:min(400px,82vw)}#wokoWheelModal .ww-controls{width:min(400px,90vw)}}
+</style>
+<div id="wokoWheelModal" role="dialog" aria-modal="true" aria-label="Стандартная рулетка">
+ <button class="ww-close" id="wokoWheelClose" type="button" aria-label="Закрыть">×</button>
+ <div class="ww-stage"><div class="ww-nick" id="wokoWheelNick">—</div><div class="ww-arrow"></div><canvas id="wokoWheelCanvas" width="500" height="500"></canvas></div>
+ <div class="ww-controls"><h3>🎡 СТАНДАРТНАЯ РУЛЕТКА</h3><div id="wokoWheelCount" class="ww-note"></div><div class="ww-row"><button id="wokoWheelElim" class="active" type="button">НА ВЫБЫВАНИЕ</button><button id="wokoWheelNormal" type="button">ОБЫЧНЫЙ</button></div><div class="ww-row"><button id="wokoWheelMinus" type="button">−</button><input id="wokoWheelDuration" type="number" min="1" max="30" value="5" aria-label="Время вращения в секундах"><button id="wokoWheelPlus" type="button">+</button><span>сек</span></div><div class="ww-row"><button type="button" data-ww-duration="3">3с</button><button type="button" data-ww-duration="5">5с</button><button type="button" data-ww-duration="10">10с</button><button type="button" data-ww-duration="15">15с</button></div><div id="wokoWheelResult" class="ww-result">Готово к запуску</div><button id="wokoWheelSpin" class="ww-spin" type="button">КРУТИТЬ!</button><button id="wokoWheelConfirm" type="button" hidden>✅ ПОДТВЕРДИТЬ ПОБЕДИТЕЛЯ</button><label class="ww-note"><input type="checkbox" id="wokoWheelAuto"> Автокрут при выбывании</label><div class="ww-note">Результат локальный — не записывается в историю сервера</div></div>
+</div>
+
+<script src="./woko-giveaways.js?v=2" defer></script>
+</body>
+</html>

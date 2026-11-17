@@ -1,0 +1,485 @@
+/* KORZHANY HUB v488 — stable smoothness/performance layer */
+:root{
+  --kor-motion-fast:140ms;
+  --kor-motion-med:220ms;
+  --kor-motion-slow:320ms;
+  --kor-motion-ease:cubic-bezier(.22,.78,.24,1);
+  --kor-motion-spring:cubic-bezier(.2,.9,.22,1.08);
+}
+html{scroll-behavior:smooth;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+body{-webkit-font-smoothing:antialiased}
+
+/* Chromium 2026: native same-origin page transitions. No fake loading overlay. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:korPageOut 115ms cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:korPageIn 190ms var(--kor-motion-ease) both}
+@keyframes korPageOut{to{opacity:.72;transform:scale(.997)}}
+@keyframes korPageIn{from{opacity:.2;transform:translateY(4px) scale(.998)}to{opacity:1;transform:none}}
+html.kor-page-entering body{animation:korPageIn 180ms var(--kor-motion-ease) both}
+
+/* Input feedback should feel immediate, but only animate compositor-friendly properties. */
+:where(button,input,select,textarea){-webkit-tap-highlight-color:transparent}
+:where(button):not(:disabled){transition-property:transform,opacity,box-shadow,border-color,background-color,color;transition-duration:var(--kor-motion-fast);transition-timing-function:var(--kor-motion-ease)}
+:where(button):not(:disabled):active{transform:translateY(1px) scale(.985)}
+:where(input,select,textarea){transition:border-color var(--kor-motion-fast) ease,box-shadow var(--kor-motion-fast) ease,background-color var(--kor-motion-fast) ease}
+
+/* Newer HUB dialogs: soft in/out without filter-blur animation (blur animation is expensive). */
+.v484-modal-root,.winner-payout-modal-v482{animation:korModalBackdropIn 150ms ease-out both}
+.v484-modal-root .v484-modal-card,.winner-payout-modal-v482 .winner-payout-card-v482{animation:korModalCardIn 210ms var(--kor-motion-spring) both;transform-origin:50% 48%}
+.v484-modal-root.is-closing-v486,.winner-payout-modal-v482.is-closing-v486{animation:korModalBackdropOut 130ms ease-in both;pointer-events:none}
+.v484-modal-root.is-closing-v486 .v484-modal-card,.winner-payout-modal-v482.is-closing-v486 .winner-payout-card-v482{animation:korModalCardOut 130ms ease-in both}
+.boost-settings-modal-v428:not(.hidden){animation:korModalBackdropIn 150ms ease-out both}
+.boost-settings-modal-v428:not(.hidden) .boost-settings-card-v428{animation:korModalCardIn 210ms var(--kor-motion-spring) both}
+.boost-settings-modal-v428.is-closing-v486{animation:korModalBackdropOut 130ms ease-in both;pointer-events:none}
+.boost-settings-modal-v428.is-closing-v486 .boost-settings-card-v428{animation:korModalCardOut 130ms ease-in both}
+@keyframes korModalBackdropIn{from{opacity:0}to{opacity:1}}
+@keyframes korModalBackdropOut{from{opacity:1}to{opacity:0}}
+@keyframes korModalCardIn{from{opacity:0;transform:translateY(10px) scale(.975)}to{opacity:1;transform:none}}
+@keyframes korModalCardOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(6px) scale(.985)}}
+
+/* Core winner/notification surfaces no longer pop into existence abruptly. */
+.winner-visual:not(.hidden),.winner-chat-box:not(.hidden),.roulette-popup:not(.hidden),.toast:not(.hidden){animation:korSurfaceIn 180ms var(--kor-motion-ease) both}
+@keyframes korSurfaceIn{from{opacity:0;transform:translateY(6px) scale(.992)}to{opacity:1;transform:none}}
+
+/* GPU/compositing hints only on objects that actually animate. */
+.roulette-wheel,.spin-disk,.hub-modern-card,.mg-game-card,.mg-memory-card-inner{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.roulette-wheel,.spin-disk{will-change:transform}
+.hub-atmosphere,.guide-bg{isolation:isolate}
+
+/* Adaptive quality: only kicks in after measured frame drops. */
+html.kor-fx-balanced :where(.card,.hub-modern-card,.hub-palette-popover,.hub-session-card,.boost-settings-card-v428,.v484-modal-card,.winner-payout-card-v482,.mg-settings-card,.mg-confirm-card){
+  backdrop-filter:blur(8px) saturate(1.05)!important;
+  -webkit-backdrop-filter:blur(8px) saturate(1.05)!important;
+}
+html.kor-fx-lite :where(.card,.hub-modern-card,.hub-palette-popover,.hub-session-card,.boost-settings-card-v428,.v484-modal-card,.winner-payout-card-v482,.mg-settings-card,.mg-confirm-card){
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html.kor-fx-lite :where(.hub-night-haze,.hub-night-stars,.hub-shooting-star,.guide-bg-aurora,.guide-orb){animation-play-state:paused!important}
+html.kor-page-hidden *{animation-play-state:paused!important}
+
+@media (prefers-reduced-motion:reduce){
+  @view-transition{navigation:auto}
+  ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+  .v484-modal-root,.winner-payout-modal-v482,.boost-settings-modal-v428:not(.hidden),.winner-visual:not(.hidden),.winner-chat-box:not(.hidden),.roulette-popup:not(.hidden),.toast:not(.hidden){animation:none!important}
+  :where(button):not(:disabled){transition-duration:1ms!important}
+}
+
+/* Mini-games: animate result dialogs in both directions instead of popping. */
+.mg-winner-modal:not([hidden]){opacity:0!important;transition:opacity 150ms ease!important}
+.mg-winner-modal:not([hidden]).is-open{opacity:1!important}
+.mg-winner-modal .mg-winner-card{transition:transform 190ms var(--kor-motion-ease),opacity 150ms ease;transform:translateY(8px) scale(.985);opacity:0}
+.mg-winner-modal.is-open .mg-winner-card{transform:none;opacity:1}
+
+/* Smooth HUB/card state changes without animating layout dimensions. */
+.hub-modern-card,.mg-game-card,.mg-row,.winner-row,.sidebar-action,.hub-rail-item{
+  transition-property:transform,opacity,background-color,border-color,box-shadow,color;
+  transition-duration:var(--kor-motion-med);
+  transition-timing-function:var(--kor-motion-ease);
+}
+
+
+/* ==========================================================================
+   v488 — GLOBAL STATIC UI / ANTI-FLICKER HARD FIX
+   Decorative motion and large backdrop-filter repaints are disabled.
+   Mechanical/game animations (roulette, wheel, card flips, timers) stay intact.
+   ========================================================================== */
+
+/* Cross-document opacity/scaling caused a full-screen flash on navigation. */
+@view-transition{navigation:none}
+::view-transition-old(root),::view-transition-new(root){animation:none!important;opacity:1!important;transform:none!important}
+html.kor-page-entering body{animation:none!important;opacity:1!important;transform:none!important}
+
+/* Never animate paint-heavy properties on ordinary controls. A state change is
+   applied once, without a box-shadow/background/opacity tween across every button. */
+:where(button,input,select,textarea){
+  animation-name:none!important;
+}
+:where(button):not(:disabled){
+  /* v490: use individual transform properties so click feedback NEVER overwrites
+     structural transforms (arrows, centered controls, carousel buttons). */
+  transition:scale 150ms cubic-bezier(.22,.78,.24,1),translate 150ms cubic-bezier(.22,.78,.24,1),border-color 150ms ease,color 150ms ease!important;
+}
+:where(input,select,textarea){
+  transition:border-color 140ms ease!important;
+}
+:where(button):not(:disabled):active{
+  scale:.985;
+  translate:0 1px;
+}
+
+/* Dynamic winner/chat surfaces are frequently touched by legacy guards. Do not
+   restart entrance animations when a class is repaired or a node is reattached. */
+.winner-visual,.winner-chat-box,.roulette-popup,.toast,
+.v484-modal-root,.winner-payout-modal-v482,.boost-settings-modal-v428,
+.v484-modal-card,.winner-payout-card-v482,.boost-settings-card-v428{
+  animation:none!important;
+}
+
+/* The moving shell lights were purely decorative and continuously invalidated
+   large transparent layers. Keep the same static artwork, without motion. */
+html.product-layout-modern body::after,
+.hub-modern-scan,.hub-modern-mouse i,.hub-night-stars,.hub-night-lanterns,
+.hub-shooting-star,.hub-palette-trigger.is-open .hub-palette-prism,
+body[data-kor-page="active-giveaway"] .top::before,
+body[data-kor-page="active-giveaway"] .machine::before,
+body[data-kor-page="donation-wheel"] .top::after,
+.tg-link-status i{
+  animation:none!important;
+}
+
+/* Chromium can flash translucent surfaces at 125–200% browser zoom when a
+   backdrop-filter layer is repainted. Large/live HUB surfaces use their existing
+   glass background but no realtime backdrop blur. */
+html.product-layout-modern body :where(
+  #topActiveV168,.top-active-v168,.top-banner,#participantsPanel,#chatPanel,
+  .participants-card,.chat-card,.timer,
+  .left-panel > button,.left-panel .toggle-box > button,.left-panel #timerToggle,
+  .right-panel > .card,.winner-visual,.winner-chat-box,.roulette-popup-card,
+  .boost-settings-card-v428,.v484-modal-card,.winner-payout-card-v482,
+  .guide-context-link-v407
+){
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+
+html.product-layout-modern body .left-panel::before{
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+body.hub-page :where(
+  .hub-modern-card,.hub-rail-item,.hub-palette-popover,.hub-session-card,
+  .hub-layout-toggle,.hub-time-toggle,.hub-controls,.hub-modern-stage,
+  .hub-modern-dock,.hub-modern-detail,.hub-card
+){
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+/* Stable compositor boundaries for the three hot columns. */
+html.product-layout-modern body .left-panel,
+html.product-layout-modern body .main-area,
+html.product-layout-modern body .right-panel{
+  contain:layout style!important;
+}
+html.product-layout-modern body #participantsPanel,
+html.product-layout-modern body #chatPanel{
+  contain:layout paint style!important;
+}
+
+/* Avoid accidental fades when old code toggles state classes. */
+html.product-layout-modern body :where(.sidebar-action,.winner-row,.participant,.chat-msg),
+body.hub-page :where(.hub-modern-card,.hub-rail-item,.hub-card){
+  transition-property:transform,border-color!important;
+  transition-duration:90ms!important;
+}
+
+
+/* ==========================================================================\n   v490 — SELECTIVE SMOOTH MOTION / NO-FLICKER LAYER\n   Restore motion ONLY on compositor-safe interactive elements. Large glass\n   surfaces, live winner panels and backgrounds remain static from v488.\n   ========================================================================== */
+:root{
+  --kor-motion-interactive:cubic-bezier(.18,.82,.22,1);
+  --kor-motion-carousel:cubic-bezier(.16,.84,.20,1);
+}
+
+/* Buttons feel soft again without animating background/blur/shadow layers.\n   `scale`/`translate` compose with an element's existing transform, so arrows\n   and centered controls no longer jump when pressed. */
+:where(button,a.hub-card,a.hub-modern-card,.sidebar-action,.hub-layout-choice):not(:disabled){
+  -webkit-tap-highlight-color:transparent;
+}
+:where(button):not(:disabled){
+  transition:scale 150ms var(--kor-motion-interactive),translate 150ms var(--kor-motion-interactive),border-color 150ms ease,color 150ms ease!important;
+}
+:where(button):not(:disabled):active{
+  scale:.982;
+  translate:0 1px;
+}
+:where(button):focus-visible{
+  outline:2px solid color-mix(in srgb,currentColor 38%,transparent);
+  outline-offset:2px;
+}
+
+/* MAIN HUB interactive carousel: only transform + local opacity are animated.\n   No backdrop-filter/background/box-shadow/filter tween => no whole-page flash. */
+body.hub-page .hub-modern-card{
+  transition:transform 430ms var(--kor-motion-carousel),opacity 250ms ease,border-color 170ms ease!important;
+  will-change:transform,opacity;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  filter:none!important;
+}
+body.hub-page .hub-modern-rail-dot,
+body.hub-page .hub-modern-rail-dot i{
+  transition:scale 150ms var(--kor-motion-interactive),translate 150ms var(--kor-motion-interactive),width 220ms var(--kor-motion-interactive),color 160ms ease,border-color 160ms ease!important;
+}
+body.hub-page .hub-modern-enter,
+body.hub-page .hub-layout-choice,
+body.hub-page .hub-time-toggle,
+body.hub-page .hub-palette-trigger{
+  transition:scale 150ms var(--kor-motion-interactive),translate 150ms var(--kor-motion-interactive),border-color 160ms ease,color 160ms ease!important;
+}
+
+/* MINI-GAMES coverflow: same policy. Keep movement/opacity smooth while paint-\n   heavy filter/shadow/background changes are instantaneous and therefore stable. */
+body .mg-game-card{
+  transition:transform 390ms var(--kor-motion-carousel),opacity 240ms ease,border-color 170ms ease!important;
+  will-change:transform,opacity;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  filter:none!important;
+}
+body .mg-scroll-arrow,
+body .mg-picker-toggle,
+body .mg-picker-collapsed button,
+body .mg-btn,
+body .mg-text-btn,
+body .mg-chip button{
+  transition:scale 150ms var(--kor-motion-interactive),translate 150ms var(--kor-motion-interactive),border-color 150ms ease,color 150ms ease!important;
+}
+
+/* Keep the anti-flicker promise: these frequently updated surfaces NEVER fade,\n   pulse or animate their paint properties when data changes. */
+html.product-layout-modern body :where(
+  .winner-visual,.winner-chat-box,.roulette-popup,.toast,
+  #participantsPanel,#chatPanel,.participants-card,.chat-card,
+  .v484-modal-root,.winner-payout-modal-v482,.boost-settings-modal-v428
+),
+body.hub-page :where(.hub-modern-stage,.hub-modern-detail,.hub-session-card),
+body :where(.mg-winner-modal,.mg-confirm-modal,.mg-settings-modal){
+  transition-property:none!important;
+}
+
+/* But cards/buttons inside modal/game UI retain the small compositor press feel. */
+body :where(.mg-winner-modal,.mg-confirm-modal,.mg-settings-modal) button,
+html.product-layout-modern body :where(.winner-visual,.winner-chat-box,.roulette-popup) button{
+  transition:scale 150ms var(--kor-motion-interactive),translate 150ms var(--kor-motion-interactive),border-color 150ms ease,color 150ms ease!important;
+}
+
+/* ========================================================================== 
+   v493 — VIEWPORT CENTER HARD FIX
+   `contain: layout` on .main-area makes position:fixed descendants use the
+   center column as their containing block in Chromium. That shifted the
+   winner/roulette overlay to the right by the left sidebar width.
+   Keep panel containment on the sidebars/hot cards, but NEVER on .main-area.
+   ========================================================================== */
+html.product-layout-modern body .main-area {
+  contain: none !important;
+}
+
+/* Winner/roulette surface is a true viewport overlay again. Geometry only;
+   no opacity/filter/transition changes, so this cannot reintroduce flicker. */
+html.product-layout-modern body .center-visual {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  margin: 0 !important;
+}
+
+/* ========================================================================== 
+   v494 — QUICK ROLL ZERO-FLASH / LEGACY BUTTON FIRST-PAINT GUARD
+   Quick winner must appear as a static surface. Old v64/v65 pulse layers and
+   legacy action proxies are never allowed to paint, even for a single frame.
+   ========================================================================== */
+
+/* Kill the old quick-winner pulse/impulse layers. These pseudo-elements were
+   still animating even after the main winner panel animation had been disabled. */
+html body.quick-roll-winner #winnerBox:not(.hidden),
+html body.v64-quick-winner #winnerBox,
+html body.v64-quick-winner #winnerChatBox,
+html body.v64-roulette-winner #winnerBox,
+html body.v64-roulette-winner #winnerChatBox {
+  animation: none !important;
+  transition: none !important;
+  filter: none !important;
+}
+
+html body.quick-roll-winner #winnerBox:not(.hidden)::before,
+html body.quick-roll-winner #winnerBox:not(.hidden)::after,
+html body.v64-quick-winner #winnerBox::before,
+html body.v64-quick-winner #winnerBox::after {
+  content: none !important;
+  display: none !important;
+  animation: none !important;
+  transition: none !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* The three native HTML buttons are only legacy wiring now. v129/v131 owns the
+   real 4-button bar. Keep the native controls invisible from the very first
+   winner-chat paint so they cannot flash white before the canonical bar mounts. */
+html body #winnerChatBox > .winner-chat-head #winnerRerollBtn,
+html body #winnerChatBox > .winner-chat-head #winnerCheckBtn,
+html body #winnerChatBox > .winner-chat-head #winnerSaveBtn {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Every pre-v129 action proxy/bar stays permanently non-painting globally.
+   Older wrapped showWinner handlers may still create them internally, but they
+   can no longer become visible for the 1-frame/0.5s blink seen on Quick Roll. */
+html body #winnerActionsV78,
+html body #winnerActionsV79,
+html body #winnerActionsV80,
+html body #winnerActionsV81,
+html body #winnerActionsV91,
+html body #winnerActionsV92,
+html body #winnerActionsV93,
+html body #winnerActionsV94,
+html body #winnerActionsV95,
+html body #winnerActionsV96,
+html body #winnerActionsBarV122,
+html body #winnerActionsBarV125,
+html body #winnerActionsBarV128,
+html body #winnerRerollProxyV81,
+html body #winnerRerollProxyV91,
+html body #winnerRerollProxyV92,
+html body #winnerRerollBtnV122,
+html body #winnerCheckBtnV122,
+html body #winnerActionRerollV125,
+html body #winnerActionCheckV125,
+html body #winnerBtnRerollV128,
+html body #winnerBtnCheckV128,
+html body .winner-actions-v80,
+html body .winner-actions-v81 {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Canonical controls stay static and fully painted. */
+html body #winnerActionsSlotV131,
+html body #winnerActionsBarV129,
+html body #winnerReasonBtnV487,
+html body #winnerBtnCheckV129,
+html body #winnerSitesBtn,
+html body #winnerActionsBarV129 > #winnerSaveBtn {
+  animation: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ==========================================================================
+   v496 — INPUT LATENCY / FAST + SMOOTH HARD FIX
+   Goal: input feedback in the same frame, short compositor-only motion,
+   no full-screen fades, no filter/shadow animation, no flicker.
+   ========================================================================== */
+:root{
+  --kor-motion-fast:80ms!important;
+  --kor-motion-med:145ms!important;
+  --kor-motion-slow:220ms!important;
+  --kor-motion-ease:cubic-bezier(.16,1,.3,1)!important;
+  --kor-motion-soft:cubic-bezier(.2,.82,.22,1)!important;
+}
+
+/* Never let document navigation animation hide actual response time. */
+@view-transition{navigation:none}
+::view-transition-old(root),::view-transition-new(root){
+  animation:none!important;
+  opacity:1!important;
+  transform:none!important;
+}
+html.kor-page-entering body{animation:none!important;opacity:1!important;transform:none!important}
+
+/* Immediate tactile response without overwriting structural transforms. */
+:where(button,[role="button"],a.hub-modern-card,a.hub-card,.mg-game-card,.sidebar-action,.hub-rail-item):not(:disabled){
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  transition-property:scale,translate,transform,border-color,color!important;
+  transition-duration:75ms,75ms,145ms,95ms,95ms!important;
+  transition-timing-function:var(--kor-motion-ease)!important;
+}
+:where(button,[role="button"],a.hub-modern-card,a.hub-card,.mg-game-card,.sidebar-action,.hub-rail-item):not(:disabled):active{
+  scale:.986;
+  translate:0 1px;
+}
+
+/* HUB interactive carousel: quick but still visibly fluid. */
+body.hub-page .hub-modern-card{
+  transition:
+    transform 210ms var(--kor-motion-ease),
+    opacity 145ms ease,
+    border-color 95ms ease!important;
+  filter:none!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+  transform-style:preserve-3d;
+}
+body.hub-page .hub-modern-card::before{
+  transition:transform 220ms var(--kor-motion-ease)!important;
+}
+body.hub-page .hub-modern-rail-dot i{
+  transition:width 120ms var(--kor-motion-ease),background-color 90ms ease!important;
+}
+
+/* Mini Games picker: same feel, no expensive filter/box-shadow tween. */
+body.mini-games-page .mg-game-card,
+body[data-kor-page="mini-games"] .mg-game-card,
+.mg-game-card{
+  transition:
+    transform 200ms var(--kor-motion-ease),
+    opacity 135ms ease,
+    border-color 95ms ease!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+}
+.mg-scroll-arrow,.mg-btn,.mg-back{
+  transition:
+    scale 75ms var(--kor-motion-ease),
+    translate 75ms var(--kor-motion-ease),
+    transform 130ms var(--kor-motion-ease),
+    border-color 95ms ease,
+    color 95ms ease!important;
+}
+
+/* Inputs/toggles react immediately but softly. */
+:where(input,select,textarea){
+  transition:border-color 95ms ease!important;
+}
+.mg-setting-toggle i,
+.mg-setting-toggle i::after,
+input[type="checkbox"] + i{
+  transition-duration:130ms!important;
+  transition-timing-function:var(--kor-motion-ease)!important;
+}
+
+/* Modals: short entrance only. Live winner/chat surfaces stay static to avoid flash. */
+.v484-modal-root,.winner-payout-modal-v482,.boost-settings-modal-v428:not(.hidden){
+  animation-duration:85ms!important;
+}
+.v484-modal-root .v484-modal-card,
+.winner-payout-modal-v482 .winner-payout-card-v482,
+.boost-settings-modal-v428:not(.hidden) .boost-settings-card-v428{
+  animation-duration:135ms!important;
+}
+.mg-modal{transition:opacity 95ms ease!important}
+.mg-modal-card,.mg-winner-card{transition-duration:135ms!important}
+.winner-visual:not(.hidden),.winner-chat-box:not(.hidden),.roulette-popup:not(.hidden){
+  animation:none!important;
+}
+
+/* Theme/layout controls should not need 0.6s to settle. */
+body.hub-page .hub-atmosphere{
+  transition:opacity 220ms ease,visibility 220ms ease!important;
+}
+
+/* No paint-heavy transition on hot paths. Static shadows/backgrounds remain. */
+body.hub-page :where(.hub-modern-card,.hub-layout-choice,.hub-time-choice,.hub-modern-rail-dot),
+body :where(.mg-game-card,.mg-scroll-arrow,.mg-btn,.mg-back){
+  transition-property:transform,opacity,scale,translate,border-color,color!important;
+}
+
+/* Keep browser from animating whole page/body after any route/state change. */
+body{transition:none!important}
+
+/* Preserve accessibility preference. */
+@media (prefers-reduced-motion:reduce){
+  :where(button,[role="button"],a.hub-modern-card,a.hub-card,.mg-game-card,.sidebar-action,.hub-rail-item){
+    transition-duration:1ms!important;
+  }
+}

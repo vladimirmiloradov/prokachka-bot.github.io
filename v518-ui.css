@@ -1,0 +1,293 @@
+/* KORZHANY HUB v518 — winner timer live layer, larger controls, palette consistency. */
+
+/* 1) Left rail: noticeably larger buttons, identical geometry, Search matches SMS TOP. */
+html body #controls.left-panel{
+  gap:10px !important;
+  padding:14px 12px !important;
+}
+html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){
+  height:60px !important;
+  min-height:60px !important;
+  max-height:60px !important;
+  flex:0 0 60px !important;
+  padding:0 14px 0 72px !important;
+  border-radius:15px !important;
+  font-size:clamp(12px,.88vw,14px) !important;
+  letter-spacing:.045em !important;
+}
+html body #controls #searchBtn{
+  position:relative !important;
+}
+html body #controls #searchBtn>.v515-search-icon{
+  left:8px !important;
+  width:44px !important;
+  height:44px !important;
+  min-width:44px !important;
+  min-height:44px !important;
+  border-radius:12px !important;
+  border:1px solid color-mix(in srgb,var(--accent,#c8d0da) 38%,rgba(255,255,255,.18)) !important;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent,#d0d7e0) 16%,rgba(255,255,255,.10)),rgba(255,255,255,.06)) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 0 0 1px rgba(255,255,255,.02) !important;
+  color:var(--text,#fff) !important;
+}
+html body #controls #searchBtn>.v515-search-icon svg{
+  width:20px !important;
+  height:20px !important;
+}
+html body #controls #searchBtn::after{
+  left:72px !important;
+  right:14px !important;
+  bottom:8px !important;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--accent,#c8d0da) 44%,rgba(255,255,255,.08)),transparent) !important;
+}
+@media(max-width:1600px), (max-height:760px){
+  html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){
+    height:54px !important;min-height:54px !important;max-height:54px !important;flex-basis:54px !important;padding-left:68px !important;
+  }
+  html body #controls #searchBtn>.v515-search-icon{width:40px !important;height:40px !important;min-width:40px !important;min-height:40px !important;}
+  html body #controls #searchBtn::after{left:68px !important;}
+}
+
+/* 2) Rolling winner nickname stays above the wheel even after reroll. */
+html body>.center-visual.roulette-active #rollingBox{
+  position:relative !important;
+  z-index:6 !important;
+  transform:translateY(-24px) !important;
+}
+html body>.center-visual.roulette-active #rollingBox .roll-label,
+html body>.center-visual.roulette-active #rollingName,
+html body>.center-visual.roulette-active #rollingBox .rolling-name{
+  position:relative !important;
+  z-index:8 !important;
+}
+html body>.center-visual.roulette-active #rollingBox .roll-label{
+  top:-16px !important;
+}
+html body>.center-visual.roulette-active #rollingName,
+html body>.center-visual.roulette-active #rollingBox .rolling-name{
+  top:-56px !important;
+  margin-bottom:-32px !important;
+  text-shadow:0 6px 30px rgba(0,0,0,.30) !important;
+}
+html body>.center-visual.roulette-active #rouletteWheelWrap{
+  z-index:3 !important;
+}
+
+/* 3) Remove the remaining top "brows" / decorative strips. */
+html.product-layout-modern body .top-banner::before,
+html.product-layout-modern body .top-banner::after,
+html.product-layout-modern body #participantsPanel::before,
+html.product-layout-modern body #chatPanel::before,
+html.product-layout-modern body #topActiveV168::before{
+  content:none !important;
+  display:none !important;
+}
+
+/* 4) Follow info must not blink while Twitch followage is being fetched. */
+html body #winnerFollowInfo.followage-loading-v120{
+  visibility:visible !important;
+  opacity:.72 !important;
+}
+
+/* 5) Contrast action buttons in winner/result surfaces. */
+html body #winnerRerollBtn,
+html body #winnerBtnRerollV128,
+html body #winnerActionRerollV125,
+html body [id*="Reroll"][id*="winner" i]{
+  background:linear-gradient(180deg,rgba(255,194,92,.30),rgba(83,53,10,.84)) !important;
+  border-color:rgba(255,196,97,.46) !important;
+  color:#fff6df !important;
+}
+html body #winnerCheckBtn,
+html body #winnerBtnCheckV129,
+html body #winnerActionCheckV125,
+html body [id*="Check"][id*="winner" i]{
+  background:linear-gradient(180deg,rgba(88,201,255,.30),rgba(11,52,76,.84)) !important;
+  border-color:rgba(102,210,255,.46) !important;
+  color:#e8faff !important;
+}
+html body #winnerSaveBtn,
+html body [id*="Save"][id*="winner" i]{
+  background:linear-gradient(180deg,rgba(85,255,172,.26),rgba(8,64,39,.84)) !important;
+  border-color:rgba(99,255,177,.44) !important;
+  color:#ebfff5 !important;
+}
+html body #winnerSitesBtn,
+html body #winnerReasonBtnV487,
+html body [id*="Sites"][id*="winner" i],
+html body [id*="Reason"][id*="winner" i]{
+  background:linear-gradient(180deg,rgba(192,126,255,.28),rgba(53,18,85,.84)) !important;
+  border-color:rgba(204,142,255,.44) !important;
+  color:#faf0ff !important;
+}
+html body #winnerActionsBarV129>button,
+html body .winner-chat-head button,
+html body .winner-actions-bar-v128>button{
+  box-shadow:0 10px 28px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+
+/* 6) Live answer states: keep red/green accents without freezing the visual clock. */
+html body #winnerChatBox.v518-timeout-live{
+  box-shadow:0 0 0 1px rgba(255,88,88,.24),0 24px 60px rgba(0,0,0,.34),0 0 38px rgba(255,74,74,.14) !important;
+}
+html body #winnerChatBox.v518-answered-live,
+html body #winnerChatBox.v482-answered{
+  box-shadow:0 0 0 1px rgba(86,255,162,.26),0 24px 60px rgba(0,0,0,.34),0 0 42px rgba(79,255,164,.12) !important;
+}
+html body #winnerChatBox.v518-answered-live::after,
+html body #winnerChatBox.v482-answered::after{
+  content:"" !important;
+  position:absolute !important;
+  left:18px !important;
+  right:18px !important;
+  bottom:9px !important;
+  height:4px !important;
+  border-radius:999px !important;
+  background:linear-gradient(90deg,rgba(61,255,149,.18),rgba(74,255,175,.88),rgba(61,255,149,.18)) !important;
+  box-shadow:0 0 20px rgba(74,255,175,.55) !important;
+}
+html body #winnerReplyStatus.status-ok{
+  color:#dfffee !important;
+  text-shadow:0 0 18px rgba(92,255,173,.16) !important;
+}
+html body #winnerReplyStatus.status-bad{
+  color:#ffe6e6 !important;
+  text-shadow:0 0 18px rgba(255,98,98,.16) !important;
+}
+html body #winnerReplyStopwatch.timer-ok{
+  box-shadow:0 0 0 1px rgba(88,255,168,.28),0 0 24px rgba(74,255,175,.18) !important;
+}
+html body #winnerReplyStopwatch.timer-bad{
+  box-shadow:0 0 0 1px rgba(255,94,94,.28),0 0 24px rgba(255,84,84,.18) !important;
+}
+html body #winnerBox.v518-answer-flash,
+html body #winnerChatBox.v518-answer-flash{
+  animation:v518-answer-flash 1.25s ease-out 1 !important;
+}
+@keyframes v518-answer-flash{
+  0%{box-shadow:0 0 0 1px rgba(93,255,174,.10),0 0 0 rgba(93,255,174,0);}
+  18%{box-shadow:0 0 0 1px rgba(93,255,174,.28),0 -10px 44px rgba(93,255,174,.22),0 0 54px rgba(93,255,174,.18);}
+  100%{box-shadow:0 0 0 1px rgba(93,255,174,.10),0 0 0 rgba(93,255,174,0);}
+}
+
+/* 7) Keep HUB button visible across palette changes. */
+html.product-layout-modern body #logoutBtnV216,
+html.product-layout-modern body .logout-btn-v216{
+  display:flex !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  z-index:2147483000 !important;
+  color:rgba(255,255,255,.96) !important;
+}
+
+/* 8) Tone down the default winner metric reflow. */
+html body #winnerBox #winnerDetails>.v515-metric{
+  transition:none !important;
+}
+
+/* v518 final: floating roulette captions live OUTSIDE the wheel's stacking area.
+   A reroll must not be able to place the current nickname behind the circle. */
+html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox:not(.hidden){
+  position:absolute!important;
+  inset:auto auto auto 50%!important;
+  top:clamp(22px,8vh,80px)!important;
+  transform:translateX(-50%)!important;
+  margin:0!important;
+  padding:0 16px!important;
+  min-height:0!important;
+  height:auto!important;
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  width:min(1050px,95vw)!important;
+  max-width:95vw!important;
+  overflow:visible!important;
+  z-index:2147483001!important;
+  pointer-events:none!important;
+  animation:none!important;
+}
+html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox .roll-label,
+html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox #rollingName{
+  position:relative!important;
+  top:auto!important;
+  margin:0!important;
+  width:100%!important;
+  padding:0!important;
+  overflow:visible!important;
+  z-index:inherit!important;
+  text-align:center!important;
+}
+html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox .roll-label{
+  margin-bottom:3px!important;
+}
+html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox #rollingName{
+  font-size:clamp(34px,4.7vw,65px)!important;
+  line-height:1.03!important;
+  min-height:0!important;
+  text-shadow:0 3px 20px rgba(0,0,0,.66)!important;
+}
+@media(max-height:760px){
+  html body>.center-visual.roulette-active:has(#rouletteWheelWrap:not(.hidden)) #rollingBox:not(.hidden){top:25px!important;}
+}
+
+/* Hide the capsule-shaped header overlays without hiding the actual captions. */
+html body #participantsPanel>.card-title,
+html body #chatPanel>.connection{
+  background:transparent!important;
+  background-image:none!important;
+  border:none!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html body #participantsPanel>.card-title::before,
+html body #participantsPanel>.card-title::after,
+html body #chatPanel>.connection::before,
+html body #chatPanel>.connection::after{
+  display:none!important;content:none!important;
+}
+
+/* Consistent panel navigation: text, icon tile, accent-rule geometry match. */
+html body #controls > button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){
+  height:66px!important;min-height:66px!important;max-height:66px!important;flex-basis:66px!important;
+  padding-left:74px!important;
+}
+html.product-layout-modern body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#boostSettingsBtnV428)::before{
+  left:8px!important;width:46px!important;height:46px!important;border-radius:12px!important;
+}
+html body #controls #searchBtn>.v515-search-icon{
+  width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;
+  background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.15),transparent 38%),
+    color-mix(in srgb,var(--accent,var(--pink,#cbd5e1)) 15%,rgba(255,255,255,.02))!important;
+  border:1px solid color-mix(in srgb,var(--accent,var(--pink,#cbd5e1)) 34%,rgba(255,255,255,.12))!important;
+  color:color-mix(in srgb,var(--accentText,#fff) 80%,#fff 20%)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.09),
+    0 0 16px color-mix(in srgb,var(--accent,var(--pink,#cbd5e1)) 10%,transparent)!important;
+}
+html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428)::after{
+  left:74px!important;right:14px!important;bottom:7px!important;height:1px!important;
+  display:block!important;
+  background:linear-gradient(90deg,var(--accent,var(--pink,#cbd5e1)),transparent)!important;
+  opacity:.32!important;transform:scaleX(.22)!important;transform-origin:left center!important;
+}
+html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428):hover::after{
+  opacity:.72!important;transform:scaleX(1)!important;
+}
+@media(max-width:1600px), (max-height:760px){
+  html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){
+    height:60px!important;min-height:60px!important;max-height:60px!important;flex-basis:60px!important;
+    padding-left:68px!important;
+  }
+  html.product-layout-modern body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#boostSettingsBtnV428)::before{
+    width:42px!important;height:42px!important;
+  }
+  html body #controls #searchBtn>.v515-search-icon{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;}
+  html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428)::after{left:68px!important;}
+}
+@media(max-height:620px){
+  html body #controls.left-panel{gap:5px!important;}
+  html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428){height:46px!important;min-height:46px!important;max-height:46px!important;flex-basis:46px!important;}
+  html.product-layout-modern body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#boostSettingsBtnV428)::before{width:32px!important;height:32px!important;}
+  html body #controls #searchBtn>.v515-search-icon{width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;}
+}

@@ -1,0 +1,215 @@
+/* Wokomilka video and glass panels — consolidated override. */
+html body::before, html body::after { content: none !important; display: none !important; }
+html body [id^="korWallpaperLayer"] { display: none !important; }
+html body > #wokomilka-video-background {
+  all: initial !important;
+  display: block !important;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  z-index: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+}
+html body > .site { position: relative !important; z-index: 2 !important; }
+html body > #auth { position: relative !important; z-index: 3 !important; }
+html body .site,
+html body .main-area,
+html body .main-grid {
+  background: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+html body .left-panel,
+html body .right-panel,
+html body #participantsPanel,
+html body #chatPanel {
+  background: rgba(12,5,24,.54) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+  border-color: rgba(174,83,255,.55) !important;
+}
+html body #participantsList,
+html body #chatList {
+  background: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+html body .site::before,
+html body .site::after,
+html body .left-panel::before,
+html body .left-panel::after,
+html body .right-panel::before,
+html body .right-panel::after,
+html body #participantsPanel::before,
+html body #participantsPanel::after,
+html body #chatPanel::before,
+html body #chatPanel::after {
+  content: none !important;
+  display: none !important;
+}
+/* Do not change .left-panel scrollbar-gutter or any timer sizing. */
+
+/* Approved design: darken only the two central glass panels. */
+html body #participantsPanel,
+html body #chatPanel {
+  background: rgba(9, 3, 20, 0.76) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+/* Sidebar MILKA video above action buttons */
+html body #controls .wokomilka-sidebar-video {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 752 / 698;
+  max-height: 260px;
+  overflow: hidden;
+  border: 1px solid rgba(186, 91, 255, .65);
+  border-radius: 14px;
+  background: rgba(12,5,24,.55) !important;
+  box-shadow: 0 0 16px rgba(146,57,255,.22);
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+}
+html body #controls .wokomilka-sidebar-video video {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+}
+
+/* Preserve original video alpha: no opaque backdrop behind MILKA */
+html body #controls .wokomilka-sidebar-video { background: transparent !important; border: none !important; box-shadow: none !important; }
+
+/* Smaller centered MILKA animation, preserving transparent WebM. */
+html body #controls .wokomilka-sidebar-video {
+  width: min(170px, 82%) !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: 752 / 698 !important;
+  margin: 4px auto 12px !important;
+  flex: 0 0 auto !important;
+}
+
+/* Compact left menu buttons without changing timer controls. */
+html body #controls > #codeBtn,
+html body #controls > #rollBtn,
+html body #controls > #quickRollBtn,
+html body #controls > #watchtimeBtn,
+html body #controls > #smsTopBtn,
+html body #controls > #searchBtn,
+html body #controls > #boostSettingsBtnV428 {
+  min-height: 0 !important;
+  height: 46px !important;
+  padding: 8px 12px !important;
+  margin-top: 0 !important;
+  margin-bottom: 7px !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  flex: 0 0 46px !important;
+}
+html body #controls > .wokomilka-bottom-timer {
+  order: 9999 !important;
+  flex-shrink: 0 !important;
+  margin-top: auto !important;
+  margin-bottom: 10px !important;
+}
+/* Avoid stretching the action buttons or hiding timer beneath them. */
+
+/* Wokomilka compact sidebar — fit animation, buttons and timer without scrolling. */
+html body #controls.left-panel {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+  scrollbar-gutter: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  padding: 9px 8px !important;
+  box-sizing: border-box !important;
+}
+html body #controls > .left-spacer { display: none !important; }
+html body #controls > .wokomilka-sidebar-video {
+  width: min(140px, 72%) !important;
+  max-height: 130px !important;
+  margin: 0 auto 5px !important;
+}
+html body #controls > #codeBtn,
+html body #controls > #rollBtn,
+html body #controls > #quickRollBtn,
+html body #controls > #watchtimeBtn,
+html body #controls > #smsTopBtn,
+html body #controls > #searchBtn,
+html body #controls > #boostSettingsBtnV428 {
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  flex: 0 0 38px !important;
+  margin: 0 !important;
+  padding: 5px 9px !important;
+  font-size: 11px !important;
+  line-height: 1.15 !important;
+  border-radius: 10px !important;
+}
+html body #controls > .wokomilka-bottom-timer {
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  flex: 0 0 auto !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+
+/* Only reduce vertical space of left menu buttons; original width is unchanged. */
+html body #controls > :is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428) {
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+  flex: 0 0 32px !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  
+}
+
+/* WOKOMILKA BUTTON WIDTH — CHANGE ONLY THIS VALUE.
+   This selector intentionally overrides the older v519 and other theme rules.
+   Change 220px to your preferred width (e.g. 240px).
+*/
+html.product-layout-modern body #controls.left-panel > button:is(
+  #codeBtn, #rollBtn, #quickRollBtn, #watchtimeBtn,
+  #smsTopBtn, #searchBtn, #boostSettingsBtnV428
+),
+html body #controls.left-panel > button:is(
+  #codeBtn, #rollBtn, #quickRollBtn, #watchtimeBtn,
+  #smsTopBtn, #searchBtn, #boostSettingsBtnV428
+) {
+  width: 220px !important;
+  max-width: 220px !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  align-self: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* WOKOMILKA: banner ~12px taller; action buttons shift down with it. */
+html body #controls > .wokomilka-sidebar-video {
+  width: min(153px, 78%) !important;
+  max-height: 142px !important;
+  margin: 0 auto 5px !important;
+}

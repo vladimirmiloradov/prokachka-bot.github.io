@@ -1,0 +1,191 @@
+
+/* ОСНОВНОЙ БЛОК ТАЙМЕРА */
+
+#topActiveV168.custom-timer-host {
+    height: auto;
+    min-height: 0;
+    padding: 15px 12px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Скрываем старый ТОП-3 */
+
+#topActiveV168.custom-timer-host > :not(.custom-timer) {
+    display: none;
+}
+
+/* Единый расчёт размеров */
+
+#topActiveV168 .custom-timer,
+#topActiveV168 .custom-timer * {
+    box-sizing: border-box;
+}
+
+/* Контейнер таймера */
+
+#topActiveV168 .custom-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    gap: 9px;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* ЗАГОЛОВОК */
+
+#topActiveV168 .custom-timer-title {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* ОТОБРАЖЕНИЕ ВРЕМЕНИ */
+
+#topActiveV168 .custom-timer-clock {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    color: #baffcb;
+    text-align: center;
+}
+
+/* КНОПКИ СТАРТ И СТОП */
+
+#topActiveV168 .custom-timer-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    min-width: 0;
+    gap: 8px;
+}
+
+#topActiveV168 .custom-timer-actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    height: 34px;
+    margin: 0;
+    padding: 0 4px;
+    background: #fff4f4;
+    color: #870d26;
+    border: 1px solid #ed9aab;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#topActiveV168 .custom-timer-actions button:hover {
+    background: #ffdce3;
+}
+
+/* НАДПИСЬ ВЫСТАВИТЬ ВРЕМЯ */
+
+#topActiveV168 .custom-timer-label {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #f0cbd3;
+    text-align: center;
+}
+
+/* ПОЛЕ СЕКУНД И КНОПКА */
+
+#topActiveV168 .custom-timer-setting {
+    display: grid;
+    grid-template-columns: 65px minmax(0, 1fr);
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    gap: 8px;
+}
+
+/* ОБЩИЕ СТИЛИ ПОЛЯ И КНОПКИ */
+
+#topActiveV168 .custom-timer-setting input,
+#topActiveV168 .custom-timer-setting button {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    height: 34px;
+    min-height: 34px;
+    max-height: 34px;
+    box-sizing: border-box;
+    margin: 0;
+    background: #fff4f4;
+    color: #870d26;
+    border: 1px solid #ed9aab;
+    border-radius: 10px;
+    font-family: inherit;
+}
+
+/* ПОЛЕ ВВОДА СЕКУНД */
+
+#topActiveV168 .custom-timer-setting input {
+    margin-top: 4px;
+    padding: 2px 8px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    appearance: textfield;
+    outline: none;
+}
+
+#topActiveV168 .custom-timer-setting input::-webkit-inner-spin-button,
+#topActiveV168 .custom-timer-setting input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#topActiveV168 .custom-timer-setting input:focus {
+    border-color: #ff8da5;
+}
+
+/* КНОПКА УСТАНОВИТЬ */
+
+#topActiveV168 .custom-timer-setting .timer-apply {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    height: 34px;
+    padding: 0 10px;
+    background: #fff4f4;
+    color: #870d26;
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#topActiveV168 .custom-timer-setting .timer-apply:hover {
+    background: #ffdce3;
+}
+

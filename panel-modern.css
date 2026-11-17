@@ -1,0 +1,1629 @@
+/* ==========================================================================\n   KORZHANY v408 - BOOST BOT / MODERN PRODUCT SHELL\n   Activated only when HUB preference korzhany_hub_layout === "modern".\n   The classic product UI is intentionally untouched.\n   ========================================================================== */
+
+html.product-layout-modern,
+html.product-layout-modern body {
+  --v408-glass: rgba(16, 7, 17, .60);
+  --v408-glass-strong: rgba(24, 8, 18, .74);
+  --v408-glass-soft: rgba(255, 255, 255, .035);
+  --v408-line: color-mix(in srgb, var(--accent, var(--pink, #ff5aa9)) 36%, rgba(255,255,255,.22));
+  --v408-line-soft: color-mix(in srgb, var(--accent, var(--pink, #ff5aa9)) 20%, rgba(255,255,255,.10));
+  --v408-glow: color-mix(in srgb, var(--accent, var(--pink, #ff5aa9)) 20%, transparent);
+  --v408-radius-lg: 26px;
+  --v408-radius-md: 19px;
+}
+
+html.product-layout-modern body {
+  isolation: isolate;
+}
+
+/* Cinematic ambient field - deliberately behind the UI and never clickable. */
+html.product-layout-modern body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 22% 18%, var(--v408-glow), transparent 31%),
+    radial-gradient(ellipse at 82% 72%, color-mix(in srgb, var(--accent2, var(--pink2, #ff7ad1)) 13%, transparent), transparent 34%),
+    linear-gradient(180deg, rgba(2,3,8,.03), rgba(2,3,8,.18));
+}
+
+html.product-layout-modern body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .22;
+  background-image: linear-gradient(110deg, transparent 0 46%, rgba(255,255,255,.025) 48%, transparent 50% 100%);
+  background-size: 520px 100%;
+  animation: v408AmbientSweep 18s linear infinite;
+}
+
+@keyframes v408AmbientSweep { to { background-position: 1040px 0; } }
+
+/* The old three giant red rectangles disappear. The wallpaper itself becomes the shell. */
+html.product-layout-modern body .site {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  padding: 16px !important;
+  gap: 16px !important;
+  column-gap: 16px !important;
+  grid-template-columns: clamp(232px, 15.2vw, 286px) minmax(0, 1fr) clamp(252px, 17vw, 315px) !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+html.product-layout-modern body .left-panel,
+html.product-layout-modern body .main-area,
+html.product-layout-modern body .right-panel {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  min-width: 0 !important;
+}
+
+/* --------------------------------------------------------------------------\n   LEFT CONTROL DECK - floating controls instead of one solid sidebar\n   -------------------------------------------------------------------------- */
+html.product-layout-modern body .left-panel {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+  gap: 9px !important;
+  overflow: visible !important;
+}
+
+html.product-layout-modern body .left-panel::before {
+  content: "CONTROL / 01";
+  flex: 0 0 auto;
+  align-self: flex-start;
+  padding: 6px 10px;
+  margin: 0 0 1px 3px;
+  border: 1px solid var(--v408-line-soft);
+  border-radius: 999px;
+  background: rgba(4,5,10,.40);
+  backdrop-filter: blur(12px) saturate(1.15);
+  -webkit-backdrop-filter: blur(12px) saturate(1.15);
+  color: rgba(255,255,255,.62);
+  font: 900 8px/1 Inter,Arial,sans-serif;
+  letter-spacing: .16em;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 9px 26px rgba(0,0,0,.16);
+}
+
+html.product-layout-modern body .left-panel .top-settings {
+  display: none !important;
+}
+
+html.product-layout-modern body #topActiveV168,
+html.product-layout-modern body .top-active-v168 {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 15px 12px 14px !important;
+  border: 1px solid var(--v408-line) !important;
+  border-radius: 23px !important;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.055), transparent 38%),
+    var(--v408-glass-strong) !important;
+  background-image: linear-gradient(155deg, rgba(255,255,255,.055), transparent 38%) !important;
+  backdrop-filter: blur(22px) saturate(1.24) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(1.24) !important;
+  box-shadow:
+    0 20px 58px rgba(0,0,0,.30),
+    0 0 30px var(--v408-glow),
+    inset 0 1px 0 rgba(255,255,255,.09) !important;
+  overflow: hidden !important;
+}
+
+html.product-layout-modern body #topActiveV168::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(125deg, rgba(255,255,255,.07), transparent 30% 72%, rgba(255,255,255,.025));
+}
+
+html.product-layout-modern body .left-panel > button,
+html.product-layout-modern body .left-panel .toggle-box > button,
+html.product-layout-modern body .left-panel #timerToggle {
+  min-height: 39px !important;
+  width: 100% !important;
+  border: 1px solid var(--v408-line-soft) !important;
+  border-radius: 13px !important;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.055), transparent 58%),
+    rgba(9,7,13,.56) !important;
+  color: var(--text, #fff) !important;
+  backdrop-filter: blur(16px) saturate(1.18) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.18) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 9px 24px rgba(0,0,0,.14) !important;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease !important;
+}
+
+html.product-layout-modern body .left-panel > button:hover,
+html.product-layout-modern body .left-panel .toggle-box > button:hover,
+html.product-layout-modern body .left-panel #timerToggle:hover {
+  transform: translateX(4px) !important;
+  border-color: var(--v408-line) !important;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--accent, var(--pink)) 12%, rgba(255,255,255,.055)), transparent 58%),
+    rgba(11,8,15,.68) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 12px 30px rgba(0,0,0,.22), 0 0 21px var(--v408-glow) !important;
+}
+
+html.product-layout-modern body .left-panel .timer {
+  min-height: 74px !important;
+  padding: 8px !important;
+  border: 1px solid var(--v408-line) !important;
+  border-radius: 19px !important;
+  background: rgba(7,7,12,.52) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  font-size: clamp(29px, 2vw, 38px) !important;
+  letter-spacing: .075em !important;
+  font-variant-numeric: tabular-nums !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 18px 42px rgba(0,0,0,.20) !important;
+}
+
+html.product-layout-modern body .left-spacer {
+  min-height: 24px !important;
+}
+
+/* --------------------------------------------------------------------------\n   CENTER - banner + two free-floating workspaces\n   -------------------------------------------------------------------------- */
+html.product-layout-modern body .main-area {
+  padding: 0 !important;
+  gap: 14px !important;
+  overflow: visible !important;
+  grid-template-rows: auto minmax(0, 1fr) !important;
+}
+
+html.product-layout-modern body .top-banner {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 58px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 13px 20px !important;
+  border: 1px solid var(--v408-line) !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.08), transparent 38%),
+    var(--v408-glass-strong) !important;
+  backdrop-filter: blur(24px) saturate(1.28) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.28) !important;
+  color: var(--text, #fff) !important;
+  box-shadow: 0 20px 54px rgba(0,0,0,.24), 0 0 25px var(--v408-glow), inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+
+html.product-layout-modern body .top-banner::after {
+  content: "";
+  position: absolute;
+  width: 34%;
+  height: 1px;
+  left: 33%;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, var(--accent, var(--pink)), transparent);
+  box-shadow: 0 0 14px var(--accent, var(--pink));
+  opacity: .72;
+}
+
+html.product-layout-modern body .main-grid {
+  min-height: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  gap: 14px !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  overflow: visible !important;
+}
+
+html.product-layout-modern body #participantsPanel,
+html.product-layout-modern body #chatPanel,
+html.product-layout-modern body .participants-card,
+html.product-layout-modern body .chat-card {
+  position: relative !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--v408-line) !important;
+  border-radius: var(--v408-radius-lg) !important;
+  background:
+    linear-gradient(150deg, rgba(255,255,255,.045), transparent 36%),
+    var(--v408-glass) !important;
+  background-image: linear-gradient(150deg, rgba(255,255,255,.045), transparent 36%) !important;
+  backdrop-filter: blur(23px) saturate(1.20) !important;
+  -webkit-backdrop-filter: blur(23px) saturate(1.20) !important;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.28),
+    0 0 34px var(--v408-glow),
+    inset 0 1px 0 rgba(255,255,255,.075) !important;
+}
+
+html.product-layout-modern body #participantsPanel::before,
+html.product-layout-modern body #chatPanel::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--accent, var(--pink)) 10%, transparent), transparent 28%),
+    linear-gradient(115deg, rgba(255,255,255,.04), transparent 24% 78%, rgba(255,255,255,.015));
+}
+
+html.product-layout-modern body .card-title {
+  position: relative !important;
+  z-index: 6 !important;
+  min-height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 15px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,.055) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.005)) !important;
+  color: rgba(255,255,255,.90) !important;
+  font-size: 10px !important;
+  letter-spacing: .10em !important;
+}
+
+html.product-layout-modern body .card-title.big {
+  font-size: 11px !important;
+  color: rgba(255,255,255,.92) !important;
+}
+
+html.product-layout-modern body .connection {
+  position: relative !important;
+  z-index: 6 !important;
+  margin: 9px 12px 0 !important;
+  padding: 7px 10px !important;
+  border: 1px solid rgba(255,255,255,.045) !important;
+  border-radius: 11px !important;
+  background: rgba(3,5,9,.24) !important;
+}
+
+html.product-layout-modern body .list,
+html.product-layout-modern body .chat-list {
+  position: relative !important;
+  z-index: 6 !important;
+}
+
+html.product-layout-modern body .chat-send {
+  position: relative !important;
+  z-index: 7 !important;
+  margin: 8px !important;
+  padding: 6px !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+  border-radius: 14px !important;
+  background: rgba(3,4,8,.36) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+}
+
+html.product-layout-modern body .chat-send input,
+html.product-layout-modern body .chat-send button,
+html.product-layout-modern body .copy {
+  border-radius: 10px !important;
+}
+
+html.product-layout-modern body .copy {
+  position: relative !important;
+  z-index: 7 !important;
+  width: calc(100% - 16px) !important;
+  margin: 0 8px 8px !important;
+  min-height: 34px !important;
+}
+
+/* --------------------------------------------------------------------------\n   RIGHT - no parent cage. Winners and blacklist are two separate floating pods.\n   -------------------------------------------------------------------------- */
+html.product-layout-modern body .right-panel {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+  gap: 14px !important;
+  grid-template-rows: minmax(210px, 1.18fr) minmax(170px, .82fr) 0 0 !important;
+  overflow: visible !important;
+}
+
+html.product-layout-modern body .right-panel > .card,
+html.product-layout-modern body #winnersPanel,
+html.product-layout-modern body .blacklist-card {
+  position: relative !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--v408-line) !important;
+  border-radius: 24px !important;
+  background:
+    linear-gradient(150deg, rgba(255,255,255,.05), transparent 34%),
+    var(--v408-glass-strong) !important;
+  background-image: linear-gradient(150deg, rgba(255,255,255,.05), transparent 34%) !important;
+  backdrop-filter: blur(23px) saturate(1.22) !important;
+  -webkit-backdrop-filter: blur(23px) saturate(1.22) !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 0 28px var(--v408-glow), inset 0 1px 0 rgba(255,255,255,.075) !important;
+}
+
+html.product-layout-modern body #winnersPanel::after,
+html.product-layout-modern body .blacklist-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(130deg, rgba(255,255,255,.035), transparent 28% 74%, rgba(255,255,255,.012));
+}
+
+html.product-layout-modern body .winner-brand {
+  position: relative !important;
+  z-index: 3 !important;
+  align-self: center !important;
+  margin: 13px auto 4px !important;
+  padding: 6px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--v408-line-soft) !important;
+  background: rgba(255,255,255,.055) !important;
+  color: rgba(255,255,255,.88) !important;
+  box-shadow: none !important;
+}
+
+html.product-layout-modern body .right-title {
+  position: relative !important;
+  z-index: 3 !important;
+  padding: 5px 14px 9px !important;
+  text-align: center !important;
+  color: var(--text, #fff) !important;
+  font-size: 15px !important;
+  letter-spacing: .08em !important;
+  text-shadow: none !important;
+}
+
+html.product-layout-modern body #winnersList,
+html.product-layout-modern body #blackList {
+  position: relative !important;
+  z-index: 3 !important;
+  padding: 8px 11px 11px !important;
+}
+
+html.product-layout-modern body .winner-row,
+html.product-layout-modern body .black-item {
+  border: 1px solid rgba(255,255,255,.065) !important;
+  border-left: 1px solid rgba(255,255,255,.065) !important;
+  border-radius: 13px !important;
+  background: rgba(255,255,255,.038) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035) !important;
+}
+
+html.product-layout-modern body .blacklist-card .card-title {
+  border-bottom: 0 !important;
+  padding: 14px 14px 5px !important;
+  background: transparent !important;
+}
+
+html.product-layout-modern body .blacklist-card .hint {
+  position: relative !important;
+  z-index: 3 !important;
+  padding: 2px 13px 9px !important;
+  color: rgba(255,255,255,.48) !important;
+}
+
+html.product-layout-modern body .black-row {
+  position: relative !important;
+  z-index: 3 !important;
+  margin: 0 10px 8px !important;
+  grid-template-columns: minmax(0,1fr) 86px !important;
+}
+
+html.product-layout-modern body .black-row input,
+html.product-layout-modern body .black-row button {
+  min-width: 0 !important;
+  border-radius: 11px !important;
+}
+
+/* Inputs/buttons in the modern product shell share the HUB micro-control language. */
+html.product-layout-modern body button,
+html.product-layout-modern body input,
+html.product-layout-modern body select {
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease !important;
+}
+
+/* --------------------------------------------------------------------------\n   SAKURA MODERN: the wallpaper must visibly continue through all rounded gaps.\n   No carpet texture inside the two workspaces.\n   -------------------------------------------------------------------------- */
+html.product-layout-modern body.theme-sakura {
+  --v408-glass: rgba(83, 7, 14, .52);
+  --v408-glass-strong: rgba(67, 5, 11, .64);
+  --v408-line: rgba(255, 240, 232, .48);
+  --v408-line-soft: rgba(255, 240, 232, .20);
+  --v408-glow: rgba(185, 18, 38, .15);
+}
+
+html.product-layout-modern body.theme-sakura .left-panel,
+html.product-layout-modern body.theme-sakura .main-area,
+html.product-layout-modern body.theme-sakura .right-panel {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html.product-layout-modern body.theme-sakura #participantsPanel,
+html.product-layout-modern body.theme-sakura #chatPanel,
+html.product-layout-modern body.theme-sakura .participants-card,
+html.product-layout-modern body.theme-sakura .chat-card,
+html.product-layout-modern body.theme-sakura #winnersPanel,
+html.product-layout-modern body.theme-sakura .blacklist-card,
+html.product-layout-modern body.theme-sakura #topActiveV168 {
+  background:
+    linear-gradient(150deg, rgba(255,255,255,.055), transparent 35%),
+    rgba(73, 5, 12, .58) !important;
+  background-image: linear-gradient(150deg, rgba(255,255,255,.055), transparent 35%) !important;
+  border-color: rgba(255,242,234,.42) !important;
+  box-shadow: 0 24px 64px rgba(45,0,6,.24), 0 0 28px rgba(181,18,38,.11), inset 0 1px 0 rgba(255,255,255,.09) !important;
+}
+
+html.product-layout-modern body.theme-sakura #participantsPanel::after,
+html.product-layout-modern body.theme-sakura #chatPanel::after {
+  content: none !important;
+  display: none !important;
+}
+
+html.product-layout-modern body.theme-sakura .top-banner {
+  background: linear-gradient(150deg, rgba(255,255,252,.95), rgba(244,225,220,.88)) !important;
+  color: #8d0e1d !important;
+  border-color: rgba(181,18,38,.48) !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.84) !important;
+}
+
+html.product-layout-modern body.theme-sakura .left-panel > button,
+html.product-layout-modern body.theme-sakura .left-panel .toggle-box > button,
+html.product-layout-modern body.theme-sakura .left-panel #timerToggle,
+html.product-layout-modern body.theme-sakura .copy,
+html.product-layout-modern body.theme-sakura .chat-send button,
+html.product-layout-modern body.theme-sakura .black-row button {
+  border-color: rgba(181,18,38,.44) !important;
+  background: linear-gradient(180deg, rgba(255,255,252,.94), rgba(244,229,224,.90)) !important;
+  color: #7f0d18 !important;
+  text-shadow: none !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.82), 0 8px 22px rgba(54,0,6,.10) !important;
+}
+
+html.product-layout-modern body.theme-sakura .chat-send input,
+html.product-layout-modern body.theme-sakura .black-row input {
+  background: rgba(255,250,246,.90) !important;
+  color: #651018 !important;
+  border-color: rgba(181,18,38,.38) !important;
+}
+
+html.product-layout-modern body.theme-sakura .chat-send input::placeholder,
+html.product-layout-modern body.theme-sakura .black-row input::placeholder {
+  color: rgba(101,16,24,.48) !important;
+}
+
+html.product-layout-modern body.theme-sakura .left-panel .timer {
+  background: rgba(55,4,10,.60) !important;
+  color: #fff8f3 !important;
+  border-color: rgba(255,242,234,.37) !important;
+}
+
+/* New palettes are glassier in Modern mode than their classic versions. */
+html.product-layout-modern body.theme-aurora { --v408-glass:rgba(4,27,37,.54);--v408-glass-strong:rgba(5,22,34,.67);--v408-line:rgba(109,237,223,.32);--v408-line-soft:rgba(109,237,223,.17);--v408-glow:rgba(47,227,205,.10); }
+html.product-layout-modern body.theme-neon { --v408-glass:rgba(3,10,24,.58);--v408-glass-strong:rgba(7,8,27,.70);--v408-line:rgba(41,225,255,.30);--v408-line-soft:rgba(41,225,255,.15);--v408-glow:rgba(0,224,255,.10); }
+html.product-layout-modern body.theme-obsidian { --v408-glass:rgba(11,11,10,.66);--v408-glass-strong:rgba(13,13,12,.76);--v408-line:rgba(229,188,111,.28);--v408-line-soft:rgba(229,188,111,.14);--v408-glow:rgba(227,180,94,.08); }
+
+/* --------------------------------------------------------------------------\n   RESPONSIVE: preserve spacing on Full HD / common 24-inch configurations.\n   -------------------------------------------------------------------------- */
+@media (max-width: 1600px) {
+  html.product-layout-modern body .site {
+    grid-template-columns: 222px minmax(0,1fr) 246px !important;
+    gap: 11px !important;
+    column-gap: 11px !important;
+    padding: 10px !important;
+  }
+  html.product-layout-modern body .left-panel { gap: 7px !important; }
+  html.product-layout-modern body .main-area,
+  html.product-layout-modern body .main-grid,
+  html.product-layout-modern body .right-panel { gap: 10px !important; }
+  html.product-layout-modern body #topActiveV168 { padding: 11px 8px !important; }
+  html.product-layout-modern body .left-panel > button,
+  html.product-layout-modern body .left-panel .toggle-box > button { min-height: 34px !important; padding-top: 7px !important; padding-bottom: 7px !important; }
+  html.product-layout-modern body .left-panel .timer { min-height: 61px !important; font-size: 29px !important; }
+}
+
+@media (max-height: 850px) {
+  html.product-layout-modern body .site { padding-top: 8px !important; padding-bottom: 8px !important; }
+  html.product-layout-modern body .left-panel::before { display: none !important; }
+  html.product-layout-modern body .left-panel { gap: 6px !important; }
+  html.product-layout-modern body .left-spacer { min-height: 8px !important; }
+  html.product-layout-modern body .top-banner { min-height: 48px !important; padding: 9px 16px !important; }
+  html.product-layout-modern body .left-panel > button,
+  html.product-layout-modern body .left-panel .toggle-box > button { min-height: 31px !important; }
+  html.product-layout-modern body .left-panel .timer { min-height: 54px !important; padding: 5px !important; font-size: 27px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.product-layout-modern body::after { animation: none !important; }
+  html.product-layout-modern body * { scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================\n   KORZHANY v409 - BOOST BOT / CLEAN GLASS RAIL\n   Modern-only refinement requested after v408:\n   - Sakura wallpaper is clean outside participant/chat workspaces\n   - participant/chat remain the only red work surfaces\n   - reset participants moves beside Copy participants\n   - controls become compact floating command tiles\n   - right pods are balanced and neutral glass\n   - account badge reflects the authenticated HUB account\n   ========================================================================== */
+
+html.product-layout-modern,
+html.product-layout-modern body {
+  --v409-neutral: rgba(8, 10, 15, .46);
+  --v409-neutral-strong: rgba(8, 9, 14, .62);
+  --v409-neutral-soft: rgba(255,255,255,.035);
+  --v409-white-line: rgba(255,255,255,.20);
+  --v409-white-line-soft: rgba(255,255,255,.095);
+  --v409-shadow: 0 22px 60px rgba(0,0,0,.26);
+}
+
+/* The old reset button may exist in the left rail for a few ms before JS moves it.
+   Never flash it there in Modern mode. */
+html.product-layout-modern body .left-panel > #resetParticipantsBtn {
+  display: none !important;
+}
+
+/* ------------------------------ CLEAN SAKURA ------------------------------ */
+/* No global red wash: the actual Sakura/Porsche wallpaper is the canvas. */
+html.product-layout-modern body.theme-sakura {
+  background: url('/assets/sakura-theme-bg.webp') center center / cover fixed no-repeat !important;
+}
+
+html.product-layout-modern body.theme-sakura::before {
+  background:
+    linear-gradient(180deg, rgba(4,5,8,.025), rgba(4,5,8,.055)),
+    radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.08), transparent 44%) !important;
+}
+
+/* Outer layout is genuinely empty. Rounded gaps reveal the wallpaper itself. */
+html.product-layout-modern body.theme-sakura .site,
+html.product-layout-modern body.theme-sakura .site > .left-panel,
+html.product-layout-modern body.theme-sakura .site > .main-area,
+html.product-layout-modern body.theme-sakura .site > .right-panel {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Only the two actual stream workspaces keep the Sakura red glass. */
+html.product-layout-modern body.theme-sakura #participantsPanel,
+html.product-layout-modern body.theme-sakura #chatPanel,
+html.product-layout-modern body.theme-sakura .participants-card,
+html.product-layout-modern body.theme-sakura .chat-card {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), transparent 34%),
+    rgba(89, 7, 15, .50) !important;
+  background-color: rgba(89, 7, 15, .50) !important;
+  background-image: linear-gradient(145deg, rgba(255,255,255,.045), transparent 34%) !important;
+  border-color: rgba(255,244,237,.45) !important;
+  box-shadow:
+    0 24px 62px rgba(44,0,6,.21),
+    inset 0 1px 0 rgba(255,255,255,.075) !important;
+  backdrop-filter: blur(7px) saturate(1.04) !important;
+  -webkit-backdrop-filter: blur(7px) saturate(1.04) !important;
+}
+
+html.product-layout-modern body.theme-sakura #participantsPanel .card-title,
+html.product-layout-modern body.theme-sakura #chatPanel .card-title {
+  background: rgba(76, 5, 12, .46) !important;
+  color: rgba(255,249,245,.96) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+}
+
+/* Every non-workspace pod becomes neutral clear glass, not another red rectangle. */
+html.product-layout-modern body.theme-sakura #topActiveV168,
+html.product-layout-modern body.theme-sakura .top-active-v168,
+html.product-layout-modern body.theme-sakura #winnersPanel,
+html.product-layout-modern body.theme-sakura .blacklist-card {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), transparent 38%),
+    rgba(7, 9, 13, .46) !important;
+  background-color: rgba(7, 9, 13, .46) !important;
+  background-image: linear-gradient(145deg, rgba(255,255,255,.045), transparent 38%) !important;
+  border-color: rgba(255,255,255,.20) !important;
+  box-shadow: var(--v409-shadow), inset 0 1px 0 rgba(255,255,255,.07) !important;
+  backdrop-filter: blur(18px) saturate(1.08) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.08) !important;
+}
+
+html.product-layout-modern body.theme-sakura #topActiveV168::before,
+html.product-layout-modern body.theme-sakura #winnersPanel::after,
+html.product-layout-modern body.theme-sakura .blacklist-card::after {
+  background: linear-gradient(125deg, rgba(255,255,255,.045), transparent 30% 72%, rgba(255,255,255,.018)) !important;
+}
+
+/* ---------------------------- ONE-LINE BANNER ----------------------------- */
+html.product-layout-modern body .top-banner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 46px !important;
+  height: 46px !important;
+  padding: 8px 18px !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  font-size: clamp(12px, .82vw, 16px) !important;
+}
+
+html.product-layout-modern body .top-banner #codeBanner {
+  display: inline !important;
+  flex: 0 0 auto !important;
+}
+
+/* -------------------------- COMMAND TILE CONTROLS ------------------------- */
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+html.product-layout-modern body .left-panel .toggle-box > button,
+html.product-layout-modern body .left-panel #timerToggle {
+  position: relative !important;
+  min-height: 42px !important;
+  padding: 8px 12px 8px 47px !important;
+  overflow: hidden !important;
+  text-align: left !important;
+  border: 1px solid var(--v409-white-line-soft) !important;
+  border-radius: 14px !important;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.052), transparent 46%),
+    rgba(7, 9, 14, .50) !important;
+  color: rgba(255,255,255,.90) !important;
+  text-shadow: none !important;
+  font-size: 10px !important;
+  font-weight: 950 !important;
+  letter-spacing: .055em !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.052), 0 10px 24px rgba(0,0,0,.16) !important;
+  backdrop-filter: blur(15px) saturate(1.10) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(1.10) !important;
+}
+
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+html.product-layout-modern body .left-panel .toggle-box > button::before,
+html.product-layout-modern body .left-panel #timerToggle::before,
+html.product-layout-modern body .participants-actions-v409 button::before {
+  content: attr(data-glyph);
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  width: 27px;
+  height: 27px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent, var(--pink)) 34%, rgba(255,255,255,.12));
+  border-radius: 9px;
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,.15), transparent 38%),
+    color-mix(in srgb, var(--accent, var(--pink)) 15%, rgba(255,255,255,.02));
+  color: color-mix(in srgb, var(--accentText, #fff) 80%, #fff 20%);
+  font: 900 14px/1 ui-monospace,Consolas,monospace;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 0 16px color-mix(in srgb, var(--accent, var(--pink)) 10%, transparent);
+}
+
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::after,
+html.product-layout-modern body .left-panel .toggle-box > button::after,
+html.product-layout-modern body .left-panel #timerToggle::after {
+  content: "";
+  position: absolute;
+  left: 45px;
+  right: 12px;
+  bottom: 5px;
+  height: 1px;
+  transform: scaleX(.22);
+  transform-origin: left center;
+  opacity: .32;
+  background: linear-gradient(90deg, var(--accent, var(--pink)), transparent);
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn):hover,
+html.product-layout-modern body .left-panel .toggle-box > button:hover,
+html.product-layout-modern body .left-panel #timerToggle:hover {
+  transform: translateX(4px) translateY(-1px) !important;
+  border-color: color-mix(in srgb, var(--accent, var(--pink)) 34%, rgba(255,255,255,.18)) !important;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.075), transparent 48%),
+    rgba(8,10,15,.66) !important;
+  color: #fff !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.075), 0 14px 34px rgba(0,0,0,.22), 0 0 21px var(--v408-glow) !important;
+}
+
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn):hover::after,
+html.product-layout-modern body .left-panel .toggle-box > button:hover::after,
+html.product-layout-modern body .left-panel #timerToggle:hover::after {
+  transform: scaleX(1);
+  opacity: .78;
+}
+
+html.product-layout-modern body.theme-sakura .left-panel > button:not(#resetParticipantsBtn),
+html.product-layout-modern body.theme-sakura .left-panel .toggle-box > button,
+html.product-layout-modern body.theme-sakura .left-panel #timerToggle {
+  border-color: rgba(255,255,255,.15) !important;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.045), transparent 48%),
+    rgba(6,8,12,.46) !important;
+  color: rgba(255,250,247,.91) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 10px 26px rgba(0,0,0,.16) !important;
+}
+
+html.product-layout-modern body.theme-sakura .left-panel > button:not(#resetParticipantsBtn):hover,
+html.product-layout-modern body.theme-sakura .left-panel .toggle-box > button:hover,
+html.product-layout-modern body.theme-sakura .left-panel #timerToggle:hover {
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.07), transparent 48%),
+    rgba(10,10,14,.62) !important;
+  border-color: rgba(222,65,78,.42) !important;
+  color: #fff !important;
+}
+
+/* Timer is a floating instrument, not a red slab. */
+html.product-layout-modern body.theme-sakura .left-panel .timer {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(181,18,38,.09), transparent 56%),
+    rgba(6,8,12,.50) !important;
+  color: #fff9f6 !important;
+  border-color: rgba(255,255,255,.18) !important;
+  box-shadow: 0 16px 36px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+
+/* ------------------------ PARTICIPANT ACTION DOCK ------------------------- */
+html.product-layout-modern body .participants-actions-v409 {
+  position: relative !important;
+  z-index: 8 !important;
+  flex: 0 0 auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important;
+  gap: 7px !important;
+  width: calc(100% - 16px) !important;
+  margin: 0 8px 8px !important;
+  padding: 5px !important;
+  border: 1px solid rgba(255,255,255,.075) !important;
+  border-radius: 14px !important;
+  background: rgba(4,5,9,.28) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+html.product-layout-modern body .participants-actions-v409 #copyBtn,
+html.product-layout-modern body .participants-actions-v409 #resetParticipantsBtn {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 36px !important;
+  margin: 0 !important;
+  padding: 7px 10px 7px 38px !important;
+  border: 1px solid rgba(255,255,255,.13) !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.07), transparent 52%),
+    rgba(8,9,14,.57) !important;
+  color: rgba(255,255,255,.90) !important;
+  text-shadow: none !important;
+  font-size: 9px !important;
+  font-weight: 950 !important;
+  letter-spacing: .04em !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+
+html.product-layout-modern body .participants-actions-v409 button::before {
+  left: 6px !important;
+  width: 25px !important;
+  height: 25px !important;
+  border-radius: 8px !important;
+}
+
+html.product-layout-modern body .participants-actions-v409 #copyBtn:hover,
+html.product-layout-modern body .participants-actions-v409 #resetParticipantsBtn:hover {
+  transform: translateY(-1px) !important;
+  border-color: color-mix(in srgb, var(--accent, var(--pink)) 38%, rgba(255,255,255,.18)) !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.09), transparent 52%),
+    rgba(10,11,16,.72) !important;
+}
+
+/* -------------------------- BALANCED RIGHT PODS --------------------------- */
+html.product-layout-modern body .right-panel {
+  grid-template-rows: minmax(0,1fr) minmax(0,1fr) 0 0 !important;
+  align-items: stretch !important;
+}
+
+html.product-layout-modern body #winnersPanel,
+html.product-layout-modern body .blacklist-card {
+  height: 100% !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+html.product-layout-modern body #winnersList,
+html.product-layout-modern body #blackList {
+  min-height: 0 !important;
+  overflow: auto !important;
+}
+
+html.product-layout-modern body #winnersList {
+  flex: 1 1 auto !important;
+}
+
+html.product-layout-modern body #blackList {
+  flex: 1 1 auto !important;
+  margin: 0 10px 10px !important;
+}
+
+html.product-layout-modern body #clearWinnersBottomV220,
+html.product-layout-modern body #clearWinnersBottomV221,
+html.product-layout-modern body #clearWinnersBottomV222 {
+  flex: 0 0 auto !important;
+  width: calc(100% - 20px) !important;
+  margin: auto 10px 10px !important;
+  min-height: 35px !important;
+  border-radius: 11px !important;
+  border: 1px solid rgba(255,255,255,.13) !important;
+  background: rgba(7,9,13,.52) !important;
+  color: rgba(255,255,255,.86) !important;
+  text-shadow: none !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05) !important;
+}
+
+html.product-layout-modern body.theme-sakura .blacklist-card .card-title,
+html.product-layout-modern body.theme-sakura .blacklist-card .hint,
+html.product-layout-modern body.theme-sakura .right-title {
+  color: rgba(255,249,245,.88) !important;
+}
+
+html.product-layout-modern body.theme-sakura .blacklist-card .card-title {
+  background: transparent !important;
+}
+
+html.product-layout-modern body.theme-sakura .black-row input {
+  background: rgba(255,255,255,.075) !important;
+  color: rgba(255,255,255,.90) !important;
+  border-color: rgba(255,255,255,.13) !important;
+}
+
+html.product-layout-modern body.theme-sakura .black-row input::placeholder {
+  color: rgba(255,255,255,.38) !important;
+}
+
+html.product-layout-modern body.theme-sakura .black-row button,
+html.product-layout-modern body.theme-sakura #clearWinnersBottomV220,
+html.product-layout-modern body.theme-sakura #clearWinnersBottomV221,
+html.product-layout-modern body.theme-sakura #clearWinnersBottomV222 {
+  background: rgba(8,10,14,.60) !important;
+  color: rgba(255,255,255,.88) !important;
+  border-color: rgba(255,255,255,.15) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055) !important;
+}
+
+/* Account identity chip: its text is replaced from /api/access/me by panel-modern.js. */
+html.product-layout-modern body .winner-brand {
+  text-transform: none !important;
+  min-width: 0 !important;
+  max-width: calc(100% - 24px) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.10), transparent 42%),
+    rgba(255,255,255,.045) !important;
+  border-color: rgba(255,255,255,.16) !important;
+  color: rgba(255,255,255,.88) !important;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent, var(--pink)) 9%, transparent) !important;
+}
+
+/* Right cards should never repaint a giant theme-colored parent behind their rounded corners. */
+html.product-layout-modern body .right-panel,
+html.product-layout-modern body .right-panel::after {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+@media (max-width: 1600px) {
+  html.product-layout-modern body .top-banner {
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 7px 13px !important;
+    font-size: 11px !important;
+  }
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+  html.product-layout-modern body .left-panel .toggle-box > button,
+  html.product-layout-modern body .left-panel #timerToggle {
+    min-height: 37px !important;
+    padding-left: 43px !important;
+  }
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+  html.product-layout-modern body .left-panel .toggle-box > button::before,
+  html.product-layout-modern body .left-panel #timerToggle::before {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+@media (max-height: 850px) {
+  html.product-layout-modern body .top-banner {
+    height: 40px !important;
+    min-height: 40px !important;
+  }
+  html.product-layout-modern body .participants-actions-v409 {
+    margin-bottom: 6px !important;
+  }
+}
+
+/* ==========================================================================\n   KORZHANY v410 - BOOST BOT REFINEMENT + GLOBAL DAY/NIGHT\n   ========================================================================== */
+
+/* Day/Night follows the HUB preference. */
+html.product-layout-modern body.theme-sakura.kor-time-day {
+  background:url('/assets/sakura-theme-bg.webp') center center / cover fixed no-repeat !important;
+}
+html.product-layout-modern body.theme-sakura.kor-time-night {
+  background:
+    linear-gradient(180deg,rgba(0,7,20,.13),rgba(1,4,12,.30)),
+    url('/assets/sakura-theme-bg-night.webp') center center / cover fixed no-repeat !important;
+  --v409-neutral:rgba(3,7,13,.56);
+  --v409-neutral-strong:rgba(2,5,10,.71);
+  --v409-white-line:rgba(255,255,255,.16);
+  --v409-white-line-soft:rgba(255,255,255,.075);
+  --v408-glow:rgba(228,57,70,.12);
+}
+html.product-layout-modern body.kor-time-night::before {
+  background:
+    radial-gradient(ellipse at 19% 16%,var(--v408-glow),transparent 31%),
+    linear-gradient(180deg,rgba(0,4,12,.12),rgba(0,2,9,.28)) !important;
+}
+
+/* HUB link moves above TOP-3 so the lower right corner remains fully usable. */
+html.product-layout-modern body .logout-btn-v216 {
+  position:fixed !important;
+  z-index:90 !important;
+  left:17px !important;right:auto !important;top:15px !important;bottom:auto !important;
+  min-width:58px !important;height:30px !important;padding:0 12px !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  border:1px solid rgba(255,255,255,.15) !important;border-radius:11px !important;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),transparent 55%),rgba(5,7,12,.62) !important;
+  color:rgba(255,255,255,.88) !important;text-decoration:none !important;
+  font-size:8px !important;font-weight:950 !important;letter-spacing:.10em !important;
+  backdrop-filter:blur(14px) !important;-webkit-backdrop-filter:blur(14px) !important;
+  box-shadow:0 10px 28px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.055) !important;
+}
+html.product-layout-modern body .left-panel { padding-top:38px !important; }
+
+/* Right rail: winners above, blacklist stretches all the way to the bottom. */
+html.product-layout-modern body .right-panel {
+  display:flex !important;flex-direction:column !important;gap:12px !important;
+  grid-template-rows:none !important;min-height:0 !important;
+}
+html.product-layout-modern body #winnersPanel {
+  flex:0 0 min(46%,390px) !important;height:auto !important;min-height:220px !important;
+}
+html.product-layout-modern body .blacklist-card {
+  flex:1 1 auto !important;height:auto !important;min-height:0 !important;margin-top:0 !important;
+}
+html.product-layout-modern body .blacklist-card #blackList {
+  flex:1 1 auto !important;min-height:0 !important;margin-bottom:10px !important;
+}
+
+/* Compact command tiles. Text is genuinely centered, while glyph stays independent on the left. */
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+html.product-layout-modern body .left-panel .toggle-box > button,
+html.product-layout-modern body .left-panel #timerToggle {
+  min-height:31px !important;height:31px !important;padding:0 34px !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;text-align:center !important;
+  font-size:8.5px !important;line-height:1 !important;letter-spacing:.045em !important;
+  border-radius:11px !important;
+}
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+html.product-layout-modern body .left-panel .toggle-box > button::before,
+html.product-layout-modern body .left-panel #timerToggle::before {
+  left:5px !important;width:22px !important;height:22px !important;border-radius:7px !important;font-size:11px !important;
+}
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::after,
+html.product-layout-modern body .left-panel .toggle-box > button::after,
+html.product-layout-modern body .left-panel #timerToggle::after {
+  left:34px !important;right:34px !important;bottom:3px !important;
+}
+html.product-layout-modern body .left-panel .timer {
+  min-height:60px !important;height:60px !important;font-size:31px !important;
+}
+
+/* More air around the TOP-3 instrument after the HUB control was lifted above it. */
+html.product-layout-modern body #topActiveV168,
+html.product-layout-modern body .top-active-v168 { flex:0 0 auto !important; }
+
+@media(max-width:1600px){
+  html.product-layout-modern body .site{padding:11px !important;gap:10px !important;grid-template-columns:190px minmax(0,1fr) 205px !important}
+  html.product-layout-modern body .left-panel{padding-top:34px !important;gap:5px !important}
+  html.product-layout-modern body .logout-btn-v216{left:12px !important;top:11px !important;height:27px !important}
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+  html.product-layout-modern body .left-panel .toggle-box > button,
+  html.product-layout-modern body .left-panel #timerToggle{height:28px !important;min-height:28px !important;font-size:7.7px !important}
+  html.product-layout-modern body .left-panel .timer{height:53px !important;min-height:53px !important;font-size:27px !important}
+  html.product-layout-modern body #winnersPanel{flex-basis:44% !important;min-height:190px !important}
+}
+html.product-layout-modern.theme-sakura.kor-time-day body { background:url('/assets/sakura-theme-bg.webp') center center / cover fixed no-repeat !important; }
+html.product-layout-modern.theme-sakura.kor-time-night body { background:linear-gradient(180deg,rgba(0,7,20,.13),rgba(1,4,12,.30)),url('/assets/sakura-theme-bg-night.webp') center center / cover fixed no-repeat !important; }
+
+/* ==========================================================================
+   KORZHANY v411 - CLEAN WALLPAPER / BALANCED RAIL / LARGE CONTROLS
+   Modern product only. Logic and element IDs stay untouched.
+   ========================================================================== */
+
+/* Day/Night is now hard-synced from either <html> or <body>. */
+html.product-layout-modern.theme-sakura.kor-time-day body,
+html.product-layout-modern body.theme-sakura.kor-time-day {
+  background:url('/assets/sakura-theme-bg.webp') center center / cover fixed no-repeat !important;
+}
+html.product-layout-modern.theme-sakura.kor-time-night body,
+html.product-layout-modern body.theme-sakura.kor-time-night {
+  background:linear-gradient(180deg,rgba(0,5,15,.08),rgba(0,3,10,.19)),url('/assets/sakura-theme-bg-night.webp') center center / cover fixed no-repeat !important;
+}
+
+/* No global red veil between cards: the source wallpaper is the canvas. */
+html.product-layout-modern body::before {
+  background:transparent !important;
+  opacity:0 !important;
+}
+html.product-layout-modern body::after {
+  opacity:0 !important;
+  animation:none !important;
+}
+html.product-layout-modern body .site,
+html.product-layout-modern body .left-panel,
+html.product-layout-modern body .main-area,
+html.product-layout-modern body .right-panel,
+html.product-layout-modern body .main-grid {
+  background:transparent !important;
+  background-image:none !important;
+}
+
+/* Only the two real workspaces keep a whisper of tint. */
+html.product-layout-modern body #participantsPanel,
+html.product-layout-modern body #chatPanel,
+html.product-layout-modern body .participants-card,
+html.product-layout-modern body .chat-card {
+  background:linear-gradient(150deg,rgba(255,255,255,.032),transparent 34%),rgba(18,8,12,.16) !important;
+  background-image:linear-gradient(150deg,rgba(255,255,255,.032),transparent 34%) !important;
+  backdrop-filter:blur(7px) saturate(1.04) !important;
+  -webkit-backdrop-filter:blur(7px) saturate(1.04) !important;
+  box-shadow:0 18px 52px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+html.product-layout-modern body.theme-sakura.kor-time-day #participantsPanel,
+html.product-layout-modern body.theme-sakura.kor-time-day #chatPanel,
+html.product-layout-modern.theme-sakura.kor-time-day body #participantsPanel,
+html.product-layout-modern.theme-sakura.kor-time-day body #chatPanel {
+  background:linear-gradient(150deg,rgba(255,255,255,.052),transparent 34%),rgba(94,22,25,.13) !important;
+  background-image:linear-gradient(150deg,rgba(255,255,255,.052),transparent 34%) !important;
+}
+html.product-layout-modern body.theme-sakura.kor-time-night #participantsPanel,
+html.product-layout-modern body.theme-sakura.kor-time-night #chatPanel,
+html.product-layout-modern.theme-sakura.kor-time-night body #participantsPanel,
+html.product-layout-modern.theme-sakura.kor-time-night body #chatPanel {
+  background:linear-gradient(150deg,rgba(255,255,255,.025),transparent 35%),rgba(8,9,15,.22) !important;
+  background-image:linear-gradient(150deg,rgba(255,255,255,.025),transparent 35%) !important;
+  border-color:rgba(255,225,214,.22) !important;
+}
+html.product-layout-modern body #participantsPanel::before,
+html.product-layout-modern body #chatPanel::before { opacity:.28 !important; }
+
+/* Titles remain legible without turning the entire card red. */
+html.product-layout-modern body #participantsPanel .card-title,
+html.product-layout-modern body #chatPanel .card-title {
+  min-height:42px !important;
+  display:flex !important;
+  align-items:center !important;
+  font-size:10.5px !important;
+  letter-spacing:.055em !important;
+  background:rgba(18,7,11,.30) !important;
+  border-bottom:1px solid rgba(255,255,255,.07) !important;
+}
+html.product-layout-modern body #participantsPanel .card-title > *,
+html.product-layout-modern body #chatPanel .card-title > * { align-self:center !important; }
+
+/* Right side = two equal floating instruments. */
+html.product-layout-modern body .right-panel {
+  display:grid !important;
+  grid-template-rows:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:12px !important;
+  min-height:0 !important;
+}
+html.product-layout-modern body #winnersPanel,
+html.product-layout-modern body .blacklist-card {
+  flex:none !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+  margin:0 !important;
+  overflow:hidden !important;
+}
+html.product-layout-modern body #winnersList,
+html.product-layout-modern body #blackList {
+  min-height:0 !important;
+  overflow:auto !important;
+}
+html.product-layout-modern body .blacklist-card .card-title,
+html.product-layout-modern body #winnersPanel .winner-title,
+html.product-layout-modern body #winnersPanel h2,
+html.product-layout-modern body #winnersPanel h3 {
+  text-align:center !important;
+  justify-content:center !important;
+}
+
+/* Restore strong, comfortable controls. Icons stay independent; labels are centered. */
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+html.product-layout-modern body .left-panel .toggle-box > button,
+html.product-layout-modern body .left-panel #timerToggle {
+  height:42px !important;
+  min-height:42px !important;
+  padding:0 39px !important;
+  border-radius:14px !important;
+  font-size:9.8px !important;
+  font-weight:950 !important;
+  line-height:1.08 !important;
+  letter-spacing:.055em !important;
+  text-align:center !important;
+  justify-content:center !important;
+}
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+html.product-layout-modern body .left-panel .toggle-box > button::before,
+html.product-layout-modern body .left-panel #timerToggle::before {
+  left:7px !important;
+  width:27px !important;
+  height:27px !important;
+  border-radius:9px !important;
+  font-size:12px !important;
+}
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::after,
+html.product-layout-modern body .left-panel .toggle-box > button::after,
+html.product-layout-modern body .left-panel #timerToggle::after {
+  left:42px !important;
+  right:42px !important;
+}
+html.product-layout-modern body .left-panel .timer {
+  height:76px !important;
+  min-height:76px !important;
+  font-size:35px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+html.product-layout-modern body .left-panel { gap:8px !important; }
+
+/* Readability pass: center content inside the small instruments and bump type slightly. */
+html.product-layout-modern body .left-panel,
+html.product-layout-modern body .right-panel,
+html.product-layout-modern body .main-area {
+  font-size:calc(1em + .5px);
+}
+html.product-layout-modern body .winner-row,
+html.product-layout-modern body .black-item,
+html.product-layout-modern body .black-row,
+html.product-layout-modern body .blacklist-card .hint {
+  font-size:9.3px !important;
+}
+
+@media(max-width:1600px){
+  html.product-layout-modern body .site{grid-template-columns:210px minmax(0,1fr) 220px !important}
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+  html.product-layout-modern body .left-panel .toggle-box > button,
+  html.product-layout-modern body .left-panel #timerToggle{
+    height:36px !important;min-height:36px !important;font-size:8.8px !important;padding:0 34px !important
+  }
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+  html.product-layout-modern body .left-panel .toggle-box > button::before,
+  html.product-layout-modern body .left-panel #timerToggle::before{width:24px !important;height:24px !important;left:6px !important}
+  html.product-layout-modern body .left-panel .timer{height:66px !important;min-height:66px !important;font-size:31px !important}
+}
+
+/* ==========================================================================
+   KORZHANY v412 - BOOST BOT / OVERSIZED CONTROLS + TOP-3 HUB TAG
+   Visual-only refinement. Existing button nodes and handlers are preserved.
+   ========================================================================== */
+
+/* Align LEFT TOP-3 with the right winners card: no artificial header offset. */
+html.product-layout-modern body .left-panel {
+  padding-top:0 !important;
+  gap:9px !important;
+}
+html.product-layout-modern body .left-panel::before { display:none !important; }
+html.product-layout-modern body #topActiveV168,
+html.product-layout-modern body .top-active-v168 {
+  position:relative !important;
+  overflow:visible !important;
+  margin-top:0 !important;
+}
+
+/* HUB becomes a small physical tab pinned over the TOP-3 card. */
+html.product-layout-modern body #topActiveV168 > .logout-btn-v216,
+html.product-layout-modern body .top-active-v168 > .logout-btn-v216 {
+  position:absolute !important;
+  z-index:30 !important;
+  left:12px !important;
+  top:-9px !important;
+  right:auto !important;
+  bottom:auto !important;
+  width:auto !important;
+  min-width:58px !important;
+  height:28px !important;
+  padding:0 12px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border:1px solid rgba(255,255,255,.19) !important;
+  border-radius:10px !important;
+  background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.018)),rgba(8,7,12,.78) !important;
+  color:rgba(255,255,255,.94) !important;
+  font-size:8.4px !important;
+  font-weight:1000 !important;
+  letter-spacing:.12em !important;
+  text-decoration:none !important;
+  transform:rotate(-6deg) !important;
+  transform-origin:center !important;
+  box-shadow:0 10px 28px rgba(0,0,0,.27),0 0 18px var(--v408-glow),inset 0 1px 0 rgba(255,255,255,.09) !important;
+  backdrop-filter:blur(15px) saturate(1.14) !important;
+  -webkit-backdrop-filter:blur(15px) saturate(1.14) !important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease !important;
+}
+html.product-layout-modern body #topActiveV168 > .logout-btn-v216:hover,
+html.product-layout-modern body .top-active-v168 > .logout-btn-v216:hover {
+  transform:rotate(-2deg) translateY(-2px) scale(1.04) !important;
+  border-color:var(--v408-line) !important;
+  box-shadow:0 14px 34px rgba(0,0,0,.31),0 0 24px var(--v408-glow),inset 0 1px 0 rgba(255,255,255,.12) !important;
+}
+
+/* Make the full control stack obviously larger, with centered labels. */
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+html.product-layout-modern body .left-panel .toggle-box > button,
+html.product-layout-modern body .left-panel #timerToggle {
+  height:50px !important;
+  min-height:50px !important;
+  padding:0 46px !important;
+  border-radius:15px !important;
+  font-size:11px !important;
+  font-weight:1000 !important;
+  line-height:1.08 !important;
+  letter-spacing:.055em !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+html.product-layout-modern body .left-panel .toggle-box > button::before,
+html.product-layout-modern body .left-panel #timerToggle::before {
+  left:8px !important;
+  width:31px !important;
+  height:31px !important;
+  border-radius:10px !important;
+  font-size:13px !important;
+}
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::after,
+html.product-layout-modern body .left-panel .toggle-box > button::after,
+html.product-layout-modern body .left-panel #timerToggle::after {
+  left:48px !important;
+  right:48px !important;
+  bottom:4px !important;
+}
+html.product-layout-modern body .left-panel .timer {
+  height:90px !important;
+  min-height:90px !important;
+  font-size:40px !important;
+  letter-spacing:.08em !important;
+  border-radius:20px !important;
+}
+
+/* Keep TOP-3 typography comfortably readable after aligning the rails. */
+html.product-layout-modern body #topActiveV168,
+html.product-layout-modern body .top-active-v168 {
+  padding:18px 14px 15px !important;
+}
+html.product-layout-modern body #topActiveV168 .top-active-title,
+html.product-layout-modern body .top-active-v168 .top-active-title,
+html.product-layout-modern body #topActiveV168 h2,
+html.product-layout-modern body #topActiveV168 h3 {
+  font-size:14px !important;
+}
+
+/* 24-inch / narrower desktop: still bigger than v411, but guaranteed to fit. */
+@media(max-width:1600px){
+  html.product-layout-modern body .site{grid-template-columns:224px minmax(0,1fr) 224px !important}
+  html.product-layout-modern body .left-panel{padding-top:0 !important;gap:7px !important}
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+  html.product-layout-modern body .left-panel .toggle-box > button,
+  html.product-layout-modern body .left-panel #timerToggle{
+    height:44px !important;min-height:44px !important;font-size:9.8px !important;padding:0 40px !important
+  }
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+  html.product-layout-modern body .left-panel .toggle-box > button::before,
+  html.product-layout-modern body .left-panel #timerToggle::before{
+    width:28px !important;height:28px !important;left:7px !important;font-size:12px !important
+  }
+  html.product-layout-modern body .left-panel .timer{height:78px !important;min-height:78px !important;font-size:35px !important}
+  html.product-layout-modern body #topActiveV168,
+  html.product-layout-modern body .top-active-v168{padding:16px 12px 13px !important}
+  html.product-layout-modern body #topActiveV168 > .logout-btn-v216,
+  html.product-layout-modern body .top-active-v168 > .logout-btn-v216{top:-8px !important;left:10px !important;height:26px !important;min-width:54px !important}
+}
+
+/* ========================================================================== 
+   KORZHANY v414 - BOOST BOT / XL CONTROLS + TIGHT TIMER
+   Visual-only pass. No IDs, handlers, Twitch state or giveaway logic changed.
+   ========================================================================== */
+
+/* Bigger command tiles: easier to read and hit during a live stream. */
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+html.product-layout-modern body .left-panel .toggle-box > button,
+html.product-layout-modern body .left-panel #timerToggle {
+  height:62px !important;
+  min-height:62px !important;
+  padding:0 54px !important;
+  border-radius:17px !important;
+  font-size:13px !important;
+  line-height:1.05 !important;
+  letter-spacing:.052em !important;
+  font-weight:1000 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+html.product-layout-modern body .left-panel .toggle-box > button::before,
+html.product-layout-modern body .left-panel #timerToggle::before {
+  left:9px !important;
+  width:38px !important;
+  height:38px !important;
+  border-radius:12px !important;
+  font-size:15px !important;
+}
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::after,
+html.product-layout-modern body .left-panel .toggle-box > button::after,
+html.product-layout-modern body .left-panel #timerToggle::after {
+  left:56px !important;
+  right:56px !important;
+  bottom:5px !important;
+}
+
+/* Timer becomes a tight digital capsule: numbers dominate, empty box disappears. */
+html.product-layout-modern body .left-panel .timer {
+  height:54px !important;
+  min-height:54px !important;
+  max-height:54px !important;
+  padding:2px 10px !important;
+  margin:0 !important;
+  border-radius:16px !important;
+  font-size:41px !important;
+  line-height:1 !important;
+  letter-spacing:.065em !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+html.product-layout-modern body .left-panel { gap:9px !important; }
+
+/* 24-inch / narrower desktop: still materially larger than v413, but fits vertically. */
+@media(max-width:1600px){
+  html.product-layout-modern body .left-panel{gap:7px !important}
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+  html.product-layout-modern body .left-panel .toggle-box > button,
+  html.product-layout-modern body .left-panel #timerToggle{
+    height:56px !important;
+    min-height:56px !important;
+    padding:0 48px !important;
+    border-radius:16px !important;
+    font-size:11.8px !important;
+  }
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::before,
+  html.product-layout-modern body .left-panel .toggle-box > button::before,
+  html.product-layout-modern body .left-panel #timerToggle::before{
+    width:33px !important;
+    height:33px !important;
+    left:8px !important;
+    font-size:14px !important;
+  }
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn)::after,
+  html.product-layout-modern body .left-panel .toggle-box > button::after,
+  html.product-layout-modern body .left-panel #timerToggle::after{
+    left:50px !important;
+    right:50px !important;
+  }
+  html.product-layout-modern body .left-panel .timer{
+    height:50px !important;
+    min-height:50px !important;
+    max-height:50px !important;
+    padding:1px 8px !important;
+    border-radius:15px !important;
+    font-size:36px !important;
+  }
+}
+
+@media(max-height:820px){
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+  html.product-layout-modern body .left-panel .toggle-box > button,
+  html.product-layout-modern body .left-panel #timerToggle{
+    height:50px !important;
+    min-height:50px !important;
+    font-size:10.8px !important;
+  }
+  html.product-layout-modern body .left-panel .timer{
+    height:46px !important;
+    min-height:46px !important;
+    max-height:46px !important;
+    font-size:33px !important;
+  }
+}
+
+
+/* ========================================================================== 
+   KORZHANY v415 - BOOST BOT / LEFT-ALIGNED COMMAND LABELS
+   Visual-only: command captions align left while icon tiles remain untouched.
+   ========================================================================== */
+html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+html.product-layout-modern body .left-panel .toggle-box > button,
+html.product-layout-modern body .left-panel #timerToggle {
+  justify-content:flex-start !important;
+  text-align:left !important;
+  padding-left:62px !important;
+  padding-right:16px !important;
+}
+html.product-layout-modern body .left-panel #codeBtn #codeBtnText {
+  margin-left:4px !important;
+}
+@media(max-width:1600px){
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+  html.product-layout-modern body .left-panel .toggle-box > button,
+  html.product-layout-modern body .left-panel #timerToggle {
+    padding-left:56px !important;
+    padding-right:12px !important;
+  }
+}
+@media(max-height:820px){
+  html.product-layout-modern body .left-panel > button:not(#resetParticipantsBtn),
+  html.product-layout-modern body .left-panel .toggle-box > button,
+  html.product-layout-modern body .left-panel #timerToggle {
+    padding-left:52px !important;
+  }
+}
+
+
+/* ==========================================================================
+   KORZHANY v425 - TOP-3 POWER FINAL
+   ========================================================================== */
+html.product-layout-modern body #topActiveV168.top-active-v168 {
+  position: relative !important;
+}
+html.product-layout-modern body #topActiveV168 #top3PowerV422.top-active-power-v422 {
+  position: absolute !important;
+  z-index: 2147483000 !important;
+  top: 12px !important;
+  right: 12px !important;
+  left: auto !important;
+  bottom: auto !important;
+  display: grid !important;
+  place-items: center !important;
+  box-sizing: border-box !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 28px !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
+  border-radius: 9px !important;
+  background: rgba(13,13,17,.82) !important;
+  background-image: none !important;
+  color: rgba(255,255,255,.48) !important;
+  font: 800 16px/1 Arial,sans-serif !important;
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+  text-align: center !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06),0 4px 12px rgba(0,0,0,.18) !important;
+  opacity: 1 !important;
+  transform: none !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+html.product-layout-modern body #topActiveV168 #top3PowerV422.top-active-power-v422::before,
+html.product-layout-modern body #topActiveV168 #top3PowerV422.top-active-power-v422::after {
+  content: none !important;
+  display: none !important;
+}
+html.product-layout-modern body #topActiveV168 #top3PowerV422.top-active-power-v422:hover {
+  border-color: rgba(255,255,255,.36) !important;
+  background: rgba(22,22,27,.94) !important;
+  transform: translateY(-1px) !important;
+}
+html.product-layout-modern body #topActiveV168 #top3PowerV422.top-active-power-v422.is-on {
+  color: #b8ffcb !important;
+  border-color: rgba(83,255,138,.76) !important;
+  background: rgba(13,73,34,.90) !important;
+  box-shadow: 0 0 13px rgba(66,255,124,.50),inset 0 1px 0 rgba(225,255,234,.18) !important;
+}
+html.product-layout-modern body #topActiveV168 .top-active-v168-title {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  padding-left: 36px !important;
+  padding-right: 36px !important;
+  text-align: center !important;
+}
+html.product-layout-modern body #topActiveV168.top3-disabled-v422 > :not(#top3PowerV422) {
+  opacity: .38 !important;
+  filter: saturate(.38) !important;
+}
+html.product-layout-modern body #topActiveV168.top3-disabled-v422 #top3CountdownV168,
+html.product-layout-modern body #topActiveV168.top3-disabled-v422 #top3StartV168,
+html.product-layout-modern body #topActiveV168.top3-disabled-v422 #top3StopV168,
+html.product-layout-modern body #topActiveV168.top3-disabled-v422 .top-active-v169-crit {
+  cursor: not-allowed !important;
+}
+\n\n/* ==========================================================================\n   KORZHANY v426 - TOP-3 tiny corner power icon\n   Independent of layout/body classes so generic full-width button rules\n   can never stretch this control across the card.\n   ========================================================================== */\n#topActiveV168.top-active-v168 {\n  position: relative !important;\n}\n#topActiveV168 > #top3PowerV422.top-active-power-v422 {\n  position: absolute !important;\n  z-index: 2147483000 !important;\n  top: 10px !important;\n  right: 10px !important;\n  left: auto !important;\n  bottom: auto !important;\n  display: grid !important;\n  place-items: center !important;\n  box-sizing: border-box !important;\n  width: 24px !important;\n  min-width: 24px !important;\n  max-width: 24px !important;\n  height: 24px !important;\n  min-height: 24px !important;\n  max-height: 24px !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  flex: 0 0 24px !important;\n  border: 1px solid rgba(255,255,255,.20) !important;\n  border-radius: 8px !important;\n  background: rgba(13,13,17,.84) !important;\n  background-image: none !important;\n  color: rgba(255,255,255,.52) !important;\n  font: 800 15px/1 Arial,sans-serif !important;\n  letter-spacing: 0 !important;\n  text-indent: 0 !important;\n  text-align: center !important;\n  text-transform: none !important;\n  white-space: nowrap !important;\n  overflow: hidden !important;\n  opacity: 1 !important;\n  transform: none !important;\n  cursor: pointer !important;\n  appearance: none !important;\n  -webkit-appearance: none !important;\n  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 3px 10px rgba(0,0,0,.18) !important;\n}\n#topActiveV168 > #top3PowerV422.top-active-power-v422::before,\n#topActiveV168 > #top3PowerV422.top-active-power-v422::after {\n  content: none !important;\n  display: none !important;\n}\n#topActiveV168 > #top3PowerV422.top-active-power-v422.is-on {\n  color: #b8ffcb !important;\n  border-color: rgba(83,255,138,.76) !important;\n  background: rgba(13,73,34,.92) !important;\n  box-shadow: 0 0 11px rgba(66,255,124,.42), inset 0 1px 0 rgba(225,255,234,.16) !important;\n}\n#topActiveV168 .top-active-v168-title {\n  padding-left: 28px !important;\n  padding-right: 28px !important;\n}\n
+
+/* v484 — zoom-safe left rail + clean micro-controls */
+html.product-layout-modern body .left-panel {
+  height:calc(100vh - 32px) !important;
+  max-height:calc(100vh - 32px) !important;
+  min-height:0 !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  overscroll-behavior:contain !important;
+  scrollbar-gutter:stable !important;
+  padding-right:3px !important;
+}
+html.product-layout-modern body .left-panel::-webkit-scrollbar{width:6px}
+html.product-layout-modern body .left-panel::-webkit-scrollbar-track{background:transparent}
+html.product-layout-modern body .left-panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:999px}
+html.product-layout-modern body #winnerTimerSecV428 { appearance:textfield !important; -moz-appearance:textfield !important; }
+html.product-layout-modern body #winnerTimerSecV428::-webkit-outer-spin-button,
+html.product-layout-modern body #winnerTimerSecV428::-webkit-inner-spin-button { -webkit-appearance:none !important; margin:0 !important; display:none !important; }
+html.product-layout-modern body .black-row { grid-template-columns:minmax(0,1fr) minmax(84px,92px) !important; align-items:stretch !important; }
+html.product-layout-modern body .black-row input,
+html.product-layout-modern body .black-row button { width:100% !important; min-width:0 !important; box-sizing:border-box !important; }
+html.product-layout-modern body #blackAddBtn { padding:0 5px !important; display:flex !important; align-items:center !important; justify-content:center !important; text-align:center !important; font-size:8.2px !important; line-height:1 !important; overflow:hidden !important; }
+
+/* Sakura: custom operational dialogs stay dark glass instead of becoming a large white card. */
+html.product-layout-modern body.theme-sakura .winner-payout-card-v482,
+html.product-layout-modern body.theme-sakura .v484-modal-card {
+  background:radial-gradient(circle at 50% -12%,rgba(177,24,58,.18),transparent 42%),linear-gradient(180deg,rgba(43,9,18,.96),rgba(20,6,12,.985)) !important;
+  border-color:rgba(255,214,204,.26) !important;
+  color:#fff !important;
+}
+html.product-layout-modern body.theme-sakura .winner-payout-input-v482,
+html.product-layout-modern body.theme-sakura .v484-search-input,
+html.product-layout-modern body.theme-sakura .v484-player-stats > div,
+html.product-layout-modern body.theme-sakura .v484-history-row,
+html.product-layout-modern body.theme-sakura .v484-reasons button { background:rgba(5,2,5,.30) !important; color:#fff !important; border-color:rgba(255,230,220,.14) !important; }
+html.product-layout-modern body.theme-sakura .winner-payout-save-v482,
+html.product-layout-modern body.theme-sakura .v484-main-btn { background:linear-gradient(180deg,rgba(166,36,67,.96),rgba(102,16,37,.98)) !important; color:#fff !important; }
+html.product-layout-modern body.theme-sakura .v484-secondary-btn,
+html.product-layout-modern body.theme-sakura .winner-payout-close-v482,
+html.product-layout-modern body.theme-sakura .v484-x { background:rgba(255,255,255,.055) !important; color:#fff !important; }
+
+
+/* v485 — inactive ONLY-NEVER-WON tile is visually identical to the other command tiles. */
+html.product-layout-modern body .left-panel #onlyNeverWonBtn:not(.active-toggle):not([data-active="true"]) {
+  border-color:var(--v409-white-line-soft) !important;
+  background:linear-gradient(120deg,rgba(255,255,255,.052),transparent 46%),rgba(7,9,14,.50) !important;
+  color:rgba(255,255,255,.90) !important;
+  text-shadow:none !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.052),0 10px 24px rgba(0,0,0,.16) !important;
+  filter:none !important;
+}
+html.product-layout-modern body.theme-sakura .left-panel #onlyNeverWonBtn:not(.active-toggle):not([data-active="true"]) {
+  border-color:rgba(255,255,255,.15) !important;
+  background:linear-gradient(120deg,rgba(255,255,255,.045),transparent 48%),rgba(6,8,12,.46) !important;
+  color:rgba(255,250,247,.91) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 10px 26px rgba(0,0,0,.16) !important;
+}

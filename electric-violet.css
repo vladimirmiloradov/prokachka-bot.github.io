@@ -1,0 +1,41 @@
+/* Electric Violet: color and effects only. No layout/spacing/size changes. */
+body.theme-royal :is(.left-panel,.main-area,.right-panel) {
+  border-color:rgba(150,83,220,.43) !important;
+  background:linear-gradient(155deg,rgba(42,17,69,.94),rgba(23,9,42,.97)) !important;
+  box-shadow:inset 0 1px 0 rgba(198,146,255,.08),0 0 22px rgba(132,38,226,.09) !important;
+}
+body.theme-royal :is(#participantsPanel,#chatPanel,.participants-panel,.chat-panel) {
+  border-color:rgba(133,65,198,.38) !important;
+  background:linear-gradient(165deg,rgba(39,14,68,.92),rgba(20,8,37,.96)) !important;
+  box-shadow:inset 0 0 32px rgba(108,38,184,.10) !important;
+}
+body.theme-royal :is(.top-banner,.top-banner-v168) {
+  background:linear-gradient(100deg,#37165d,#5b2192,#351557) !important;
+  border-color:#8e46d2 !important;
+  color:#e3c4ff !important;
+  box-shadow:0 0 18px rgba(155,55,244,.23) !important;
+}
+body.theme-royal :is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchNickBtn) {
+  background:linear-gradient(135deg,#4b237a,#602c98) !important;
+  border-color:#8752b9 !important;
+  color:#dec1fa !important;
+}
+body.theme-royal :is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchNickBtn):hover {
+  background:linear-gradient(135deg,#6420ca,#9234f5) !important;
+  box-shadow:0 0 20px rgba(167,60,255,.32) !important;
+}
+body.theme-royal :is(#startBtn,#authBtn,#startRouletteBtn,.timer-start,.timer-apply) {
+  background:linear-gradient(110deg,#6420ca,#9234f5) !important;
+  border-color:#b46bff !important;
+  color:#edd8ff !important;
+  box-shadow:0 0 13px rgba(167,60,255,.17) !important;
+}
+body.theme-royal :is(input,textarea,select) {
+  background:#1b0c30 !important;
+  border-color:#633098 !important;
+  color:#d6b7f5 !important;
+}
+body.theme-royal :is(input,textarea)::placeholder { color:#987bb8 !important; }
+body.theme-royal :is(.card-title,.right-title,.connection,.timer,.custom-timer-title) { color:#cfaaf5 !important; }
+body.theme-royal :is(.participant-count,.participants-count,.count-number,.empty-state,.empty-message) { color:#b899da !important; }
+body.theme-royal .left-panel { scrollbar-gutter:auto !important; }

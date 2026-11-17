@@ -1,0 +1,52 @@
+/* KORZHANY v514: unified viewport overlay and tidy settings UI. */
+/* Overlay is portaled to BODY before app.js boot; it can no longer inherit a
+   transformed/contained .main-area or center itself in the right chat column. */
+html body > .center-visual {
+  position: fixed !important; inset: 0 !important;
+  width: 100vw !important; height: 100dvh !important;
+  margin: 0 !important; padding: 14px !important;
+  transform: none !important; translate: none !important;
+  left: 0 !important; right: 0 !important; top: 0 !important; bottom: 0 !important;
+  box-sizing: border-box !important;
+  justify-items: center !important; align-items: center !important;
+  justify-content: center !important; align-content: center !important;
+  max-width: none !important; max-height: none !important;
+}
+html body > .center-visual #winnerBox,
+html body > .center-visual #winnerChatBox,
+html body > .center-visual #rouletteWheelWrap,
+html body > .center-visual #rollingBox {
+  margin-left: auto !important; margin-right: auto !important;
+  left: auto !important; right: auto !important;
+}
+html body > .center-visual :is(#winnerBox,#winnerChatBox,#rouletteWheelWrap,#rollingBox):not(.hidden) {
+  justify-self: center !important;
+}
+/* Settings sections are independent; timer is just one of several controls. */
+.boost-settings-card-v428 { width: min(590px, calc(100vw - 32px)) !important; }
+.boost-settings-section-v514 { padding: 18px !important; }
+.boost-settings-timer-row-v514 { gap: 12px !important; }
+.boost-settings-timer-copy-v514 { flex: 1 1 auto; min-width: 0; }
+.boost-settings-time-inline-v514 { flex: 0 0 auto; margin: 0 !important; }
+.boost-settings-time-inline-v514 .boost-settings-input-wrap-v428 { gap: 6px; }
+.boost-settings-time-inline-v514 input { width: 66px !important; min-width: 66px !important; height: 38px !important; }
+.v514-switch { position:relative; display:grid !important; place-items:center !important; flex: 0 0 43px !important; width:43px !important; min-width:43px !important; height:28px !important; min-height:28px !important; border-radius:999px !important; padding:0 !important; background:rgba(255,255,255,.10) !important; border:1px solid rgba(255,255,255,.20) !important; box-shadow:none !important; }
+.v514-switch.is-on-v428 { background:color-mix(in srgb,var(--accent,#ff78b8) 45%,#172019) !important; border-color:var(--accent,#ff78b8) !important; }
+.v514-switch-track { display:block; width:100%; height:100%; pointer-events:none; }
+.v514-switch-knob { pointer-events:none; position:absolute; top:4px; left:4px; height:18px; width:18px; border-radius:50%; background:#fff; box-shadow:0 1px 5px rgba(0,0,0,.35); transition:transform .17s ease; }
+.v514-switch.is-on-v428 .v514-switch-knob { transform:translateX(15px); }
+.boost-settings-filter-v514 { margin-top:12px !important; }
+.v514-filter-toggle { flex: 0 0 76px !important; width:76px !important; min-width:76px !important; height:36px !important; min-height:36px !important; border-radius:12px !important; padding:0 9px !important; font-size:11px !important; background:rgba(255,255,255,.06) !important; color:var(--text,#fff) !important; }
+.v514-filter-toggle.active-toggle, .v514-filter-toggle[data-active="true"] { color:#d4ffe3 !important; border-color:rgba(79,233,143,.58) !important; background:rgba(18,91,50,.32) !important; }
+.v514-settings-footnote { padding:12px 3px 0; color:var(--muted,rgba(255,255,255,.58)); font-size:11px; line-height:1.45; text-align:center; }
+.v514-since { font-weight:400; font-size:10px; opacity:.72; }
+/* Search button without any magnifier in both skins */
+#searchBtn::before { content:none !important; display:none !important; }
+html.product-layout-modern #searchBtn::before { content:none !important; display:none !important; }
+@media(max-width:650px) {
+ .boost-settings-timer-row-v514 { flex-wrap:wrap; }
+ .boost-settings-timer-copy-v514 { flex-basis:100%; }
+ .boost-settings-time-inline-v514 { margin-left:auto !important; }
+}
+
+html.product-layout-modern body #searchBtn { padding-left: 12px !important; text-align:center !important; }

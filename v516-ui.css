@@ -1,0 +1,239 @@
+/* KORZHANY HUB v516 — targeted geometry and controls correction.
+   Kept separate from legacy CSS to avoid changes to business/game logic. */
+
+/* 1: compact centered operator rail with one consistent button rhythm. */
+html body #controls.left-panel {
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  scroll-behavior:smooth!important;
+  padding-block:12px!important;
+}
+html body #controls>.left-spacer {display:none!important;}
+html body #controls>#codeBtn {margin-top:auto!important;}
+html body #controls>#hubTimerOpenV515 {margin-bottom:auto!important;}
+html body.v516-stream-clock-visible #controls>#hubTimerOpenV515{margin-bottom:0!important;}
+html body #controls>.v516-live-timer:not([hidden]){margin-bottom:auto!important;}
+html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428,#hubTimerOpenV515){
+  min-height:42px!important;
+  height:42px!important;
+  max-height:42px!important;
+  flex:0 0 42px!important;
+  box-sizing:border-box!important;
+  text-align:left!important;
+  padding-block:0!important;
+  padding-left:62px!important;
+  padding-right:8px!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+html body #controls>#timerToggle,html body #controls>#timer {display:none!important;}
+html body #controls>#searchBtn {position:relative!important;}
+html body #controls>#searchBtn::before,html body #controls>#searchBtn::after {content:none!important;display:none!important;}
+html body #controls>#searchBtn .v515-search-icon {
+  left:8px!important;top:50%!important;transform:translateY(-50%)!important;
+  width:34px!important;height:34px!important;min-width:34px!important;
+  font-size:20px!important;line-height:1!important;
+  padding:0!important;box-sizing:border-box!important;
+  display:grid!important;place-items:center!important;
+  background:rgba(255,255,255,.08)!important;
+  border:1px solid rgba(255,255,255,.20)!important;
+  border-radius:10px!important;
+  color:var(--text,#fff)!important;
+  text-align:center!important;
+}
+html body #controls>#searchBtn .v515-search-icon svg {width:19px;height:19px;display:block;}
+html body #controls>#hubTimerOpenV515 {position:relative!important;}
+html body #controls>#hubTimerOpenV515 .v516-timer-icon {
+  position:absolute!important;left:8px!important;top:50%!important;
+  transform:translateY(-50%)!important;
+  width:34px!important;height:34px!important;
+  display:grid!important;place-items:center!important;
+  box-sizing:border-box!important;border-radius:10px!important;
+  border:1px solid rgba(255,255,255,.19)!important;
+  background:rgba(255,255,255,.08)!important;color:var(--text,#fff)!important;
+  font:800 22px/1 system-ui,sans-serif!important;
+}
+html body #controls>#hubTimerOpenV515::before,html body #controls>#hubTimerOpenV515::after {content:none!important;display:none!important;}
+/* No gap created by the now-hidden legacy timer, duplicate reset button or toggle box. */
+html body #controls>.toggle-box,html body #controls>#resetParticipantsBtn {display:none!important;}
+/* Timer is not attached to the bottom of viewport; it lives below command list. */
+#v516LiveTimer[hidden]{display:none!important;}
+html body #controls .v516-live-timer{
+  flex:0 0 auto!important;
+  margin-top:clamp(6px,1.5vh,16px)!important;
+  min-height:98px!important;
+  padding:12px 8px!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  border-radius:15px!important;
+  border:1px solid color-mix(in srgb,var(--accent,#9aacc4) 26%,rgba(255,255,255,.13))!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(0,0,0,.08))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045)!important;
+  color:var(--text,#f7f9ff)!important;
+  pointer-events:none!important;
+}
+.v516-live-timer-label{font:850 10px/1.3 system-ui,sans-serif;letter-spacing:.16em;opacity:.62;}
+#v516LiveTimerValue{font:850 clamp(24px,2.1vw,39px)/1.3 ui-monospace,Consolas,monospace;letter-spacing:.01em;font-variant-numeric:tabular-nums;color:var(--text,#fff);}
+.v516-live-timer-action{font:850 9px/1.2 system-ui,sans-serif;opacity:.65;letter-spacing:.08em;text-align:center;}
+.v516-live-timer.is-active #v516LiveTimerValue{color:var(--accentText,var(--text,#fff));}
+
+/* 2: both sides of the visual overlay share a single viewport center, but
+   winner statistics, canonical action row and chat no longer overlap. */
+html body>.center-visual.winner-mode.roulette-active:has(#winnerBox:not(.hidden)) {
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  align-content:initial!important;
+  gap:15px!important;
+  padding:clamp(12px,2.5vh,26px) 14px!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+html body>.center-visual.winner-mode #winnerBox:not(.hidden){
+  position:relative!important;top:auto!important;left:auto!important;
+  right:auto!important;bottom:auto!important;transform:none!important;
+  display:flex!important;flex-direction:column!important;
+  flex:0 0 auto!important;
+  width:min(760px,calc(100vw - 30px))!important;
+  max-width:calc(100vw - 30px)!important;
+  min-width:0!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  margin:0 auto!important;
+  padding:clamp(14px,2vh,22px) clamp(12px,2vw,26px) 16px!important;
+  box-sizing:border-box!important;overflow:visible!important;
+}
+html body>.center-visual.winner-mode #winnerBox #winnerDetails:not(.hidden){
+  display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  width:100%!important;max-width:100%!important;
+  margin:11px auto 0!important;gap:7px!important;
+}
+html body>.center-visual.winner-mode #winnerBox #winnerDetails>.v515-metric{
+  min-height:64px!important;height:auto!important;min-width:0!important;
+  padding:8px 4px!important;flex-shrink:1!important;
+  display:flex!important;flex-direction:column!important;justify-content:center!important;
+  gap:4px!important;box-sizing:border-box!important;
+}
+html body>.center-visual.winner-mode #winnerChatBox:not(.hidden){
+  display:flex!important;flex-direction:column!important;
+  position:relative!important;top:auto!important;bottom:auto!important;
+  left:auto!important;right:auto!important;transform:none!important;
+  flex:0 1 auto!important;
+  width:min(760px,calc(100vw - 30px))!important;
+  max-width:calc(100vw - 30px)!important;
+  min-width:0!important;
+  height:clamp(220px,34vh,340px)!important;
+  min-height:195px!important;max-height:340px!important;
+  margin:0 auto!important;box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+html body>.center-visual.winner-mode #winnerChatBox #winnerActionsSlotV131 {
+  position:relative!important;top:auto!important;bottom:auto!important;
+  transform:none!important;flex:0 0 48px!important;height:48px!important;
+  min-height:48px!important;width:100%!important;
+  margin:0!important;padding:4px 8px!important;box-sizing:border-box!important;
+  z-index:4!important;
+}
+html body>.center-visual.winner-mode #winnerChatBox .winner-chat-head {flex:0 0 auto!important;}
+html body>.center-visual.winner-mode #winnerChatBox #winnerReplyStatus {flex:0 0 auto!important;}
+html body>.center-visual.winner-mode #winnerChatBox #winnerChatMessages{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;}
+@media(max-height:720px){
+  html body>.center-visual.winner-mode.roulette-active:has(#winnerBox:not(.hidden)){gap:9px!important;padding-block:8px!important;}
+  html body>.center-visual.winner-mode #winnerChatBox:not(.hidden){height:clamp(178px,31vh,260px)!important;min-height:178px!important;}
+  html body>.center-visual.winner-mode #winnerBox #winnerDetails>.v515-metric{min-height:46px!important;padding:4px 3px!important;}
+  html body>.center-visual.winner-mode #winnerBox:not(.hidden){padding:8px 12px!important;}
+}
+/* 3: roulette name deliberately above pointer; wheel and name share center. */
+html body>.center-visual.roulette-active #rollingBox .rolling-name,
+html body>.center-visual.roulette-active #rollingName {position:relative!important;top:-28px!important;}
+html body>.center-visual.roulette-active #rollingBox .roll-label {position:relative!important;top:-10px!important;}
+
+/* 4: members at top regardless of CSS classes used by legacy list states. */
+html body #participantsPanel #participantsList:not(.empty) {
+  display:block!important;align-content:start!important;align-items:start!important;
+  justify-content:flex-start!important;place-items:initial!important;
+  padding-top:12px!important;
+  height:auto!important;
+  overflow-y:auto!important;
+  margin-top:0!important;
+}
+html body #participantsPanel #participantsList:not(.empty)>.participant {
+  position:relative!important;top:auto!important;left:auto!important;
+  transform:none!important;margin-top:0!important;
+}
+
+/* 5: one channel status line at top, no duplicate uppercase heading or form. */
+html body #chatPanel > .v515-legacy-twitch-title,
+html body #chatPanel > .v516-hidden-title,
+html body #chatPanel > #channelName{display:none!important;}
+html body #chatPanel {display:flex!important;flex-direction:column!important;overflow:hidden!important;}
+html body #chatPanel>.connection{
+  order:-1!important;flex:0 0 44px!important;height:44px!important;
+  margin:0!important;padding:0 15px!important;box-sizing:border-box!important;
+  border-radius:14px 14px 0 0!important;background:rgba(255,255,255,.055)!important;
+  border-top:1px solid rgba(255,255,255,.055)!important;
+  border-bottom:1px solid rgba(255,255,255,.09)!important;
+  backdrop-filter:blur(9px)!important;
+}
+html body #chatPanel>.connection #connectionText{font-size:clamp(11px,.8vw,14px)!important;color:var(--text,#f5f7fa)!important;}
+html body #chatPanel>#chatList{order:0!important;flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;padding-top:9px!important;}
+html body #chatPanel>.v516-hidden-chat-compose{display:none!important;}
+html body #chatPanel>.v516-hour-leader{
+  order:1!important;flex:0 0 auto!important;
+  min-height:46px!important;box-sizing:border-box!important;
+  padding:9px 13px!important;
+  border-top:1px solid rgba(255,255,255,.11)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(0,0,0,.12))!important;
+  color:var(--muted,rgba(255,255,255,.72))!important;
+  font:750 12px/1.4 system-ui,sans-serif!important;
+  display:flex!important;align-items:center!important;gap:7px!important;
+  flex-wrap:wrap!important;
+}
+#v516HourLeader strong{color:var(--accentText,var(--text,#fff));overflow-wrap:anywhere;font-size:13px;}
+#v516HourLeaderCount{color:var(--muted,rgba(255,255,255,.53));}
+.v516-leader-spark{font-size:16px;color:var(--accentText,var(--text,#fff));}
+
+/* 6: timer modal visually belongs to the selected HUB theme. */
+html body #v515TimerModal{
+  background:rgba(3,5,10,.64)!important;
+  backdrop-filter:blur(11px) saturate(.9)!important;
+  -webkit-backdrop-filter:blur(11px) saturate(.9)!important;
+}
+html body #v515TimerModal>.v515-timer-card{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent,#a5a5ad) 7%,transparent),transparent 48%),
+    var(--panel,rgba(15,17,24,.97))!important;
+  color:var(--text,#f8f9fa)!important;
+  border:1px solid color-mix(in srgb,var(--accent,#abb5c4) 32%,rgba(255,255,255,.14))!important;
+  box-shadow:0 28px 85px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.06)!important;
+  border-radius:22px!important;
+}
+html body .v515-timer-face{font-size:clamp(32px,5.5vw,47px)!important;color:var(--text,#fff)!important;letter-spacing:.025em!important;}
+html body .v515-timer-card input,html body .v515-timer-card select{
+  background:rgba(0,0,0,.24)!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  color:var(--text,#fff)!important;
+}
+html body .v515-timer-actions button{background:rgba(255,255,255,.065)!important;color:var(--text,#fff)!important;border:1px solid rgba(255,255,255,.13)!important;transition:background .16s ease,border-color .16s ease,transform .16s ease!important;}
+html body .v515-timer-actions button:hover{background:color-mix(in srgb,var(--accent,#8d93a4) 25%,transparent)!important;border-color:var(--accent,#8996ac)!important;}
+html body .v515-timer-actions button:active{transform:scale(.985)!important;}
+@media(max-height:660px){
+  html body #controls.left-panel{gap:5px!important;}
+  html body #controls>button:is(#codeBtn,#rollBtn,#quickRollBtn,#watchtimeBtn,#smsTopBtn,#searchBtn,#boostSettingsBtnV428,#hubTimerOpenV515){height:36px!important;min-height:36px!important;max-height:36px!important;flex-basis:36px!important;}
+  html body #controls .v516-live-timer{min-height:70px!important;padding:6px!important;}
+}
+/* Critical: legacy rules were forcing the ambient count into flex layout,
+   consuming 140+ px and pushing the first participant down. */
+html body #participantsPanel > #participantsAmbientCountV515 {
+  position:absolute!important;
+  left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;
+  transform:translate(-50%,-50%)!important;
+  display:flex!important;flex:0 0 auto!important;
+  width:auto!important;height:auto!important;
+  margin:0!important;padding:0!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}

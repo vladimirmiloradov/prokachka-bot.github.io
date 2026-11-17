@@ -1,0 +1,46 @@
+/* KORZHANY v497 final palette/wallpaper safety layer. Loaded last on product pages. */
+html body.kor-custom-wallpaper,
+html.product-layout-modern body.kor-custom-wallpaper,
+html body.hub-page.kor-custom-wallpaper,
+html body[data-kor-page].kor-custom-wallpaper {
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+}
+html.kor-custom-wallpaper body::before{background-color:transparent}
+
+/* Never allow an old wine/pink modal surface to win after the v497 theme engine. */
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  .v213-modal-card,.v484-modal-card,.winner-payout-card-v482,.roulette-popup-card,.boost-settings-card-v428,
+  #winnerBox,.winner-visual,#winnerChatBox,.winner-chat-box
+){
+  border-color:color-mix(in srgb,var(--kor-accent) 38%,rgba(255,255,255,.09))!important;
+  background:radial-gradient(circle at 50% -12%,color-mix(in srgb,var(--kor-accent) 11%,transparent),transparent 42%),linear-gradient(180deg,var(--kor-panel-2),var(--kor-panel-strong))!important;
+  color:var(--kor-text)!important;
+  box-shadow:0 26px 86px rgba(0,0,0,.48),0 0 30px var(--kor-glow),inset 0 1px 0 rgba(255,255,255,.05)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  .v213-modal-btn,.v213-modal-close,.v484-x,.v484-secondary-btn,.v484-reasons button,
+  .winner-payout-close-v482,.popup-actions button,.boost-settings-close-v428,.boost-settings-presets-v428 button
+){
+  border-color:color-mix(in srgb,var(--kor-accent) 26%,rgba(255,255,255,.08))!important;
+  background:var(--kor-control)!important;color:var(--kor-text)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  .v213-ok,.v484-main-btn,.winner-payout-save-v482,.boost-settings-save-v428,#startRouletteBtn
+){
+  border-color:color-mix(in srgb,var(--kor-accent) 56%,transparent)!important;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--kor-accent) 43%,var(--kor-control)),color-mix(in srgb,var(--kor-accent-2) 42%,var(--kor-control)))!important;
+  color:var(--kor-text)!important;
+}
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  .v213-modal-input,.v484-search-input,.winner-payout-input-v482,.winner-payout-input-v482 input,#winnerTimerSecV428
+){background:var(--kor-input)!important;border-color:color-mix(in srgb,var(--kor-accent) 30%,transparent)!important;color:var(--kor-text)!important}
+
+/* Main bot command deck, top cards and right-side tools follow the palette in both layouts. */
+body:is(.theme-neon,.theme-emerald,.theme-obsidian,.theme-royal,.theme-amber) :is(
+  .left-panel>button,.left-panel .toggle-box>button,.blacklist-card button,.right-panel button,.chat-send button
+){
+  border-color:color-mix(in srgb,var(--kor-accent) 25%,rgba(255,255,255,.08))!important;
+  color:var(--kor-text)!important;
+}

@@ -294,6 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return ws;
   };
   window.WebSocket.prototype = NativeWebSocket.prototype;
+  // Статические константы оболочка не наследует: без них `ws.readyState !== WebSocket.OPEN`
+  // всегда истинно, и send() считал соединение закрытым (не работали вход по ключу и команды по WS).
+  ['CONNECTING', 'OPEN', 'CLOSING', 'CLOSED'].forEach(k => { window.WebSocket[k] = NativeWebSocket[k]; });
 })();
 const qs = new URLSearchParams(location.search);
 let adminKey = qs.get('key') || localStorage.getItem('rostyasha_admin_key') || '';
